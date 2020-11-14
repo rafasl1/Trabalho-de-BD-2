@@ -92,10 +92,10 @@ CREATE TABLE PROMOVE (
 );
 
 INSERT INTO PROMOVE (Evento, Entidade) VALUES (1, 3);
-INSERT INTO PROMOVE (Evento, Entidade) VALUES (5, 'Rua Bradesco');
-INSERT INTO PROMOVE (Evento, Entidade) VALUES ('Itau', 'Rua Itau');
-INSERT INTO PROMOVE (Evento, Entidade) VALUES ('Fusion', 'Rua Fusion');
-INSERT INTO PROMOVE (Evento, Entidade) VALUES ('Amazon', 'Rua Amazon');
+INSERT INTO PROMOVE (Evento, Entidade) VALUES (2, 4);
+INSERT INTO PROMOVE (Evento, Entidade) VALUES (3, 2);
+INSERT INTO PROMOVE (Evento, Entidade) VALUES (4, 2);
+INSERT INTO PROMOVE (Evento, Entidade) VALUES (5, 3);
 
 CREATE TABLE PATROCINA (
     Taxa INT,
@@ -106,6 +106,12 @@ CREATE TABLE PATROCINA (
     FOREIGN KEY(Entidade) REFERENCES ENTIDADE(Id) 
 );
 
+INSERT INTO PATROCINA (Taxa, Categoria, Evento, Entidade) VALUES (300, 'Ouro', 1, 5);
+INSERT INTO PATROCINA (Taxa, Categoria, Evento, Entidade) VALUES (750, 'Bronze', 2, 1);
+INSERT INTO PATROCINA (Taxa, Categoria, Evento, Entidade) VALUES (20, 'Bronze', 3, 1);
+INSERT INTO PATROCINA (Taxa, Categoria, Evento, Entidade) VALUES (4500, 'Ouro', 4, 4);
+INSERT INTO PATROCINA (Taxa, Categoria, Evento, Entidade) VALUES (178, 'Prata', 5, 3);
+
 CREATE TABLE REALIZA (
     Evento int,
     Entidade int,
@@ -113,7 +119,14 @@ CREATE TABLE REALIZA (
     FOREIGN KEY(Entidade) REFERENCES ENTIDADE(Id) 
 );
 
+INSERT INTO REALIZA (Evento, Entidade) VALUES (1, 4);
+INSERT INTO REALIZA (Evento, Entidade) VALUES (2, 2);
+INSERT INTO REALIZA (Evento, Entidade) VALUES (3, 1);
+INSERT INTO REALIZA (Evento, Entidade) VALUES (4, 5);
+INSERT INTO REALIZA (Evento, Entidade) VALUES (5, 5);
+
 CREATE TABLE RESPONSAVEL_ENTIDADE (
+    Id int PRIMARY KEY,
     Nome varchar(50),
     Sobrenome varchar(50),
     Papel varchar(50),
@@ -122,6 +135,12 @@ CREATE TABLE RESPONSAVEL_ENTIDADE (
     FOREIGN KEY(Entidade) REFERENCES ENTIDADE(Id)
 );
 
+INSERT INTO RESPONSAVEL_ENTIDADE (Id, Nome, Sobrenome, Papel, Telefone, Entidade) VALUES (1, 'Lila', 'Maria', 'Diretora de Eventos', 999999999, 1);
+INSERT INTO RESPONSAVEL_ENTIDADE (Id, Nome, Sobrenome, Papel, Telefone, Entidade) VALUES (2, 'Luli', 'Ferreira', 'Presidente', 999999999, 2);
+INSERT INTO RESPONSAVEL_ENTIDADE (Id, Nome, Sobrenome, Papel, Telefone, Entidade) VALUES (3, 'Nicole', 'Gaiola', 'Vice-presidente', 999999999, 3);
+INSERT INTO RESPONSAVEL_ENTIDADE (Id, Nome, Sobrenome, Papel, Telefone, Entidade) VALUES (4, 'Nicolas', 'Queijo', 'Representante oficial', 999999999, 4);
+INSERT INTO RESPONSAVEL_ENTIDADE (Id, Nome, Sobrenome, Papel, Telefone, Entidade) VALUES (5, 'Kleiton', 'Marcelo', 'Diretor de relações públicas', 999999999, 5);
+
 CREATE TABLE GERENCIA (
     Responsavel_entidade int,
     Entidade int,
@@ -129,10 +148,22 @@ CREATE TABLE GERENCIA (
     FOREIGN KEY(Entidade) REFERENCES ENTIDADE(Id) 
 );
 
+INSERT INTO GERENCIA (Evento, Entidade) VALUES (1, 1);
+INSERT INTO GERENCIA (Evento, Entidade) VALUES (2, 2);
+INSERT INTO GERENCIA (Evento, Entidade) VALUES (3, 3);
+INSERT INTO GERENCIA (Evento, Entidade) VALUES (4, 4);
+INSERT INTO GERENCIA (Evento, Entidade) VALUES (5, 5);
+
 CREATE TABLE LOCAL_DO_EVENTO (
     Id int PRIMARY KEY,
     Qualidade_da_Infraestrutura varchar(50)
 );
+
+INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (1, 'pessima');
+INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (2, 'boa');
+INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (3, 'ruim');
+INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (4, 'otima');
+INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (5, 'regular');
 
 CREATE TABLE EQUIPAMENTOS_ESPECIAIS (
     Equipamento varchar(50),
@@ -140,11 +171,23 @@ CREATE TABLE EQUIPAMENTOS_ESPECIAIS (
     FOREIGN KEY(Local_do_evento) REFERENCES LOCAL_DO_EVENTO(Id)
 );
 
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento) VALUES ('lanterna', 1);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento) VALUES ('tesoura', 2);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento) VALUES ('cola', 3);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento) VALUES ('guitarra', 4);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento) VALUES ('computador', 5);
+
 CREATE TABLE FACILIDADES_OFERECIDAS (
     Facilidade varchar(50),
     Local_do_evento int,
     FOREIGN KEY(Local_do_evento) REFERENCES LOCAL_DO_EVENTO(Id)
 );
+
+INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento) VALUES ('iluminacao', 1);
+INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento) VALUES ('rampa', 2);
+INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento) VALUES ('elevador', 3);
+INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento) VALUES ('traducao simultanea', 4);
+INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento) VALUES ('traducao em libras', 5);
 
 CREATE TABLE ATIVIDADE (
     Id int PRIMARY KEY,
@@ -155,6 +198,8 @@ CREATE TABLE ATIVIDADE (
     FOREIGN KEY(Evento) REFERENCES EVENTO(Id)
 );
 
+
+/*Precisa terminar as especialiazações*/
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (1, '12/04/2020', 'programadores', 1);
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (2, '23/01/2019', 'geral', 2);
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (3, '19/07/2021', 'universitarios', 3);
@@ -162,11 +207,20 @@ INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, 
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (5, '03/03/2023', 'geral', 5);
 
 CREATE TABLE PROMOVE (
-    Evento int,
+    Entidade int,
     Atividade int,
-    FOREIGN KEY(Evento) REFERENCES EVENTO(Id),
+    FOREIGN KEY(Entidade) REFERENCES ENTIDADE(Id),
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id) 
 );
+
+/*Precisa terminar as especialiazações*/
+/*
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1,);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2,);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3,);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4,);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5,);
+*/
 
 CREATE TABLE GERENCIAMENTO_FINANCEIRO (
     Ganhos int,
@@ -175,6 +229,12 @@ CREATE TABLE GERENCIAMENTO_FINANCEIRO (
     Atividade int,
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
+
+INSERT INTO GERENCIAMENTO_FINANCEIRO (Ganhos, Gastos, Saldo_Total, Atividade) VALUES (50, 20, 30, 1);
+INSERT INTO GERENCIAMENTO_FINANCEIRO (Ganhos, Gastos, Saldo_Total, Atividade) VALUES (120, 20, 100, 2);
+INSERT INTO GERENCIAMENTO_FINANCEIRO (Ganhos, Gastos, Saldo_Total, Atividade) VALUES (34, 44, -10, 3);
+INSERT INTO GERENCIAMENTO_FINANCEIRO (Ganhos, Gastos, Saldo_Total, Atividade) VALUES (90, 20, 70, 4);
+INSERT INTO GERENCIAMENTO_FINANCEIRO (Ganhos, Gastos, Saldo_Total, Atividade) VALUES (140, 340, -200, 5);
 
 CREATE TABLE WORKSHOP (
     Tema varchar(50),
@@ -192,6 +252,7 @@ INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('
 INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como sobreviver aos 4 anos de faculdade', 145, 'universitarios', 3);
 
 CREATE TABLE PALESTRA (
+    Id int,
     Afiliacao varchar(50),
     Nome_da_Palestra varchar(50),
     Duracao int,
@@ -200,26 +261,27 @@ CREATE TABLE PALESTRA (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO PALESTRA (Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES ('CIA_DEV', 'Mercado Mobile', '60', 'Desenvolvedores');
-INSERT INTO PALESTRA (Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES ('DevGeeks', 'Computação em Nuvem', '60', 'Interessados por Tecnologia');
-INSERT INTO PALESTRA (Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES ('StarWarsFans', 'Como se Tornar um Jedi nos Tempos Modernos', '40', 'Jovens');
-INSERT INTO PALESTRA (Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES ('PsicoGroup', 'Inteligência Emocional', '40', 'Público Geral');
-INSERT INTO PALESTRA (Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES ('LOLzeiro1', 'Como virar Pro-Player de LOL', '40', 'Jogadores');
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (1, 'CIA_DEV', 'Mercado Mobile', '60', 'Desenvolvedores');
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (2, 'DevGeeks', 'Computação em Nuvem', '60', 'Interessados por Tecnologia');
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (3, 'StarWarsFans', 'Como se Tornar um Jedi nos Tempos Modernos', '40', 'Jovens');
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (4, 'PsicoGroup', 'Inteligência Emocional', '40', 'Público Geral');
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (5, 'LOLzeiro1', 'Como virar Pro-Player de LOL', '40', 'Jogadores');
 
 CREATE TABLE PALESTRANTE (
+    Id int,
     Nome varchar(50),
     Sobrenome varchar(50),
-    Mini_Curruculo varchar(50),
+    Mini_Curriculo varchar(50),
     Palestra int,
     FOREIGN KEY(Palestra) REFERENCES PALESTRA(Id)
 );
 
-CREATE TABLE EXIBE (
-    Palestrante int,
-    Palestra int,
-    FOREIGN KEY(Palestrante) REFERENCES PALESTRANTE(Id),
-    FOREIGN KEY(Palestra) REFERENCES PALESTRA(Id) 
-);
+/*Não sei o que é mini-currículo*/
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (1, 'Katiana', 'Carente', '', 4);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (2, 'Robertinho', 'Orvalho', '', 3);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (3, 'Clodoberto', 'Agnaldo', '', 5);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (4, 'Alana', 'Coelhas', '', 1);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (5, 'Guirlanda', 'Golab', '', 2);
 
 CREATE TABLE TUTORIAL (
     Id int PRIMARY KEY,
@@ -240,6 +302,7 @@ INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('
 INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como ', 60, '', 123);
 
 CREATE TABLE MINISTRANTE_TUTORIAL (
+    Id int PRIMARY KEY,
     Nome varchar(50),
     Sobrenome varchar(50),
     Telefone int,
@@ -247,11 +310,11 @@ CREATE TABLE MINISTRANTE_TUTORIAL (
     FOREIGN KEY(Tutorial) REFERENCES TUTORIAL(Id)
 );
 
-INSERT INTO MINISTRANTE_TUTORIAL (Nome, Sobrenome, Telefone) VALUES ('Lara', 'Zuerk', 1189948377);
-INSERT INTO MINISTRANTE_TUTORIAL (Nome, Sobrenome, Telefone) VALUES ('Golab', 'Guimerlhe', 19875849377);
-INSERT INTO MINISTRANTE_TUTORIAL (Nome, Sobrenome, Telefone) VALUES ('Vilma', 'Lorena', 11698295979);
-INSERT INTO MINISTRANTE_TUTORIAL (Nome, Sobrenome, Telefone) VALUES ('Daria', 'Imar', 11994224897);
-INSERT INTO MINISTRANTE_TUTORIAL (Nome, Sobrenome, Telefone) VALUES ('Gabriela', 'Michele', 11958222359);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('1', 'Lara', 'Zuerk', 1189948377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('2', 'Golab', 'Guimerlhe', 19875849377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('3', 'Vilma', 'Lorena', 11698295979);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('4', 'Daria', 'Imar', 11994224897);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('5', 'Gabriela', 'Michele', 11958222359);
 
 CREATE TABLE MINISTRA ( 
     Ministrante int,
@@ -259,6 +322,12 @@ CREATE TABLE MINISTRA (
     FOREIGN KEY(Ministrante) REFERENCES MINISTRANTE_TUTORIAL(Id),
     FOREIGN KEY(Tutorial) REFERENCES TUTORIAL(Id) 
 );
+
+INSERT INTO MINISTRA (Ministrante, Tutorial) VALUES (1, 1);
+INSERT INTO MINISTRA (Ministrante, Tutorial) VALUES (2, 2);
+INSERT INTO MINISTRA (Ministrante, Tutorial) VALUES (3, 3);
+INSERT INTO MINISTRA (Ministrante, Tutorial) VALUES (4, 4);
+INSERT INTO MINISTRA (Ministrante, Tutorial) VALUES (5, 5);
 
 CREATE TABLE REUNIAO (
     Id int PRIMARY KEY,
@@ -292,6 +361,12 @@ CREATE TABLE CONCURSO (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (1, 'Concurso de Comer Cones', 1);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (2, 'Concurso de Beleza', 2);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (3, 'Concurso de Feiura', 3);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (4, 'Concurso de Lol', 4);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (5, 'Concurso de Among Us', 5);
+
 CREATE TABLE PARTICIPANTE_CONCURSO (
     Nome varchar(50),
     Sobrenome varchar(50),
@@ -301,6 +376,12 @@ CREATE TABLE PARTICIPANTE_CONCURSO (
     FOREIGN KEY(Concurso) REFERENCES CONCURSO(Id)
 );
 
+INSERT INTO PARTICIPANTE_CONCURSO (Nome, Sobrenome, Numero_de_Inscricao, Telefone, Concurso) VALUES ('Freira', 'Alexa', 1, 1182746355, 1);
+INSERT INTO PARTICIPANTE_CONCURSO (Nome, Sobrenome, Numero_de_Inscricao, Telefone, Concurso) VALUES ('Rodovario', 'Pinheiro', 2, 1195847376, 2);
+INSERT INTO PARTICIPANTE_CONCURSO (Nome, Sobrenome, Numero_de_Inscricao, Telefone, Concurso) VALUES ('Gabriela', 'Michele', 3, 1185746355, 3);
+INSERT INTO PARTICIPANTE_CONCURSO (Nome, Sobrenome, Numero_de_Inscricao, Telefone, Concurso) VALUES ('Girlanda', 'Golab', 4, 1185746399, 4);
+INSERT INTO PARTICIPANTE_CONCURSO (Nome, Sobrenome, Numero_de_Inscricao, Telefone, Concurso) VALUES ('Alana', 'Coelhas', 5, 1185948766, 5);
+
 CREATE TABLE JUIZ_CONCURSO (
     Nome varchar(50),
     Sobrenome varchar(50),
@@ -309,11 +390,29 @@ CREATE TABLE JUIZ_CONCURSO (
     FOREIGN KEY(Concurso) REFERENCES CONCURSO(Id)
 );
 
+INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso) VALUES ('Lila', 'Zurek', 1187654322, 1);
+INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso) VALUES ('Luli', 'Zurek', 1185747366, 2);
+INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso) VALUES ('Fema', 'Rins', 1186746622, 3);
+INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso) VALUES ('Gabriela', 'Michele', 1185746322, 4);
+INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso) VALUES ('Natilva', 'Eva', 1195847366, 5);
+
 CREATE TABLE REGRAS_CONCURSO (
     Regra varchar(50),
     Concurso int,
     FOREIGN KEY(Concurso) REFERENCES CONCURSO(Id)
 );
+
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não matar', 1);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não seja feia', 1);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não socar competidores', 2);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Sair no soco com Gabriella Michele', 2);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não pedir para pessoas sairem de suas casas', 2);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não dar piti quando trocar o filme', 3);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não comprar votos', 3);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Acreditar em outras pessoas além da Giovana', 4);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não dar cambalhota na grama', 5);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não dar trabalho no role', 5);
+INSERT INTO REGRAS_CONCURSO (Regra, Concurso) VALUES ('Não chegar atrasado na festa', 5);
 
 CREATE TABLE PREMIACAO (
     Premio varchar(50),
@@ -321,12 +420,30 @@ CREATE TABLE PREMIACAO (
     FOREIGN KEY(Concurso) REFERENCES CONCURSO(Id)
 );
 
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Playstation', 1);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Jogo da vida', 1);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Ingresso da Glow', 2);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Caneca e tirante', 2);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Ingresso do panelas', 2);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Viagem para Paris', 3);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Iphone 10', 3);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Plano cone ilimitado', 4);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Laura', 5);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Ingresso do Intercomp', 5);
+INSERT INTO PREMIACAO (Premio, Concurso) VALUES ('Ingresso da Las Brisas', 5);
+
 CREATE TABLE ATIVIDADE_SOCIAL (
     Tipo varchar(50),
     Valor_do_Convite int,
     Atividade int,
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
+
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Confraternizacao', 13, 1);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Bingo', 12, 2);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Rifa', 23, 3);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Beneficente', 10, 4);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Comemorativa', 30, 5);
 
 CREATE TABLE SESSAO (
     Id int PRIMARY KEY,
@@ -336,11 +453,11 @@ CREATE TABLE SESSAO (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO SESSAO (Nome, Responsavel_Pela_Sessao) VALUES ('Sessão da Manhã', 'Vilma Lorena');
-INSERT INTO SESSAO (Nome, Responsavel_Pela_Sessao) VALUES ('Sessão da Tarde', 'Mariana Gracinha');
-INSERT INTO SESSAO (Nome, Responsavel_Pela_Sessao) VALUES ('Sessão da Noite', 'Joelson Fronha');
-INSERT INTO SESSAO (Nome, Responsavel_Pela_Sessao) VALUES ('Sessão da Madrugada', 'Ferdinando Evoluiu');
-INSERT INTO SESSAO (Nome, Responsavel_Pela_Sessao) VALUES ('Sessão Extra', 'Josiel Gaffman');
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (1, 'Sessão da Manhã', 'Vilma Lorena');
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (2, 'Sessão da Tarde', 'Mariana Gracinha');
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (3, 'Sessão da Noite', 'Joelson Fronha');
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (4, 'Sessão da Madrugada', 'Ferdinando Evoluiu');
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (5, 'Sessão Extra', 'Josiel Gaffman');
 
 CREATE TABLE ARTIGO (
     Id int PRIMARY KEY,
@@ -349,22 +466,22 @@ CREATE TABLE ARTIGO (
     Tipo varchar(50)
 );
 
-INSERT INTO ARTIGO (Nome, Autor, Tipo) VALUES ('Teorias do Marketing Digital', 'Lara Zureck', 'Científico');
-INSERT INTO ARTIGO (Nome, Autor, Tipo) VALUES ('Atuação de Autômatos na Ciência de Dados', 'Giana Armario', 'TCC');
-INSERT INTO ARTIGO (Nome, Autor, Tipo) VALUES ('Algoritmos de Organização aplicados ao Meio Empresarial', 'Alana Coelhas', 'Iniciação Científica');
-INSERT INTO ARTIGO (Nome, Autor, Tipo) VALUES ('Inteligência Artificial: Próximos Passos', 'Ricael Mila', 'Doutorado');
-INSERT INTO ARTIGO (Nome, Autor, Tipo) VALUES ('Desenvolvimento OpenSource e suas aplicações', 'Guirlanda Golab', 'Pesquisa');
+INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (1, 'Teorias do Marketing Digital', 'Lara Zureck', 'Científico');
+INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (2, 'Atuação de Autômatos na Ciência de Dados', 'Giana Armario', 'TCC');
+INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (3, 'Algoritmos de Organização aplicados ao Meio Empresarial', 'Alana Coelhas', 'Iniciação Científica');
+INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (4, 'Inteligência Artificial: Próximos Passos', 'Ricael Mila', 'Doutorado');
+INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (5, 'Desenvolvimento OpenSource e suas aplicações', 'Guirlanda Golab', 'Pesquisa');
 
 CREATE TABLE APRESENTACAO (
     Id int PRIMARY KEY,
     Sessao_Especial varchar(50)
 );
 
-INSERT INTO APRESENTACAO (Sessao_Especial) VALUES ('Oral');
-INSERT INTO APRESENTACAO (Sessao_Especial) VALUES ('Multimídia');
-INSERT INTO APRESENTACAO (Sessao_Especial) VALUES ('Relato de Experiências');
-INSERT INTO APRESENTACAO (Sessao_Especial) VALUES ('Pôsteres');
-INSERT INTO APRESENTACAO (Sessao_Especial) VALUES ('Sessões da Indústria');
+INSERT INTO APRESENTACAO (Id, Sessao_Especial) VALUES (1, 'Oral');
+INSERT INTO APRESENTACAO (Id, Sessao_Especial) VALUES (2, 'Multimídia');
+INSERT INTO APRESENTACAO (Id, Sessao_Especial) VALUES (3, 'Relato de Experiências');
+INSERT INTO APRESENTACAO (Id, Sessao_Especial) VALUES (4, 'Pôsteres');
+INSERT INTO APRESENTACAO (Id, Sessao_Especial) VALUES (5, 'Sessões da Indústria');
 
 CREATE TABLE APRESENTA_ARTIGO (
     Sessao int,
@@ -380,17 +497,40 @@ CREATE TABLE LOJA (
     Nome varchar(50)
 );
 
+INSERT INTO LOJA (Id, nome) VALUES (1, 'Vendinha do Cone');
+INSERT INTO LOJA (Id, nome) VALUES (2, 'HappyCorno Conveniência');
+INSERT INTO LOJA (Id, nome) VALUES (3, 'Hot Dog no Palito e CIA');
+INSERT INTO LOJA (Id, nome) VALUES (4, 'Personali Camisetas');
+INSERT INTO LOJA (Id, nome) VALUES (5, 'Sorveteria Sorvetão');
+
 CREATE TABLE PRODUTO (
     Id int PRIMARY KEY,
+    Nome varchar(50),
     Preco int,
     Qnt_em_estoque int,
     Loja int,
     FOREIGN KEY(Loja) REFERENCES LOJA(Id)
 );
 
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (1, 'Cone de Sensação', 6, 5, 1);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (2, 'Cone de Brigadeiro', 6, 4, 1);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (3, 'Cone de Prestígio', 6, 10, 1);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (4, 'Cone de Ovomaltine', 6, 15, 1);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (5, 'Chifres', 1, 1, 2);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (6, 'aaaaa', 1, 1, 3);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (7, 'aaaaa', 1, 1, 3);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (8, 'aaaaa', 1, 1, 3);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (9, 'aaaaa', 1, 1, 3);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (10, 'Cam', 1, 1, 4);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (11, 'aaaaa', 1, 1, 4);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (12, 'Sorvete de Morango', 15, 10, 5);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (13, 'Sorvete de Chocolate', 15, 15, 5);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (14, 'Sorvete de Menta', 10, 10, 5);
+
+
 CREATE TABLE VENDEDOR (
     Id int PRIMARY KEY,
-    Nome varchar(50),
+    Nome int,
     Sobrenome varchar(50),
     CPF int,
     Telefone varchar(50),
