@@ -1,61 +1,61 @@
 /* ModeloLogicoExtendido: */
 
 CREATE TABLE Evento  (
-    Nome string,
-    Edição int,
-    Tema string,
-    Público Alvo string,
-    Tipo da Conta string,
+    Nome varchar(50),
+    Ediï¿½ï¿½o int,
+    Tema varchar(50),
+    Pï¿½blico Alvvarchar(50)ng,
+    Tipo da Conta varchar(50),
     Valor int
 );
 
 CREATE TABLE Entidade (
-    Nome string,
-    Endereço string,
+    Nome varchar(50),
+    Endereï¿½varchar(50)ng,
     Telefone int,
-    Email string
+    Email varchar(50)
 );
 
 CREATE TABLE Local (
     fk_Equipamentos Especiais_Equipamentos Especiais_PK INT,
     fk_Facilidades Oferecidas_Facilidades Oferecidas_PK INT,
-    Qualidades da Infraestrutura string
+    Qualidades da Infraestrutura varchar(50)
 );
 
 CREATE TABLE Workshop (
-    Tema string,
-    Duração double,
-    Público Alvo string,
-    Valor de Inscrição double
+    Tema varchar(50),
+    Duraï¿½ï¿½o double,
+    Pï¿½blico Alvvarchar(50)ng,
+    Valor de Inscriï¿½ï¿½o double
 );
 
 CREATE TABLE Palestra (
-    Afiliação string,
-    Nome da Palestra string,
-    Duração int,
-    Público Alvo string
+    Afiliaï¿½ï¿½varchar(50)ng,
+    Nome da Palestra varchar(50),
+    Duraï¿½ï¿½o int,
+    Pï¿½blico Alvvarchar(50)ng
 );
 
 CREATE TABLE Tutorial (
-    Tema string,
-    Duração double,
-    Público Alvo string,
-    Valor de Inscrição double
+    Tema varchar(50),
+    Duraï¿½ï¿½o double,
+    Pï¿½blico Alvvarchar(50)ng,
+    Valor de Inscriï¿½ï¿½o double
 );
 
-CREATE TABLE Reunião (
-    Objetivo string,
+CREATE TABLE Reuniï¿½o (
+    Objetivo varchar(50),
     fk_Participantes_Participantes_PK INT
 );
 
 CREATE TABLE Concurso (
-    Tema string,
+    Tema varchar(50),
     fk_Regras_Regras_PK INT,
-    fk_Premiação_Premiação_PK INT
+    fk_Premiaï¿½ï¿½o_Premiaï¿½ï¿½o_PK INT
 );
 
 CREATE TABLE Atividade Social (
-    Tipo string,
+    Tipo varchar(50),
     Valor do Convite int
 );
 
@@ -64,60 +64,60 @@ CREATE TABLE Participante (
 );
 
 CREATE TABLE Evento Online (
-    Link da Gravação string,
-    Plataforma string
+    Link da Gravaï¿½ï¿½varchar(50)ng,
+    Plataforma varchar(50)
 );
 
-CREATE TABLE Sessão (
-    Nome string,
-    Responsável pela Sessão string
+CREATE TABLE Sessï¿½o (
+    Nome varchar(50),
+    Responsï¿½vel pela Sessï¿½varchar(50)ng
 );
 
 CREATE TABLE Artigo (
-    Nome string,
-    Autor string,
-    Tipo string
+    Nome varchar(50),
+    Autor varchar(50),
+    Tipo varchar(50)
 );
 
-CREATE TABLE Apresentação (
-    Sessão Especial string
+CREATE TABLE Apresentaï¿½ï¿½o (
+    Sessï¿½o Especiavarchar(50)ng
 );
 
 CREATE TABLE Atividade (
-    Data string,
-    Local string,
-    Público Específico string
+    Data varchar(50),
+    Local varchar(50),
+    Pï¿½blico Especï¿½fvarchar(50)ring
 );
 
 CREATE TABLE Participante Concurso (
-    Nome string,
-    Sobrenome string,
-    Número de Inscrição int,
+    Nome varchar(50),
+    Sobrenome varchar(50),
+    Nï¿½mero de Inscriï¿½ï¿½o int,
     Telefone int
 );
 
-CREATE TABLE Juíz (
-    Nome string,
-    Sobrenome string,
+CREATE TABLE Juï¿½z (
+    Nome varchar(50),
+    Sobrenome varchar(50),
     Telefone int
 );
 
 CREATE TABLE Palestrante (
-    Nome string,
-    Sobrenome string,
-    Mini Currículo string
+    Nome varchar(50),
+    Sobrenome varchar(50),
+    Mini Currï¿½culvarchar(50)ng
 );
 
 CREATE TABLE Ministrante (
-    Nome string,
-    Sobrenome string,
+    Nome varchar(50),
+    Sobrenome varchar(50),
     Telefone int
 );
 
-CREATE TABLE Responsável (
-    Nome string,
-    Sobrenome string,
-    Papel string,
+CREATE TABLE Responsï¿½vel (
+    Nome varchar(50),
+    Sobrenome varchar(50),
+    Papel varchar(50),
     Telefone int
 );
 
@@ -132,65 +132,65 @@ CREATE TABLE Loja (
 
 CREATE TABLE Produto (
     Id int,
-    Preço int,
+    Preï¿½o int,
     Qnt em estoque int,
-    Data string
+    Data varchar(50)
 );
 
 CREATE TABLE Vendedor (
-    Nome string,
-    Sobrenome string,
+    Nome varchar(50),
+    Sobrenome varchar(50),
     CPF int,
-    Telefone string,
+    Telefone varchar(50),
     Id int
 );
 
 CREATE TABLE Sistema Finaceiro (
     Saldo Total int,
     Impostos Retirados int,
-    Data string
+    Data varchar(50)
 );
 
 CREATE TABLE Rede Social (
-    Plataforma string,
-    Usuário string,
-    Senha string
+    Plataforma varchar(50),
+    Usuï¿½rivarchar(50)ng,
+    Senha varchar(50)
 );
 
 CREATE TABLE Gestor (
-    Nome string,
-    Sobrenome string,
+    Nome varchar(50),
+    Sobrenome varchar(50),
     Telefone int
 );
 
 CREATE TABLE Equipamentos Especiais (
     Equipamentos Especiais_PK INT NOT NULL PRIMARY KEY,
-    Equipamentos Especiais string
+    Equipamentos Especiais varchar(50)
 );
 
 CREATE TABLE Facilidades Oferecidas (
     Facilidades Oferecidas_PK INT NOT NULL PRIMARY KEY,
-    Facilidades Oferecidas string
+    Facilidades Oferecidas varchar(50)
 );
 
 CREATE TABLE Participantes (
     Participantes_PK INT NOT NULL PRIMARY KEY,
-    Participantes string
+    Participantes varchar(50)
 );
 
 CREATE TABLE Regras (
     Regras_PK INT NOT NULL PRIMARY KEY,
-    Regras string
+    Regras varchar(50)
 );
 
-CREATE TABLE Premiação (
-    Premiação_PK INT NOT NULL PRIMARY KEY,
-    Premiação string
+CREATE TABLE Premiaï¿½ï¿½o (
+    Premiaï¿½ï¿½o_PK INT NOT NULL PRIMARY KEY,
+    Premiaï¿½ï¿½varchar(50)ng
 );
 
 CREATE TABLE Papel (
     Papel_PK INT NOT NULL PRIMARY KEY,
-    Papel string
+    Papel varchar(50)
 );
 
 CREATE TABLE Promove (
@@ -198,21 +198,21 @@ CREATE TABLE Promove (
 
 CREATE TABLE Patrocina (
     Taxa INT,
-    Categoria string
+    Categoria varchar(50)
 );
 
 CREATE TABLE Realiza (
 );
 
-CREATE TABLE Inscrição (
-    Época string,
+CREATE TABLE Inscriï¿½ï¿½o (
+    ï¿½pocvarchar(50)ng,
     Taxa int,
-    Classe do Público string,
-    Forma de Pagamento string,
-    Tipo string
+    Classe do Pï¿½blicvarchar(50)ng,
+    Forma de Pagamento varchar(50),
+    Tipo varchar(50)
 );
 
-CREATE TABLE Apresenta_Artigo_Sessão_Apresentação (
+CREATE TABLE Apresenta_Artigo_Sessï¿½o_Apresentaï¿½ï¿½o (
 );
 
 CREATE TABLE Promove (
@@ -237,7 +237,7 @@ ALTER TABLE Local ADD CONSTRAINT FK_Local_2
     REFERENCES Facilidades Oferecidas (Facilidades Oferecidas_PK)
     ON DELETE NO ACTION;
  
-ALTER TABLE Reunião ADD CONSTRAINT FK_Reunião_1
+ALTER TABLE Reuniï¿½o ADD CONSTRAINT FK_Reuniï¿½o_1
     FOREIGN KEY (fk_Participantes_Participantes_PK)
     REFERENCES Participantes (Participantes_PK)
     ON DELETE NO ACTION;
@@ -248,8 +248,8 @@ ALTER TABLE Concurso ADD CONSTRAINT FK_Concurso_1
     ON DELETE NO ACTION;
  
 ALTER TABLE Concurso ADD CONSTRAINT FK_Concurso_2
-    FOREIGN KEY (fk_Premiação_Premiação_PK)
-    REFERENCES Premiação (Premiação_PK)
+    FOREIGN KEY (fk_Premiaï¿½ï¿½o_Premiaï¿½ï¿½o_PK)
+    REFERENCES Premiaï¿½ï¿½o (Premiaï¿½ï¿½o_PK)
     ON DELETE NO ACTION;
  
 ALTER TABLE Participante ADD CONSTRAINT FK_Participante_1
