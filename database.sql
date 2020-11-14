@@ -492,6 +492,12 @@ CREATE TABLE APRESENTA_ARTIGO (
     FOREIGN KEY(Apresentacao) REFERENCES APRESENTACAO(Id)
 );
 
+INSERT INTO APRESENTA_ARTIGO (Sessao, Artigo, Apresentacao) VALUES (1, 1, 1);
+INSERT INTO APRESENTA_ARTIGO (Sessao, Artigo, Apresentacao) VALUES (2, 2, 2);
+INSERT INTO APRESENTA_ARTIGO (Sessao, Artigo, Apresentacao) VALUES (3, 3, 3);
+INSERT INTO APRESENTA_ARTIGO (Sessao, Artigo, Apresentacao) VALUES (4, 4, 4);
+INSERT INTO APRESENTA_ARTIGO (Sessao, Artigo, Apresentacao) VALUES (5, 5, 5);
+
 CREATE TABLE LOJA (
     Id int PRIMARY KEY, 
     Nome varchar(50)
@@ -516,13 +522,13 @@ INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (1, 'Cone de 
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (2, 'Cone de Brigadeiro', 6, 4, 1);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (3, 'Cone de Prestígio', 6, 10, 1);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (4, 'Cone de Ovomaltine', 6, 15, 1);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (5, 'Chifres', 1, 1, 2);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (6, 'aaaaa', 1, 1, 3);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (7, 'aaaaa', 1, 1, 3);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (8, 'aaaaa', 1, 1, 3);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (9, 'aaaaa', 1, 1, 3);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (10, 'Cam', 1, 1, 4);
-INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (11, 'aaaaa', 1, 1, 4);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_Estoque, Loja) VALUES (5, 'Chifres de Plástico', 5, 23, 2);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (6, 'Garrafinha Térmica do Evento', 500, 76, 2);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (7, 'Carteira de Couro Personalizável', 1000, 5, 2);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (8, 'Hot Dog Vegano', 20, 10, 3);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (9, 'Hot Dog Taca Tudo', 20, 25, 3);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (10, 'Camiseta do Evento', 35, 65, 4);
+INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (11, 'Camiseta Colorida', 25, 34, 4);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (12, 'Sorvete de Morango', 15, 10, 5);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (13, 'Sorvete de Chocolate', 15, 15, 5);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (14, 'Sorvete de Menta', 10, 10, 5);
@@ -538,6 +544,12 @@ CREATE TABLE VENDEDOR (
     FOREIGN KEY(Loja) REFERENCES LOJA(Id)
 );
 
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja) VALUES (1, 'Luci', 'Moni', 04937857463, 11994837466, 1);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja) VALUES (2, 'Harrida', 'Stilosa', 04837263849, 11049382746, 2);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja) VALUES (3, 'Zaine', 'Malika', 08736251467, 11093829866, 3);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja) VALUES (4, 'Liana', 'Panini', 039594837188, 11039485766, 4);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja) VALUES (5, 'Niala', 'Horana', 01937465890, 11039384755, 5);
+
 CREATE TABLE SISTEMA_FINANCEIRO (
     Saldo_Total int,
     Impostos_Retirados int,
@@ -546,12 +558,29 @@ CREATE TABLE SISTEMA_FINANCEIRO (
     FOREIGN KEY(Loja) REFERENCES LOJA(Id)
 );
 
+INSERT INTO SISTEMA_FINANCEIRO (Saldo_Total, Impostos_Retirados, Dia, Loja) VALUES (1000, 350, '11/09/2020', 1);
+INSERT INTO SISTEMA_FINANCEIRO (Saldo_Total, Impostos_Retirados, Dia, Loja) VALUES (2000, 1200, '04/05/2020', 2);
+INSERT INTO SISTEMA_FINANCEIRO (Saldo_Total, Impostos_Retirados, Dia, Loja) VALUES (450, 129, '29/07/2020', 3);
+INSERT INTO SISTEMA_FINANCEIRO (Saldo_Total, Impostos_Retirados, Dia, Loja) VALUES (1600, 340, '01/01/2021', 4);
+INSERT INTO SISTEMA_FINANCEIRO (Saldo_Total, Impostos_Retirados, Dia, Loja) VALUES (1500, 500, '02/04/2021', 5);
+
 CREATE TABLE REDE_SOCIAL (
     Id int PRIMARY KEY,
     Plataforma varchar(50),
     Usuario varchar(50),
     Senha varchar(50)
 );
+
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (1, 'Instagram', 'SSIOnline', 'batata', 1);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (2, 'Twitter', 'SSIOnline', 'batatinha', 1);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (3, Instagram, 'RoadSeC', 'cenoura', 2);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (4, Twitter, 'RoadSeC', 'cenourinha', 2);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (5, Facebook, 'SPMakerWeek', 'carne', 3);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (6, Pinterest, 'SPMakerWeek', 'carninha', 3);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (7, Instagram, 'BGS', 'arroz', 4);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (8, Facebook,  'BGS', 'arrozinho', 4);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (9, Twitter, 'ComicCon', 'feijão', 5);
+INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento) VALUES (10, Pinterest, 'ComicCon', 'feijãozinho', 5);
 
 CREATE TABLE GESTOR (
     Nome varchar(50),
@@ -561,6 +590,12 @@ CREATE TABLE GESTOR (
     FOREIGN KEY(Rede_social) REFERENCES REDE_SOCIAL(Id)
 );
 
+INSERT INTO GESTOR (Nome, Sobrenome, Telefone, Rede_Social) VALUES ('Gisele', 'Butchaca', 1185039288, 1);
+INSERT INTO GESTOR (Nome, Sobrenome, Telefone, Rede_Social) VALUES ('Chris', 'Hesmwosht', 119583929400, 2);
+INSERT INTO GESTOR (Nome, Sobrenome, Telefone, Rede_Social) VALUES ('Tom', 'Holanda', 19884765433, 3);
+INSERT INTO GESTOR (Nome, Sobrenome, Telefone, Rede_Social) VALUES ('Charles', 'Tatic', 11998706544, 4);
+INSERT INTO GESTOR (Nome, Sobrenome, Telefone, Rede_Social) VALUES ('Rodovaldo', 'Cesar', 11885746533, 5);
+
 CREATE TABLE INSCRICAO (
     Epoca varchar(50),
     Taxa int,
@@ -568,3 +603,9 @@ CREATE TABLE INSCRICAO (
     Forma_de_Pagamento varchar(50),
     Tipo varchar(50)
 );
+
+INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo) VALUES ('Verao', 240, 'Premium', 'Cartao');
+INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo) VALUES ('Inverno', 340, 'Standard', 'Boleto');
+INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo) VALUES ('Verao', 560, 'Premium', 'Dinheiro');
+INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo) VALUES ('Verao', 390, 'Premium', 'Cheque');
+INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo) VALUES ('Inverno', 200, 'Standard', 'Dinheiro');
