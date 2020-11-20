@@ -205,6 +205,36 @@ INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, 
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (3, '19/07/2021', 'universitarios', 3);
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (4, '25/09/2020', 'jovens', 4);
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (5, '03/03/2023', 'geral', 5);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (6, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (7, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (8, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (9, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (10, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (11, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (12, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (13, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (14, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (15, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (16, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (17, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (18, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (19, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (20, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (21, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (22, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (23, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (24, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (25, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (26, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (27, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (28, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (29, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (30, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (31, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (32, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (33, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (34, '', '', 0);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (35, '', '', 0);
 
 CREATE TABLE PROMOVE (
     Entidade int,
@@ -293,11 +323,11 @@ CREATE TABLE TUTORIAL (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Palestra) VALUES ('Como programar uma Pokedex em Angular', 95, 'jovens', 24, 11);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Palestra) VALUES ('Como ficar milionario em uma semana', 20, 'geral', 244, 12);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Palestra) VALUES ('Instalando JDK no seu computador', 35, 'programadores', 10, 13);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Palestra) VALUES ('Como tocar Unsaid Emily no ukelele', 95, 'jovens e adultos', 32, 14);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Palestra) VALUES ('Como queimar chocolate no microondas', 15, 'jovens', 3, 15);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (1, 'Como programar uma Pokedex em Angular', 95, 'jovens', 24, 11);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (2, 'Como ficar milionario em uma semana', 20, 'geral', 244, 12);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (3, 'Instalando JDK no seu computador', 35, 'programadores', 10, 13);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (4, 'Como tocar Unsaid Emily no ukelele', 95, 'jovens e adultos', 32, 14);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (5, 'Como queimar chocolate no microondas', 15, 'jovens', 3, 15);
 
 INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como ', 60, '', 123);
 
@@ -310,11 +340,11 @@ CREATE TABLE MINISTRANTE_TUTORIAL (
     FOREIGN KEY(Tutorial) REFERENCES TUTORIAL(Id)
 );
 
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('1', 'Lara', 'Zuerk', 1189948377);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('2', 'Golab', 'Guimerlhe', 19875849377);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('3', 'Vilma', 'Lorena', 11698295979);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('4', 'Daria', 'Imar', 11994224897);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('5', 'Gabriela', 'Michele', 11958222359);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (1, 'Lara', 'Zuerk', 1189948377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (2, 'Golab', 'Guimerlhe', 19875849377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (3, 'Vilma', 'Lorena', 11698295979);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (4, 'Daria', 'Imar', 11994224897);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (5, 'Gabriela', 'Michele', 11958222359);
 
 CREATE TABLE MINISTRA ( 
     Ministrante int,
