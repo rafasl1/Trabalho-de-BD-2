@@ -3,10 +3,13 @@ import {Link} from 'react-router-dom';
 
 function Header() {
     return (
-        <header style={headerStyle} >
-            <h1>Administrador de Eventos</h1>
-            <Link style={linkStyle} to="/">Eventos</Link> | <Link style={linkStyle} to="/patrocinadores">Patrocinadores</Link> 
-        </header>
+        <>
+            <header style={headerStyle} >
+                <h1>Administrador de Eventos</h1>
+                <Link style={linkStyle} to="/">Eventos</Link> | <Link style={linkStyle} to="/patrocinadores">Patrocinadores</Link> 
+            </header>
+            
+        </>
     )
 }
 

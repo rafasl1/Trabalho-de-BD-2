@@ -1,0 +1,39 @@
+.formsContainer {
+    margin-top: auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1.25em;
+    flex: 1;
+}
+
+.itemForms {
+    width: 100%;
+    display: flex;
+    flex: 1;
+}
+
+label {
+    margin-top: 20px;
+    display: flex;
+    flex: 1;
+    font-size: 1.25em;
+    flex-direction: column;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: large;
+    width: 50%;
+    cursor: pointer;
+    background-color: rgb(51,51,51);
+    color: white
+}

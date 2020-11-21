@@ -6,4 +6,7 @@ const { /* funções dos controllers aqui */ } = require('./controllers/index.co
 //router.get('/', função do controller);
 //router.post('/adiciona', função do controller);
 
+//router.get('/FormularioEvento.js', )
+//router.get('/FormularioPatrocinadores.js', )
+
 module.exports = router;

@@ -4,6 +4,9 @@ import './App.css';
 import Header from './components/layouts/Header';
 import Eventos from './pages/Eventos';
 import Patrocinadores from './pages/Patrocinadores'
+import FormularioEvento from './pages/FormularioEvento'
+import FormularioPatrocinadores from './pages/FormularioPatrocinadores'
+
 
 class App extends Component {
 
@@ -15,6 +18,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Eventos} />
             <Route path="/patrocinadores" component={Patrocinadores} />
+            <Route path="/formEvento" component={FormularioEvento} />
+            <Route path="/formPatrocinadores" component={FormularioPatrocinadores} />
           </div>
 
         </div>
