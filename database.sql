@@ -33,7 +33,8 @@ CREATE TABLE PARTICIPANTE_EVENTO (
     Sobrenome varchar(50),
     Email varchar(50),
     Evento int,
-    FOREIGN KEY(Evento) REFERENCES EVENTO(Id)
+    FOREIGN KEY(Evento) REFERENCES EVENTO(Id),
+    FOREIGN KEY(Papel) REFERENCES PAPEL(Id)
 );
 
 INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (1, 'Lara', 'Zureck', 'larazureck@gmail.com', 1);
