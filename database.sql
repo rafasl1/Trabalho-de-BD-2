@@ -30,32 +30,53 @@ INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento) VALUES ('twitch
 CREATE TABLE PARTICIPANTE_EVENTO (
     Id int PRIMARY KEY,
     Nome varchar(50),
+    Sobrenome varchar(50),
     Email varchar(50),
-    Papel INT,
+    Papel int,
     Evento int,
-    FOREIGN KEY(Evento) REFERENCES EVENTO(Id)
+    FOREIGN KEY(Evento) REFERENCES EVENTO(Id),
+    FOREIGN KEY(Papel) REFERENCES PAPEL(Id)
 );
 
 
 /*Precisa do cadastro dos PARTICIPANTE_EVENTO*/
-/*INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();*/
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (1, 'Lara', 'Zureck', 'larazureck@gmail.com', 1, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (2, 'Golab', 'Guimerlhe', 'golabgolab@gmail.com', 2, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (3, 'Vilma', 'Lorena', 'vilmalorena@gmail.com', 3, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (4, 'Daria', 'Imar', 'dariaimar@gmail.com', 4, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (5, 'Gabriela', 'Michele', 'gabrielamichele@gmail.com', 5, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (6, 'Freira', 'Alexa', 'freiraalexa@gmail.com', 6, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (7, 'Rodovario', 'Pinheiro', 'rodoviariopinheiro@gmail.com', 7, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (8, 'Girlanda', 'Golab', 'girlandagolab@gmail.com', 8, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (9, 'Alana', 'Coelhas', 'alanacoelhas@gmail.com', 9, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (10, 'Lila', 'Zurek', 'lilazurek@gmail.com', 10, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (11, 'Luli', 'Zurek', 'lulizurek@gmail.com', 11, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (12, 'Fema', 'Rins', 'femarins@gmail.com', 12, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (13, 'Natilva', 'Eva', 'natilvaeva@gmail.com', 13, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (14, 'Mariana', 'Gracinha', 'marianagracinha@gmail.com', 14, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (15, 'Giana', 'Armario', 'gianaarmario@gmail.com', 15, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (16, 'Joelson', 'Fronha', 'joelsonfronha@gmail.com', 16, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (17, 'Ferdinando', 'Evoluiu', 'ferdinandoevoluiu@gmail.com', 17, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (18, 'Josiel', 'Gaffman', 'josielgaffman@gmail.com', 18, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (19, 'Katiana', 'Carente', 'katianacarente@gmail.com', 19, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (20, 'Robertinho', 'Orvalho', 'robertinhoorvalho@gmail.com', 20, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (21, 'Clodoberto', 'Agnaldo', 'clodobertoagnaldo@gmail.com', 21, 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Papel, Evento) VALUES (22, 'Guirlanda', 'Golab', 'guirlandagolab@gmail.com', 22, 1);
+
 
 CREATE TABLE PAPEL (
+    Id int PRIMARY KEY,
     Papel varchar(50),
     Participante_evento int,
     FOREIGN KEY(Participante_evento) REFERENCES PARTICIPANTE_EVENTO(Id)
 );
 
 /*Precisa do cadastro dos PARTICIPANTE_EVENTO*/
-/*INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Palestrante', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Assistente', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Ouvinte', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Ministrante', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Funcionário', );*/
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (1, 'Palestrante', );
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (1, 'Assistente', );
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (1, 'Ouvinte', );
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (1, 'Ministrante', );
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (1, 'Funcionário', );
 
 CREATE TABLE CONTAS_A_PAGAR (
     Tipo_da_Conta varchar(50),
@@ -340,7 +361,7 @@ CREATE TABLE MINISTRANTE_TUTORIAL (
     FOREIGN KEY(Tutorial) REFERENCES TUTORIAL(Id)
 );
 
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (1, 'Lara', 'Zuerk', 1189948377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (1, 'Lara', 'Zurek', 1189948377);
 INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (2, 'Golab', 'Guimerlhe', 19875849377);
 INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (3, 'Vilma', 'Lorena', 11698295979);
 INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (4, 'Daria', 'Imar', 11994224897);
