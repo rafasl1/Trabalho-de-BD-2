@@ -30,32 +30,72 @@ INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento) VALUES ('twitch
 CREATE TABLE PARTICIPANTE_EVENTO (
     Id int PRIMARY KEY,
     Nome varchar(50),
+    Sobrenome varchar(50),
     Email varchar(50),
-    Papel INT,
     Evento int,
     FOREIGN KEY(Evento) REFERENCES EVENTO(Id)
 );
 
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (1, 'Lara', 'Zureck', 'larazureck@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (2, 'Golab', 'Guimerlhe', 'golabgolab@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (3, 'Vilma', 'Lorena', 'vilmalorena@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (4, 'Daria', 'Imar', 'dariaimar@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (5, 'Gabriela', 'Michele', 'gabrielamichele@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (6, 'Freira', 'Alexa', 'freiraalexa@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (7, 'Rodovario', 'Pinheiro', 'rodoviariopinheiro@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (8, 'Girlanda', 'Golab', 'girlandagolab@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (9, 'Alana', 'Coelhas', 'alanacoelhas@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (10, 'Lila', 'Zurek', 'lilazurek@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (11, 'Luli', 'Zurek', 'lulizurek@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (12, 'Fema', 'Rins', 'femarins@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (13, 'Natilva', 'Eva', 'natilvaeva@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (14, 'Mariana', 'Gracinha', 'marianagracinha@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (15, 'Giana', 'Armario', 'gianaarmario@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (16, 'Joelson', 'Fronha', 'joelsonfronha@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (17, 'Ferdinando', 'Evoluiu', 'ferdinandoevoluiu@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (18, 'Josiel', 'Gaffman', 'josielgaffman@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (19, 'Katiana', 'Carente', 'katianacarente@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (20, 'Robertinho', 'Orvalho', 'robertinhoorvalho@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (21, 'Clodoberto', 'Agnaldo', 'clodobertoagnaldo@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento) VALUES (22, 'Guirlanda', 'Golab', 'guirlandagolab@gmail.com', 1);
 
-/*Precisa do cadastro dos PARTICIPANTE_EVENTO*/
-/*INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Email, Papel, Evento) VALUES ();*/
 
 CREATE TABLE PAPEL (
+    Id int PRIMARY KEY,
     Papel varchar(50),
     Participante_evento int,
     FOREIGN KEY(Participante_evento) REFERENCES PARTICIPANTE_EVENTO(Id)
 );
 
-/*Precisa do cadastro dos PARTICIPANTE_EVENTO*/
-/*INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Palestrante', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Assistente', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Ouvinte', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Ministrante', );
-INSERT INTO PAPEL (Papel, Participante_Evento) VALUES ('Funcionário', );*/
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (1, 'Ministrante', 1);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (2, 'Público', 1);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (3, 'Ministrante', 2);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (4, 'Público', 3);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (5, 'Ministrante', 3);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (6, 'Funcionário', 3);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (7, 'Ministrante', 4);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (8, 'Ministrante', 5);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (9, 'Participante', 5);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (10, 'Juiz', 5);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (11, 'Público', 6);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (12, 'Público', 7);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (13, 'Público', 8);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (14, 'Público', 9);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (15, 'Palestrante', 9);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (16, 'Juiz', 10);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (17, 'Juiz', 11);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (18, 'Juiz', 12);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (19, 'Juiz', 13);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (20, 'Público', 14);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (21, 'Funcionário', 14);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (23, 'Público', 15);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (24, 'Funcionario', 16);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (25, 'Funcionario', 17);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (26, 'Funcionario', 18);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (27, 'Palestrante', 19);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (28, 'Palestrante', 20);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (29, 'Palestrante', 21);
+INSERT INTO PAPEL (Id, Papel, Participante_Evento) VALUES (30, 'Palestrante', 22);
 
 CREATE TABLE CONTAS_A_PAGAR (
     Tipo_da_Conta varchar(50),
@@ -198,13 +238,41 @@ CREATE TABLE ATIVIDADE (
     FOREIGN KEY(Evento) REFERENCES EVENTO(Id)
 );
 
-
-/*Precisa terminar as especialiazações*/
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (1, '12/04/2020', 'programadores', 1);
-INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (2, '23/01/2019', 'geral', 2);
-INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (3, '19/07/2021', 'universitarios', 3);
-INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (4, '25/09/2020', 'jovens', 4);
-INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (5, '03/03/2023', 'geral', 5);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (2, '23/01/2019', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (3, '19/07/2021', 'universitarios', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (4, '25/09/2020', 'jovens', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (5, '03/03/2023', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (6, '01/01/2021', 'programadores', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (7, '02/01/2021', 'programadores', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (8, '03/01/2021', 'jovens', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (9, '04/01/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (10, '05/01/2021', 'gamers', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (11, '06/01/2021', 'jovens', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (12, '07/01/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (13, '08/02/2021', 'programadores', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (14, '09/02/2021', 'jovens e adultos', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (15, '10/02/2021', 'jovens', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (16, '11/02/2021', 'programadores', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (17, '12/02/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (18, '13/03/2021', 'universitários', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (19, '14/03/2021', 'nerds', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (20, '15/03/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (21, '16/03/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (22, '17/03/2021', 'jovens', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (23, '18/03/2021', 'jovens', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (24, '19/04/2021', 'gamers', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (25, '20/04/2021', 'gamers', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (26, '21/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (27, '22/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (28, '23/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (29, '24/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (30, '25/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (31, '26/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (32, '27/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (33, '28/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (34, '29/04/2021', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento) VALUES (35, '30/04/2021', 'geral', 1);
 
 CREATE TABLE PROMOVE (
     Entidade int,
@@ -213,14 +281,41 @@ CREATE TABLE PROMOVE (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id) 
 );
 
-/*Precisa terminar as especialiazações*/
-/*
-INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1,);
-INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2,);
-INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3,);
-INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4,);
-INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5,);
-*/
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 1);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 2);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 3);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 4);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 5);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 6);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 7);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 8);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 9);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 10);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 11);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 12);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 13);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 14);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 15);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 16);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 17);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 18);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 19);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 20);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 21);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 22);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 23);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 24);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 25);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 26);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 27);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 28);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 29);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 30);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (1, 31);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (2, 32);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (3, 33);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (4, 34);
+INSERT INTO PROMOVE (Entidade, Atividade) VALUES (5, 35);
 
 CREATE TABLE GERENCIAMENTO_FINANCEIRO (
     Ganhos int,
@@ -245,11 +340,11 @@ CREATE TABLE WORKSHOP (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Aprendendo React para entrar na RocketSeat', 95, 'jovens', 24);
-INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Workshop de Angular', 120, 'jovens e adultos', 74);
-INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Aplicando Calculo 2 na sua vida', 15, 'universitarios', 10);
-INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Arduino para iniciantes', 95, 'jovens e adultos', 32);
-INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como sobreviver aos 4 anos de faculdade', 145, 'universitarios', 3);
+INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES ('Aprendendo React para entrar na RocketSeat', 95, 'jovens', 24, 1);
+INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES ('Workshop de Angular', 120, 'jovens e adultos', 74, 2);
+INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES ('Aplicando Calculo 2 na sua vida', 15, 'universitarios', 10, 3);
+INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES ('Arduino para iniciantes', 95, 'jovens e adultos', 32, 4);
+INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES ('Como sobreviver aos 4 anos de faculdade', 145, 'universitarios', 3, 5);
 
 CREATE TABLE PALESTRA (
     Id int,
@@ -261,11 +356,11 @@ CREATE TABLE PALESTRA (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (1, 'CIA_DEV', 'Mercado Mobile', '60', 'Desenvolvedores');
-INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (2, 'DevGeeks', 'Computação em Nuvem', '60', 'Interessados por Tecnologia');
-INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (3, 'StarWarsFans', 'Como se Tornar um Jedi nos Tempos Modernos', '40', 'Jovens');
-INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (4, 'PsicoGroup', 'Inteligência Emocional', '40', 'Público Geral');
-INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo) VALUES (5, 'LOLzeiro1', 'Como virar Pro-Player de LOL', '40', 'Jogadores');
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo, Atividade) VALUES (1, 'CIA_DEV', 'Mercado Mobile', '60', 'Desenvolvedores', 6);
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo, Atividade) VALUES (2, 'DevGeeks', 'Computação em Nuvem', '60', 'Interessados por Tecnologia', 7);
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo, Atividade) VALUES (3, 'StarWarsFans', 'Como se Tornar um Jedi nos Tempos Modernos', '40', 'Jovens', 8);
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo, Atividade) VALUES (4, 'PsicoGroup', 'Inteligência Emocional', '40', 'Público Geral', 9);
+INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo, Atividade) VALUES (5, 'LOLzeiro1', 'Como virar Pro-Player de LOL', '40', 'Jogadores', 10);
 
 CREATE TABLE PALESTRANTE (
     Id int,
@@ -276,12 +371,11 @@ CREATE TABLE PALESTRANTE (
     FOREIGN KEY(Palestra) REFERENCES PALESTRA(Id)
 );
 
-/*Não sei o que é mini-currículo*/
-INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (1, 'Katiana', 'Carente', '', 4);
-INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (2, 'Robertinho', 'Orvalho', '', 3);
-INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (3, 'Clodoberto', 'Agnaldo', '', 5);
-INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (4, 'Alana', 'Coelhas', '', 1);
-INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (5, 'Guirlanda', 'Golab', '', 2);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (1, 'Katiana', 'Carente', 'Graduada em Psicologia pela USP', 4);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (2, 'Robertinho', 'Orvalho', 'Graduando em Marketing pela USP', 3);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (3, 'Clodoberto', 'Agnaldo', 'Pro-Player', 5);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (4, 'Alana', 'Coelhas', 'Graduada em Sistemas de Informação pela USP', 1);
+INSERT INTO PALESTRANTE (Nome, Sobrenome, Mini_Curriculo, Palestra) VALUES (5, 'Guirlanda', 'Golab', 'Mestre em Sistemas de Informação pela USP', 2);
 
 CREATE TABLE TUTORIAL (
     Id int PRIMARY KEY,
@@ -293,11 +387,11 @@ CREATE TABLE TUTORIAL (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como programar uma Pokedex em Angular', 95, 'jovens', 24);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como ficar milionario em uma semana', 20, 'geral', 244);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Instalando JDK no seu computador', 35, 'programadores', 10);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como tocar Unsaid Emily no ukelele', 95, 'jovens e adultos', 32);
-INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como queimar chocolate no microondas', 15, 'jovens', 3);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (1, 'Como programar uma Pokedex em Angular', 95, 'jovens', 24, 11);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (2, 'Como ficar milionario em uma semana', 20, 'geral', 244, 12);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (3, 'Instalando JDK no seu computador', 35, 'programadores', 10, 13);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (4, 'Como tocar Unsaid Emily no ukelele', 95, 'jovens e adultos', 32, 14);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade) VALUES (5, 'Como queimar chocolate no microondas', 15, 'jovens', 3, 15);
 
 INSERT INTO TUTORIAL (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao) VALUES ('Como ', 60, '', 123);
 
@@ -310,11 +404,11 @@ CREATE TABLE MINISTRANTE_TUTORIAL (
     FOREIGN KEY(Tutorial) REFERENCES TUTORIAL(Id)
 );
 
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('1', 'Lara', 'Zuerk', 1189948377);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('2', 'Golab', 'Guimerlhe', 19875849377);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('3', 'Vilma', 'Lorena', 11698295979);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('4', 'Daria', 'Imar', 11994224897);
-INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES ('5', 'Gabriela', 'Michele', 11958222359);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (1, 'Lara', 'Zurek', 1189948377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (2, 'Golab', 'Guimerlhe', 19875849377);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (3, 'Vilma', 'Lorena', 11698295979);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (4, 'Daria', 'Imar', 11994224897);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone) VALUES (5, 'Gabriela', 'Michele', 11958222359);
 
 CREATE TABLE MINISTRA ( 
     Ministrante int,
@@ -336,11 +430,11 @@ CREATE TABLE REUNIAO (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (1, 'Discutir sobre programação', 1);
-INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (2, 'Discutir sobre o COVID', 2);
-INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (3, 'Discutir sobre minha dp em Calculo 2', 3);
-INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (4, 'Discutir sobre Star Wars', 4);
-INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (5, 'Discutir sobre as discussoes', 5);
+INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (1, 'Discutir sobre programação', 16);
+INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (2, 'Discutir sobre o COVID', 17);
+INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (3, 'Discutir sobre minha dp em Calculo 2', 18);
+INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (4, 'Discutir sobre Star Wars', 19);
+INSERT INTO REUNIAO (Id, Objetivo, Atividade) VALUES (5, 'Discutir sobre as discussoes', 20);
 
 CREATE TABLE PARTICIPANTES_REUNIAO (
     Nome varchar(50),
@@ -361,11 +455,11 @@ CREATE TABLE CONCURSO (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (1, 'Concurso de Comer Cones', 1);
-INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (2, 'Concurso de Beleza', 2);
-INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (3, 'Concurso de Feiura', 3);
-INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (4, 'Concurso de Lol', 4);
-INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (5, 'Concurso de Among Us', 5);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (1, 'Concurso de Comer Cones', 21);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (2, 'Concurso de Beleza', 22);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (3, 'Concurso de Feiura', 23);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (4, 'Concurso de Lol', 24);
+INSERT INTO CONCURSO (Id, Tema, Atividade) VALUES (5, 'Concurso de Among Us', 25);
 
 CREATE TABLE PARTICIPANTE_CONCURSO (
     Nome varchar(50),
@@ -439,11 +533,11 @@ CREATE TABLE ATIVIDADE_SOCIAL (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Confraternizacao', 13, 1);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Bingo', 12, 2);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Rifa', 23, 3);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Beneficente', 10, 4);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Comemorativa', 30, 5);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Confraternizacao', 13, 26);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Bingo', 12, 27);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Rifa', 23, 28);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Beneficente', 10, 29);
+INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade) VALUES ('Comemorativa', 30, 30);
 
 CREATE TABLE SESSAO (
     Id int PRIMARY KEY,
@@ -453,11 +547,11 @@ CREATE TABLE SESSAO (
     FOREIGN KEY(Atividade) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (1, 'Sessão da Manhã', 'Vilma Lorena');
-INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (2, 'Sessão da Tarde', 'Mariana Gracinha');
-INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (3, 'Sessão da Noite', 'Joelson Fronha');
-INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (4, 'Sessão da Madrugada', 'Ferdinando Evoluiu');
-INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao) VALUES (5, 'Sessão Extra', 'Josiel Gaffman');
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao, Atividade) VALUES (1, 'Sessão da Manhã', 'Vilma Lorena', 31);
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao, Atividade) VALUES (2, 'Sessão da Tarde', 'Mariana Gracinha', 32);
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao, Atividade) VALUES (3, 'Sessão da Noite', 'Joelson Fronha', 33);
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao, Atividade) VALUES (4, 'Sessão da Madrugada', 'Ferdinando Evoluiu', 34);
+INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao, Atividade) VALUES (5, 'Sessão Extra', 'Josiel Gaffman', 35);
 
 CREATE TABLE ARTIGO (
     Id int PRIMARY KEY,
@@ -532,7 +626,6 @@ INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (11, 'Camiset
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (12, 'Sorvete de Morango', 15, 10, 5);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (13, 'Sorvete de Chocolate', 15, 15, 5);
 INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja) VALUES (14, 'Sorvete de Menta', 10, 10, 5);
-
 
 CREATE TABLE VENDEDOR (
     Id int PRIMARY KEY,
