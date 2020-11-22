@@ -1,0 +1,19 @@
+.container-tabelas {
+    display: flex;
+    align-items: center;
+}
+
+.topo {
+    flex-direction: row;
+    align-items: center;
+}
+
+.topo h1 {
+    position: relative;
+    top: 20px;
+}
+
+.botaoPrincipal {
+    position: absolute;
+    right: 15px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pages/Form.css'
+import '../pages/styles/Form.css'
 
 function FormularioEvento() {
     return (
