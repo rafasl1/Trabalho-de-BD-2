@@ -10,6 +10,8 @@
 .botaoPrincipal {
     position: absolute;
     right: 15px;
+    z-index: 2;
+    cursor: pointer;
 }
 
 .botaoSecundario {

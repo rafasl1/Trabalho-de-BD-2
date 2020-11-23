@@ -5,7 +5,7 @@ import '../pages/styles/Geral.css';
 function BotaoForm(props) {
     return (
         <div>
-            <Link to={props.rota}><button className="botaoPrincipal" renderAs={Link} onClick={console.log(props.rota)} >Cadastrar</button></Link>
+            <Link to={props.rota}><button className="botaoPrincipal" renderAs={Link} >Cadastrar</button></Link>
         </div>
     )
 }

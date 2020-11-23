@@ -21,7 +21,7 @@ function Eventos() {
             <div>
 
                 <div className="topo">
-                    <BotaoForm rota="http://localhost:3000/formEvento/formEvento"/>
+                    <BotaoForm rota="/formEvento"/>
                     <h1>Eventos</h1>
                     </div>
                 
