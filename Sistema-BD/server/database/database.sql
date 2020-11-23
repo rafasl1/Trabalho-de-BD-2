@@ -5,14 +5,16 @@ CREATE TABLE EVENTO  (
     Nome varchar(50),
     Edicao int,
     Tema varchar(50),
-    Publico_Alvo varchar(50)
+    Publico_Alvo varchar(50),
+    Local_Id int,
+    FOREIGN KEY(Local_Id) REFERENCES LOCAL_DO_EVENTO(Id)
 );
 
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação');
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo) VALUES (2, 'Roadsec', 34, 'Segurança na computação', 'Profissionais de tecnologia');
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo) VALUES (3, 'SP Maker Week', 6, 'Arduino', 'Público geral');
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo) VALUES (4, 'Brasil Games Show', 21, 'Jogos', 'Jogadores de jogos digitais');
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação', 1);
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (2, 'Roadsec', 34, 'Segurança na computação', 'Profissionais de tecnologia', 2);
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (3, 'SP Maker Week', 6, 'Arduino', 'Público geral', 3);
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (4, 'Brasil Games Show', 21, 'Jogos', 'Jogadores de jogos digitais', 4);
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis', 5);
 
 CREATE TABLE EVENTO_ONLINE (
     Link_da_Gravacao varchar(50),
@@ -593,14 +595,16 @@ INSERT INTO APRESENTA_ARTIGO (Sessao_id, Artigo_id, Apresentacao_id) VALUES (5, 
 
 CREATE TABLE LOJA (
     Id int PRIMARY KEY, 
-    Nome varchar(50)
+    Nome varchar(50),
+    Evento_Id int,
+    FOREIGN KEY(Evento_Id) REFERENCES EVENTO(Id)
 );
 
-INSERT INTO LOJA (Id, nome) VALUES (1, 'Vendinha do Cone');
-INSERT INTO LOJA (Id, nome) VALUES (2, 'HappyCorno Conveniência');
-INSERT INTO LOJA (Id, nome) VALUES (3, 'Hot Dog no Palito e CIA');
-INSERT INTO LOJA (Id, nome) VALUES (4, 'Personali Camisetas');
-INSERT INTO LOJA (Id, nome) VALUES (5, 'Sorveteria Sorvetão');
+INSERT INTO LOJA (Id, nome) VALUES (1, 'Vendinha do Cone', 1);
+INSERT INTO LOJA (Id, nome) VALUES (2, 'HappyCorno Conveniência', 1);
+INSERT INTO LOJA (Id, nome) VALUES (3, 'Hot Dog no Palito e CIA', 1);
+INSERT INTO LOJA (Id, nome) VALUES (4, 'Personali Camisetas', 1);
+INSERT INTO LOJA (Id, nome) VALUES (5, 'Sorveteria Sorvetão', 1);
 
 CREATE TABLE PRODUTO (
     Id int PRIMARY KEY,
@@ -641,6 +645,21 @@ INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (2, 'H
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (3, 'Zaine', 'Malika', '08736251467', '11093829866', 3);
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (4, 'Liana', 'Panini', '039594837188', '11039485766', 4);
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (5, 'Niala', 'Horana', '01937465890', '11039384755', 5);
+
+CREATE TABLE VENDE (
+    Vendedor_Id int,
+    Produto_Id,
+    Qnt_Vendidos int,
+    Data_da_Venda varchar(50),
+    FOREIGN KEY(Vendedor_Id) REFERENCES VENDEDOR(Id),
+    FOREIGN KEY(Produto_Id) REFERENCES PRODUTO(Id)
+);
+
+INSERT INTO VENDE (Vendedor_Id, Produto_Id, Qnt_Vendidos, Data_da_Venda) VALUES (1, 1, 10, '15/04/2021');
+INSERT INTO VENDE (Vendedor_Id, Produto_Id, Qnt_Vendidos, Data_da_Venda) VALUES (1, 2, 5, '17/04/2021');
+INSERT INTO VENDE (Vendedor_Id, Produto_Id, Qnt_Vendidos, Data_da_Venda) VALUES (1, 3, 5, '13/04/2021');
+INSERT INTO VENDE (Vendedor_Id, Produto_Id, Qnt_Vendidos, Data_da_Venda) VALUES (1, 4, 8, '15/04/2021');
+INSERT INTO VENDE (Vendedor_Id, Produto_Id, Qnt_Vendidos, Data_da_Venda) VALUES (2, 6, 12, '23/04/2021');
 
 CREATE TABLE SISTEMA_FINANCEIRO (
     Saldo_Total int,
