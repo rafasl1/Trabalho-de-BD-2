@@ -9,12 +9,18 @@ const pool = new Pool({
 })
 
 const getEventos = async (req, res) => {
-    const query = "SELECT * FROM EVENTO";
-    const response = await pool.query(query);
-    if(err) {
-        console.log(err);
-    }
-    res.status(200).json(response.rows);
+    const query = "SELECT * FROM evento";
+    const response = await pool.query(query, (err, result) => {
+        if(err) {
+            console.log(err)
+        } else {
+            /* console.log("Show") */
+            console.log(result.rows)
+            res.send(result)
+        }
+    });
+    /* console.log(res.json(response)) */
+    /* res.status(200).json(response); */
 }
 
 const addEventos = async (req, res) => {
