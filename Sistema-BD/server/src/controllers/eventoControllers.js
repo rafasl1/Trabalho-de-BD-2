@@ -29,6 +29,8 @@ const addEventos = async (req, res) => {
     let tema = req.body.tema;
     let publicoAlvo = req.body.publicoAlvo;
 
+    console.log('chegou aqui')
+
     const query = "INSERT INTO EVENTO (Nome, Edicao, Tema, Publico_Alvo) VALUES ('" + nome + "', '" + edicao + "', '" + tema + "', '" + publicoAlvo + "')";
     const response = await pool.query(query, (err, result) => {
         if(err) {
@@ -36,7 +38,7 @@ const addEventos = async (req, res) => {
         } else {
             console.log("Show")
         }
-    });
+    }); 
 }
 
 const removeEventos = async (req, res) => {

@@ -15,6 +15,18 @@ function Eventos() {
         setListaEventos(response.data.rows)
     }
 
+    const editEventos = (id) => {
+        console.log('Id quando edita: ' + id)
+    }
+
+    const delEventos = (id) => {
+        console.log('Id quando deleta: ' + id)
+    }
+
+    function getPatrocinio(id) {
+        console.log('Id quando procura patrocinadores: ' + id)
+    }
+
     useEffect(getEventos, [])
     
         return (
@@ -47,9 +59,9 @@ function Eventos() {
                                             <td>{element.edicao}</td>
                                             <td>{element.tema}</td>
                                             <td>{element.publico_alvo}</td>
-                                            <td><button className="botaoSecundario">Ver patrocinadores</button></td>
-                                            <td><button className="botaoSecundario">Editar</button></td>
-                                            <td><button className="botaoSecundario">Apagar</button></td>
+                                            <td><button className="botaoSecundario" onClick={() => {getPatrocinio(element.id)}}>Ver patrocinadores</button></td>
+                                            <td><button className="botaoSecundario" onClick={() => {editEventos(element.id)}}>Editar</button></td>
+                                            <td><button className="botaoSecundario" onClick={() => {delEventos(element.id)}}>Apagar</button></td>
                                         </tr>
                                 )
                             })}
