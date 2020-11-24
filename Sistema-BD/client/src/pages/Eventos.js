@@ -10,8 +10,6 @@ function Eventos() {
     
     const getEventos = async() => {
         const response = await axios.get("http://localhost:3001/Eventos")
-            
-        console.log('entrou pro back')
         setListaEventos(response.data.rows)
     }
 
@@ -20,7 +18,12 @@ function Eventos() {
     }
 
     const delEventos = (id) => {
-        console.log('Id quando deleta: ' + id)
+
+        let confirmDelete = window.confirm('Delete item forever?')
+        if(confirmDelete){
+            axios.delete("http://localhost:3001/removeEventos/" + id)
+            setListaEventos(listaEventos.filter(evento => evento.id !== id))
+        }
     }
 
     function getPatrocinio(id) {

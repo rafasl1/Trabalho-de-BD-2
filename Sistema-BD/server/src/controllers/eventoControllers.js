@@ -42,14 +42,18 @@ const addEventos = async (req, res) => {
 }
 
 const removeEventos = async (req, res) => {
+    console.log('chegou aqui')
     let id = req.params.id;
+    console.log(id)
 
-    const query = "DELETE * FROM EVENTO WHERE Id = '" + id + "'" ;
-    const response = await pool.query(query);
-    if(err) {
-        console.log(err);
-    }
-    res.status(200).json(response.rows);
+    const query = "DELETE FROM EVENTO WHERE Id = '" + id + "'" ;
+    const response = await pool.query(query, (err, result) => {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log("Show")
+        }
+    });
 }
 
 const updateEventos = async (req, res) => {

@@ -5,7 +5,7 @@ const { getEventos, addEventos, removeEventos, updateEventos } = require('./cont
 
 router.get('/Eventos', getEventos);
 router.post('/adicionaEventos', addEventos);
-router.delete('/removeEventos:id', removeEventos);
+router.delete('/removeEventos/:id', removeEventos);
 router.put('/updateEventos:id', updateEventos);
 
 /* router.get('/Patrocinadores', getPatrocinadores);

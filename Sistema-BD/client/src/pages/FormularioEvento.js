@@ -10,6 +10,13 @@ function FormularioEvento() {
     const [tema, setTema] = useState("");
     const [publicoAlvo, setPublicoAlvo] = useState("");
 
+    const [listaPatrocinadores, setListaPatrocinadores] = useState([])
+
+    const getPatrocinadores = async() => {
+        const response = await axios.get("http://localhost:3001/Patrocinadores")
+        setListaPatrocinadores(response.data.rows)
+    }
+
     const adicionaTarefa = async() => {
 
         await axios.post("http://localhost:3001/adicionaEventos", {
