@@ -37,8 +37,9 @@ function FormularioEvento() {
     return (
         <div>
             <h1>Formulario de evento</h1>
-            <div>
-                <form className="formsContainer" onSubmit={adicionaTarefa}>
+            
+                <form onSubmit={adicionaTarefa}>
+                <div className="formsContainer">
                     <div className="itemForms">
                         <label>Nome:
                         <input type="text"
@@ -78,12 +79,13 @@ function FormularioEvento() {
                         />
                         </label>
                     </div>
+                    </div>
 
-                    <div >
+                    <div className="checkbox-container">
                     <label>Patrocinadores:</label>
                         {listaPatrocinadores.map(element => { 
                         return (
-                            <div className="checkbox-container">
+                            <div className="checkbox-element">
                                 <input type="checkbox" id={element.nome} name={element.nome}/>{/* {element.nome} */}
                                 <label for={element.nome}>{element.nome}</label>
                             </div>
@@ -92,9 +94,11 @@ function FormularioEvento() {
                     
                     </div>
 
-                    <button type='submit'>Enviar</button>
+                    <div className="formsContainer">
+                        <button type='submit'>Enviar</button>
+                    </div>
                 </form>
-            </div>
+            
             
         </div>
     )
