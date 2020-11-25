@@ -3,42 +3,35 @@ import axios from 'axios';
 /* import  { Redirect } from 'react-router-dom' */
 import '../pages/styles/Form.css'
 
-function FormularioEvento() {
+function EditaEventos() {
 
     const [nome, setNome] = useState("");
     const [edicao, setEdicao] = useState("");
     const [tema, setTema] = useState("");
     const [publicoAlvo, setPublicoAlvo] = useState("");
 
-    const [listaPatrocinadores, setListaPatrocinadores] = useState([])
+    const [listaEventos, setListaEventos] = useState([])
+    /* const [listaPatrocinadores, setListaPatrocinadores] = useState([]) */
 
-    const getPatrocinadores = async() => {
-        console.log('xuxu beleza')
-        const response = await axios.get("http://localhost:3001/Patrocinadores")
-        setListaPatrocinadores(response.data.rows)
-    }
-
-    const adicionaEvento = async() => {
-
-        await axios.post("http://localhost:3001/adicionaEventos", {
-            nome: nome, 
-            edicao: edicao,
-            tema: tema,
-            publicoAlvo: publicoAlvo
-        })
-        
-        /* console.log("sucesso");
-        return <Redirect to='/'  /> */
+    const getDadosEvento = async(id) => {
         
     }
 
-    useEffect(getPatrocinadores, [])
+    /* const getPatrocinadores = async() => {
+        
+    } */
+
+    const atualizaEvento = async() => {
+        
+    }
+
+    useEffect(getDadosEvento, [])
 
     return (
         <div>
-            <h1>Formulario de evento</h1>
+            <h1>Edição do evento {}</h1>
             
-                <form onSubmit={adicionaEvento}>
+                <form onSubmit={atualizaEvento}>
                 <div className="formsContainer">
                     <div className="itemForms">
                         <label>Nome:
@@ -46,6 +39,7 @@ function FormularioEvento() {
                                 onChange = {(event) => {
                                     setNome(event.target.value);
                                 }} 
+                                
                         />
                         </label>
                     </div>
@@ -81,27 +75,25 @@ function FormularioEvento() {
                     </div>
                     </div>
 
-                    <div className="checkbox-container">
+                    {/* <div className="checkbox-container">
                     <label>Patrocinadores:</label>
                         {listaPatrocinadores.map(element => { 
                         return (
                             <div className="checkbox-element">
-                                <input type="checkbox" id={element.nome} name={element.nome}/>{/* {element.nome} */}
+                                <input type="checkbox" id={element.nome} name={element.nome}/>
                                 <label for={element.nome}>{element.nome}</label>
                             </div>
                             )
                         })}
                     
-                    </div>
+                    </div> */}
 
                     <div className="formsContainer">
                         <button type='submit'>Enviar</button>
                     </div>
                 </form>
-            
-            
         </div>
     )
 }
 
-export default FormularioEvento;
+export default EditaEventos;

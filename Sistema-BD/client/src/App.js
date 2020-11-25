@@ -6,6 +6,7 @@ import Eventos from './pages/Eventos';
 import Patrocinadores from './pages/Patrocinadores'
 import FormularioEvento from './pages/FormularioEvento'
 import FormularioPatrocinadores from './pages/FormularioPatrocinadores'
+import EditaEventos from './pages/EditaEventos'
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/patrocinadores" component={Patrocinadores} />
             <Route path="/formEvento" component={FormularioEvento} />
             <Route path="/formPatrocinadores" component={FormularioPatrocinadores} />
+            <Route path="/editEvento" component={EditaEventos} />
           </div>
 
         </div>

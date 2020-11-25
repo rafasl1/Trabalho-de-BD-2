@@ -14,6 +14,7 @@ function Eventos() {
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [listaEventos, setListaEventos] = useState([])
+    const [listaPatrocinadores, setListaPatrocinadores] = useState([])
 
     const getEventos = async () => {
         const response = await axios.get("http://localhost:3001/Eventos")
@@ -34,8 +35,16 @@ function Eventos() {
         }
     }
 
-    function getPatrocinio(id) {
+    /* function getPatrocinio(id) {
         console.log('Id quando procura patrocinadores: ' + id)
+    } */
+
+    const getPatrocinio = async(id) => {
+        console.log('xuxu beleza')
+        const response = await axios.get("http://localhost:3001/Patrocinio/" + id)
+        setListaPatrocinadores(response.data.rows)
+
+        /* openModal() */
     }
 
     async function openModal (id) {
@@ -92,7 +101,26 @@ function Eventos() {
                     <div className="modal-button-container">
                     <button className="modal-button" onClick={closeModal}>Fechar</button>
                     </div>
-                    <div>I am a modal</div>
+                    <h1>Patrocinadores do evento</h1>
+                    <div className="table-container">
+                <table>
+                    <tr>
+                        <th>Entidade</th>
+                        <th>Taxa</th>
+                        <th>Categoria</th>
+                    </tr>
+
+                    {listaPatrocinadores.map(element => {
+                        return (
+                            <tr>
+                                <td>{element.entidade_nome}</td>
+                                <td>{element.taxa}</td>
+                                <td>{element.categoria}</td>
+                            </tr>
+                        )
+                    })}
+                </table>
+            </div>
                 </Modal>
             </div>
 
