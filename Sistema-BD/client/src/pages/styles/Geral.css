@@ -10,10 +10,24 @@
 .botaoPrincipal {
     position: absolute;
     right: 15px;
-    z-index: 2;
     cursor: pointer;
 }
 
 .botaoSecundario {
     width: 100%;
+}
+
+.modal-container {
+    display: flex;
+}
+
+.modal-button-container {
+    display: flex;
+}
+
+.modal-button {
+    width: 10rem;
+    align-items: flex-end;
+    margin-left: auto;
+    margin-top: 10px;
 }
