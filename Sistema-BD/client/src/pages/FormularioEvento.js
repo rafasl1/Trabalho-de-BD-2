@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 /* import  { Redirect } from 'react-router-dom' */
 import '../pages/styles/Form.css'
@@ -13,6 +13,7 @@ function FormularioEvento() {
     const [listaPatrocinadores, setListaPatrocinadores] = useState([])
 
     const getPatrocinadores = async() => {
+        console.log('xuxu beleza')
         const response = await axios.get("http://localhost:3001/Patrocinadores")
         setListaPatrocinadores(response.data.rows)
     }
@@ -30,6 +31,8 @@ function FormularioEvento() {
         return <Redirect to='/'  /> */
         
     }
+
+    useEffect(getPatrocinadores, [])
 
     return (
         <div>
@@ -74,6 +77,19 @@ function FormularioEvento() {
                                 }} 
                         />
                         </label>
+                    </div>
+
+                    <div >
+                    <label>Patrocinadores:</label>
+                        {listaPatrocinadores.map(element => { 
+                        return (
+                            <div className="checkbox-container">
+                                <input type="checkbox" id={element.nome} name={element.nome}/>{/* {element.nome} */}
+                                <label for={element.nome}>{element.nome}</label>
+                            </div>
+                            )
+                        })}
+                    
                     </div>
 
                     <button type='submit'>Enviar</button>

@@ -20,6 +20,11 @@ input {
     flex: 1;
 }
 
+.checkbox-container {
+    align-items: flex-start;
+    
+}
+
 label {
     margin-top: 20px;
     display: flex;
