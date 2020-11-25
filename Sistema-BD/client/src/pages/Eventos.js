@@ -51,8 +51,8 @@ function Eventos() {
         <div>
 
             <div className="topo">
-                <BotaoForm rota="/formEvento" />
                 <h1>Eventos</h1>
+                <BotaoForm rota="/formEvento" />
             </div>
 
             <div className="table-container">

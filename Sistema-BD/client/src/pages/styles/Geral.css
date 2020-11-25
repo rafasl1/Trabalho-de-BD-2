@@ -1,5 +1,9 @@
 .topo {
-    align-items: center;
+    /* align-items: center; */
+    display: flex;
+    /* flex: 1; */
+    flex-direction: column;
+    /* align-items: space-between; */
 }
 
 .topo h1 {
@@ -8,9 +12,11 @@
 }
 
 .botaoPrincipal {
-    position: absolute;
-    right: 15px;
+    position: relative;
+    /* align-items: flex-end; */
+    left: 20rem;
     cursor: pointer;
+    /* z-index: 1; */
 }
 
 .botaoSecundario {
@@ -19,6 +25,7 @@
 
 .modal-container {
     display: flex;
+    z-index: 2;
 }
 
 .modal-button-container {
