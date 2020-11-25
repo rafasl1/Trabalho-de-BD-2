@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
 import BotaoForm from '../components/BotaoForm';
 import '../pages/styles/Geral.css';
@@ -84,7 +84,10 @@ function Eventos() {
                                 <td>{element.tema}</td>
                                 <td>{element.publico_alvo}</td>
                                 <td><button className="botaoSecundario" onClick={() => { openModal(element.id) }}>Ver patrocinadores</button></td>
-                                <td><button className="botaoSecundario" onClick={() => { editEventos(element.id) }}>Editar</button></td>
+                                <td><Link to={{
+                                        pathname: '/editEvento',
+                                        state: [{id: openModal(element.id)}]
+                                    }}><button className="botaoSecundario" >Editar</button></Link></td>
                                 <td><button className="botaoSecundario" onClick={() => { delEventos(element.id) }}>Apagar</button></td>
                             </tr>
                         )

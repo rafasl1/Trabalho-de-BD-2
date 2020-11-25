@@ -14,7 +14,7 @@ function EditaEventos() {
     /* const [listaPatrocinadores, setListaPatrocinadores] = useState([]) */
 
     const getDadosEvento = async(id) => {
-        
+        console.log(this.props.location.state.id)
     }
 
     /* const getPatrocinadores = async() => {
