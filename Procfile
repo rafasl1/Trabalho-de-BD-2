@@ -1,1 +1,1 @@
-web: cd Sistema-BD && cd server && yarn start
+web: cd Sistema-BD && cd server && npm start
