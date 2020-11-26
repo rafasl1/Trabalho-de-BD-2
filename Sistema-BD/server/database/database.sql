@@ -27,17 +27,18 @@ INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (4, '
 INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis', 5);
 
 CREATE TABLE EVENTO_ONLINE (
+    Id SERIAL PRIMARY KEY,
     Link_da_Gravacao varchar(50),
     Plataforma varchar(50),
     Evento_id int,
     FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id)
 );
 
-INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento_id) VALUES ('https://www.twitch.tv/each_ssi', 'Twitch.tv', 1);
-INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento_id) VALUES ('https://www.youtube.com/watch?v=izK5DTXWyxw', 'YouTube', 2);
-INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento_id) VALUES ('fb.gg/SPMakerWeek', 'Facebook', 3);
-INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento_id) VALUES ('youtube.com/adishdiash', 'YouTube', 4);
-INSERT INTO EVENTO_ONLINE (Link_da_Gravacao, Plataforma, Evento_id) VALUES ('twitch.tv/ComicCon', 'Twitch.tv', 5);
+INSERT INTO EVENTO_ONLINE (Id, Link_da_Gravacao, Plataforma, Evento_id) VALUES (1, 'https://www.twitch.tv/each_ssi', 'Twitch.tv', 1);
+INSERT INTO EVENTO_ONLINE (Id, Link_da_Gravacao, Plataforma, Evento_id) VALUES (2, 'https://www.youtube.com/watch?v=izK5DTXWyxw', 'YouTube', 2);
+INSERT INTO EVENTO_ONLINE (Id, Link_da_Gravacao, Plataforma, Evento_id) VALUES (3, 'fb.gg/SPMakerWeek', 'Facebook', 3);
+INSERT INTO EVENTO_ONLINE (Id, Link_da_Gravacao, Plataforma, Evento_id) VALUES (4, 'youtube.com/adishdiash', 'YouTube', 4);
+INSERT INTO EVENTO_ONLINE (Id, Link_da_Gravacao, Plataforma, Evento_id) VALUES (5, 'twitch.tv/ComicCon', 'Twitch.tv', 5);
 
 CREATE TABLE PARTICIPANTE_EVENTO (
     Id SERIAL PRIMARY KEY,
@@ -110,17 +111,18 @@ INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (29, 'Palestrante',
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (30, 'Palestrante', 22);
 
 CREATE TABLE CONTAS_A_PAGAR (
+    Id SERIAL PRIMARY KEY,
     Tipo_da_Conta varchar(50),
     Valor int,
     Evento_id int,
     FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id)
 );
 
-INSERT INTO CONTAS_A_PAGAR (Tipo_da_Conta, Valor, Evento_id) VALUES ('Luz', 100, 1);
-INSERT INTO CONTAS_A_PAGAR (Tipo_da_Conta, Valor, Evento_id) VALUES ('Água', 100, 2);
-INSERT INTO CONTAS_A_PAGAR (Tipo_da_Conta, Valor, Evento_id) VALUES ('Energia', 100, 3);
-INSERT INTO CONTAS_A_PAGAR (Tipo_da_Conta, Valor, Evento_id) VALUES ('Compras', 100, 4);
-INSERT INTO CONTAS_A_PAGAR (Tipo_da_Conta, Valor, Evento_id) VALUES ('Contratos', 100, 5);
+INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (1, 'Luz', 100, 1);
+INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (2, 'Água', 100, 2);
+INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (3, 'Energia', 100, 3);
+INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (4, 'Compras', 100, 4);
+INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (5, 'Contratos', 100, 5);
 
 CREATE TABLE ENTIDADE (
     Id SERIAL PRIMARY KEY,
@@ -216,28 +218,30 @@ INSERT INTO GERENCIA (Responsavel_entidade_id, Responsavel_entidade_nome, Respon
 INSERT INTO GERENCIA (Responsavel_entidade_id, Responsavel_entidade_nome, Responsavel_entidade_sobrenome, Entidade_id, Entidade_nome) VALUES (5, 'Kleiton', 'Marcelo', 5, 'Amazon');
 
 CREATE TABLE EQUIPAMENTOS_ESPECIAIS (
+    Id SERIAL PRIMARY KEY,
     Equipamento varchar(50),
     Local_do_evento_id int,
     FOREIGN KEY(Local_do_evento_id) REFERENCES LOCAL_DO_EVENTO(Id)
 );
 
-INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento_id) VALUES ('lanterna', 1);
-INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento_id) VALUES ('tesoura', 2);
-INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento_id) VALUES ('cola', 3);
-INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento_id) VALUES ('guitarra', 4);
-INSERT INTO EQUIPAMENTOS_ESPECIAIS (Equipamento, Local_do_Evento_id) VALUES ('computador', 5);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Id, Equipamento, Local_do_Evento_id) VALUES (1, 'lanterna', 1);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Id, Equipamento, Local_do_Evento_id) VALUES (2, 'tesoura', 2);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Id, Equipamento, Local_do_Evento_id) VALUES (3, 'cola', 3);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Id, Equipamento, Local_do_Evento_id) VALUES (4, 'guitarra', 4);
+INSERT INTO EQUIPAMENTOS_ESPECIAIS (Id, Equipamento, Local_do_Evento_id) VALUES (5, 'computador', 5);
 
 CREATE TABLE FACILIDADES_OFERECIDAS (
+    Id SERIAL PRIMARY KEY,
     Facilidade varchar(50),
     Local_do_evento_id int,
     FOREIGN KEY(Local_do_evento_id) REFERENCES LOCAL_DO_EVENTO(Id)
 );
 
-INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento_id) VALUES ('iluminacao', 1);
-INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento_id) VALUES ('rampa', 2);
-INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento_id) VALUES ('elevador', 3);
-INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento_id) VALUES ('traducao simultanea', 4);
-INSERT INTO FACILIDADES_OFERECIDAS (Facilidade, Local_do_Evento_id) VALUES ('traducao em libras', 5);
+INSERT INTO FACILIDADES_OFERECIDAS (Id, Facilidade, Local_do_Evento_id) VALUES (1, 'iluminacao', 1);
+INSERT INTO FACILIDADES_OFERECIDAS (Id, Facilidade, Local_do_Evento_id) VALUES (2, 'rampa', 2);
+INSERT INTO FACILIDADES_OFERECIDAS (Id, Facilidade, Local_do_Evento_id) VALUES (3, 'elevador', 3);
+INSERT INTO FACILIDADES_OFERECIDAS (Id, Facilidade, Local_do_Evento_id) VALUES (4, 'traducao simultanea', 4);
+INSERT INTO FACILIDADES_OFERECIDAS (Id, Facilidade, Local_do_Evento_id) VALUES (5, 'traducao em libras', 5);
 
 CREATE TABLE ATIVIDADE (
     Id SERIAL PRIMARY KEY,
@@ -449,17 +453,18 @@ INSERT INTO REUNIAO (Id, Objetivo, Atividade_id) VALUES (4, 'Discutir sobre Star
 INSERT INTO REUNIAO (Id, Objetivo, Atividade_id) VALUES (5, 'Discutir sobre as discussoes', 20);
 
 CREATE TABLE PARTICIPANTES_REUNIAO (
+    Id SERIAL PRIMARY KEY,
     Nome varchar(50),
     Sobrenome varchar(50),
     Reuniao_id int,
     FOREIGN KEY(Reuniao_id) REFERENCES REUNIAO(Id)
 );
 
-INSERT INTO PARTICIPANTES_REUNIAO (Nome, Sobrenome, Reuniao_id) VALUES ('Mariana', 'Gracinha', 1);
-INSERT INTO PARTICIPANTES_REUNIAO (Nome, Sobrenome, Reuniao_id) VALUES ('Alana', 'Coelhas', 2);
-INSERT INTO PARTICIPANTES_REUNIAO (Nome, Sobrenome, Reuniao_id) VALUES ('Giana', 'Armario', 3);
-INSERT INTO PARTICIPANTES_REUNIAO (Nome, Sobrenome, Reuniao_id) VALUES ('Vilma', 'Lorena', 4);
-INSERT INTO PARTICIPANTES_REUNIAO (Nome, Sobrenome, Reuniao_id) VALUES ('Lara', 'Zurek', 5);
+INSERT INTO PARTICIPANTES_REUNIAO (Id, Nome, Sobrenome, Reuniao_id) VALUES (1, 'Mariana', 'Gracinha', 1);
+INSERT INTO PARTICIPANTES_REUNIAO (Id, Nome, Sobrenome, Reuniao_id) VALUES (2, 'Alana', 'Coelhas', 2);
+INSERT INTO PARTICIPANTES_REUNIAO (Id, Nome, Sobrenome, Reuniao_id) VALUES (3, 'Giana', 'Armario', 3);
+INSERT INTO PARTICIPANTES_REUNIAO (Id, Nome, Sobrenome, Reuniao_id) VALUES (4, 'Vilma', 'Lorena', 4);
+INSERT INTO PARTICIPANTES_REUNIAO (Id, Nome, Sobrenome, Reuniao_id) VALUES (5, 'Lara', 'Zurek', 5);
 
 CREATE TABLE CONCURSO (
     Id SERIAL PRIMARY KEY,
@@ -504,53 +509,56 @@ INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso_id) VALUES ('Gabr
 INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso_id) VALUES ('Natilva', 'Eva', '1195847366', 5);
 
 CREATE TABLE REGRAS_CONCURSO (
+    Id SERIAL PRIMARY KEY,
     Regra varchar(50),
     Concurso_id int,
     FOREIGN KEY(Concurso_id) REFERENCES CONCURSO(Id)
 );
 
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não matar', 1);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não seja feia', 1);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não socar competidores', 2);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Sair no soco com Gabriella Michele', 2);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não pedir para pessoas sairem de suas casas', 2);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não dar piti quando trocar o filme', 3);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não comprar votos', 3);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Acreditar em outras pessoas além da Giovana', 4);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não dar cambalhota na grama', 5);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não dar trabalho no role', 5);
-INSERT INTO REGRAS_CONCURSO (Regra, Concurso_id) VALUES ('Não chegar atrasado na festa', 5);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (1, 'Não matar', 1);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (2, 'Não seja feia', 1);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (3, 'Não socar competidores', 2);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (4, 'Sair no soco com Gabriella Michele', 2);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (5, 'Não pedir para pessoas sairem de suas casas', 2);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (6, 'Não dar piti quando trocar o filme', 3);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (7, 'Não comprar votos', 3);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (8, 'Acreditar em outras pessoas além da Giovana', 4);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (9, 'Não dar cambalhota na grama', 5);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (10, 'Não dar trabalho no role', 5);
+INSERT INTO REGRAS_CONCURSO (Id, Regra, Concurso_id) VALUES (11, 'Não chegar atrasado na festa', 5);
 
 CREATE TABLE PREMIACAO (
+    Id SERIAL PRIMARY KEY,
     Premio varchar(50),
     Concurso_id int,
     FOREIGN KEY(Concurso_id) REFERENCES CONCURSO(Id)
 );
 
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Playstation', 1);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Jogo da vida', 1);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Ingresso da Glow', 2);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Caneca e tirante', 2);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Ingresso do panelas', 2);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Viagem para Paris', 3);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Iphone 10', 3);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Plano cone ilimitado', 4);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Laura', 5);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Ingresso do Intercomp', 5);
-INSERT INTO PREMIACAO (Premio, Concurso_id) VALUES ('Ingresso da Las Brisas', 5);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (1, 'Playstation', 1);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (2, 'Jogo da vida', 1);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (3, 'Ingresso da Glow', 2);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (4, 'Caneca e tirante', 2);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (5, 'Ingresso do panelas', 2);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (6, 'Viagem para Paris', 3);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (7, 'Iphone 10', 3);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (8, 'Plano cone ilimitado', 4);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (9, 'Laura', 5);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (10, 'Ingresso do Intercomp', 5);
+INSERT INTO PREMIACAO (Id, Premio, Concurso_id) VALUES (11, 'Ingresso da Las Brisas', 5);
 
 CREATE TABLE ATIVIDADE_SOCIAL (
+    Id SERIAL PRIMARY KEY,
     Tipo varchar(50),
     Valor_do_Convite int,
     Atividade_id int,
     FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
 );
 
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade_id) VALUES ('Confraternizacao', 13, 26);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade_id) VALUES ('Bingo', 12, 27);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade_id) VALUES ('Rifa', 23, 28);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade_id) VALUES ('Beneficente', 10, 29);
-INSERT INTO ATIVIDADE_SOCIAL (Tipo, Valor_do_Convite, Atividade_id) VALUES ('Comemorativa', 30, 30);
+INSERT INTO ATIVIDADE_SOCIAL (Id, Tipo, Valor_do_Convite, Atividade_id) VALUES (1, 'Confraternizacao', 13, 26);
+INSERT INTO ATIVIDADE_SOCIAL (Id, Tipo, Valor_do_Convite, Atividade_id) VALUES (2, 'Bingo', 12, 27);
+INSERT INTO ATIVIDADE_SOCIAL (Id, Tipo, Valor_do_Convite, Atividade_id) VALUES (3, 'Rifa', 23, 28);
+INSERT INTO ATIVIDADE_SOCIAL (Id, Tipo, Valor_do_Convite, Atividade_id) VALUES (4, 'Beneficente', 10, 29);
+INSERT INTO ATIVIDADE_SOCIAL (Id, Tipo, Valor_do_Convite, Atividade_id) VALUES (5, 'Comemorativa', 30, 30);
 
 CREATE TABLE SESSAO (
     Id SERIAL PRIMARY KEY,
