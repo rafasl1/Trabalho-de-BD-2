@@ -1,0 +1,16 @@
+{
+    "name": "trabalhobd",
+    "version": "1.0.0",
+    "description": "Segundo trabalho de banco de dados",
+    "main": "index.js",
+    "author": "Ana, Gi, Laura e Rafa",
+    "license": "none",
+    "workspaces": {
+      "packages": [
+        "Sistema-BD/*"
+      ]
+    },
+    "private": false,
+    "dependencies": {
+    }
+  }
