@@ -9,8 +9,6 @@ const pool = new Pool({
 })
 
 const getPatrocinio = async (req, res) => {
-    console.log('entrou pra pegar')
-
     let id = req.params.id;
 
     const query = "SELECT entidade_nome, taxa, categoria FROM patrocina WHERE evento_id = '" + id + "'";

@@ -15,7 +15,6 @@ const getEventos = async (req, res) => {
             console.log(err)
         } else {
             /* console.log("Show") */
-            console.log(result.rows)
             res.send(result)
         }
     });
@@ -56,15 +55,27 @@ const removeEventos = async (req, res) => {
     });
 }
 
-const updateEventos = async (req, res) => {
+const getEventoEspecifico = async (req, res) => {
     let id = req.params.id;
 
+    const query = "SELECT * FROM evento WHERE id = '" + id + "'";
+    const response = await pool.query(query, (err, result) => {
+        if(err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    });
+}
+
+const updateEventos = async (req, res) => {
+    let id = req.body.id;
     let nome = req.body.nome;
     let edicao = req.body.edicao;
     let tema = req.body.tema;
     let publicoAlvo = req.body.publicoAlvo;
 
-    const query = "UPDATE EVENTO SET Nome = '" + nome + "', Edicao = '" + edicao + "', Tema = '" + tema + "', Publico_Alvo = '" + publicoAlvo + "'";
+    const query = "UPDATE EVENTO SET Nome = '" + nome + "', Edicao = '" + edicao + "', Tema = '" + tema + "', Publico_Alvo = '" + publicoAlvo + "' WHERE id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
         if(err) {
             console.log(err)
@@ -78,5 +89,6 @@ module.exports = {
     getEventos,
     addEventos,
     removeEventos,
-    updateEventos
+    updateEventos,
+    getEventoEspecifico
 }

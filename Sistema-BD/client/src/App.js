@@ -21,7 +21,7 @@ class App extends Component {
             <Route path="/patrocinadores" component={Patrocinadores} />
             <Route path="/formEvento" component={FormularioEvento} />
             <Route path="/formPatrocinadores" component={FormularioPatrocinadores} />
-            <Route path="/editEvento" component={EditaEventos} />
+            <Route path="/editEvento/:id" component={EditaEventos} />
           </div>
 
         </div>
