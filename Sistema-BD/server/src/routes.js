@@ -5,6 +5,8 @@ const { getEventos, addEventos, removeEventos, updateEventos } = require('./cont
 const { getPatrocinadores } = require('./controllers/patrocinadoresControllers')
 const { getPatrocinio } = require('./controllers/patrocinioControllers')
 
+router.get('/', (request, response) => response.json({ message: "Bem vindo à API do trabalho" }))
+
 router.get('/Eventos', getEventos);
 router.post('/adicionaEventos', addEventos);
 router.delete('/removeEventos/:id', removeEventos);
