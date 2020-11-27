@@ -11,13 +11,13 @@ INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (4, 'otima'
 INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (5, 'regular');
 
 CREATE TABLE EVENTO  (
-    Id SERIAL PRIMARY KEY,
+    Id int PRIMARY KEY,
     Nome varchar(50),
     Edicao int,
     Tema varchar(50),
     Publico_Alvo varchar(50),
     Local_Id int,
-    FOREIGN KEY(Local_Id) REFERENCES LOCAL_DO_EVENTO(Id)
+    FOREIGN KEY(Local_Id) REFERENCES LOCAL_DO_EVENTO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação', 1);
@@ -31,7 +31,7 @@ CREATE TABLE EVENTO_ONLINE (
     Link_da_Gravacao varchar(50),
     Plataforma varchar(50),
     Evento_id int,
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id)
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE CASCADE
 );
 
 INSERT INTO EVENTO_ONLINE (Id, Link_da_Gravacao, Plataforma, Evento_id) VALUES (1, 'https://www.twitch.tv/each_ssi', 'Twitch.tv', 1);
@@ -125,7 +125,7 @@ INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (4, 'Com
 INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (5, 'Contratos', 100, 5);
 
 CREATE TABLE ENTIDADE (
-    Id SERIAL PRIMARY KEY,
+    Id int PRIMARY KEY,
     Nome varchar(50),
     Endereco varchar(50),
     Telefone varchar(50),
@@ -143,8 +143,8 @@ CREATE TABLE PROMOVE_EVENTO (
     Evento_nome varchar(50),
     Entidade_id int,
     Entidade_nome varchar(50),
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id),
-    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) 
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO PROMOVE_EVENTO (Evento_id, Evento_nome, Entidade_id, Entidade_nome) VALUES (1, 'Semana de SI', 3, 'Itau');
@@ -160,8 +160,8 @@ CREATE TABLE PATROCINA (
     Evento_nome varchar(50),
     Entidade_id int,
     Entidade_nome varchar(50),
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id),
-    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) 
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) ON DELETE RESTRICT 
 );
 
 INSERT INTO PATROCINA (Taxa, Categoria, Evento_id, Evento_nome, Entidade_id, Entidade_nome) VALUES (300, 'Ouro', 1, 'Semana de SI', 5, 'Amazon');
@@ -175,8 +175,8 @@ CREATE TABLE REALIZA (
     Evento_nome varchar(50),
     Entidade_id int,
     Entidade_nome varchar(50),
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id),
-    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) 
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO REALIZA (Evento_id, Evento_nome, Entidade_id, Entidade_nome) VALUES (1, 'Semana de SI', 4, 'Fusion');
@@ -192,7 +192,7 @@ CREATE TABLE RESPONSAVEL_ENTIDADE (
     Papel varchar(50),
     Telefone varchar(50),
     Entidade_id int,
-    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id)
+    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO RESPONSAVEL_ENTIDADE (Id, Nome, Sobrenome, Papel, Telefone, Entidade_id) VALUES (1, 'Lila', 'Maria', 'Diretora de Eventos', '999999999', 1);
@@ -207,8 +207,8 @@ CREATE TABLE GERENCIA (
     Responsavel_entidade_sobrenome varchar(50),
     Entidade_id int,
     Entidade_nome varchar(50),
-    FOREIGN KEY(Responsavel_entidade_id) REFERENCES RESPONSAVEL_ENTIDADE(Id),
-    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) 
+    FOREIGN KEY(Responsavel_entidade_id) REFERENCES RESPONSAVEL_ENTIDADE(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) ON DELETE RESTRICT 
 );
 
 INSERT INTO GERENCIA (Responsavel_entidade_id, Responsavel_entidade_nome, Responsavel_entidade_sobrenome, Entidade_id, Entidade_nome) VALUES (1, 'Lila', 'Maria', 1, 'DASI');
@@ -234,7 +234,7 @@ CREATE TABLE FACILIDADES_OFERECIDAS (
     Id SERIAL PRIMARY KEY,
     Facilidade varchar(50),
     Local_do_evento_id int,
-    FOREIGN KEY(Local_do_evento_id) REFERENCES LOCAL_DO_EVENTO(Id)
+    FOREIGN KEY(Local_do_evento_id) REFERENCES LOCAL_DO_EVENTO(Id) ON DELETE NO ACTION
 );
 
 INSERT INTO FACILIDADES_OFERECIDAS (Id, Facilidade, Local_do_Evento_id) VALUES (1, 'iluminacao', 1);
@@ -249,7 +249,7 @@ CREATE TABLE ATIVIDADE (
     Local_atividade varchar(50),
     Publico_Especifico varchar(50),
     Evento_id int,
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id)
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento_id) VALUES (1, '12/04/2020', 'La longe', 'programadores', 1);
@@ -293,8 +293,8 @@ CREATE TABLE PROMOVE_ATIVIDADE (
     Entidade_id int,
     Entidade_nome varchar(50),
     Atividade_id int,
-    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id),
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) 
+    FOREIGN KEY(Entidade_id) REFERENCES ENTIDADE(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO PROMOVE_ATIVIDADE (Entidade_id, Entidade_nome, Atividade_id) VALUES (1, 'DASI', 1);
@@ -353,7 +353,7 @@ CREATE TABLE WORKSHOP (
     Publico_Alvo varchar(50),
     Valor_de_Inscricao int,
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO WORKSHOP (Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES ('Aprendendo React para entrar na RocketSeat', 95, 'jovens', 24, 1);
@@ -369,7 +369,7 @@ CREATE TABLE PALESTRA (
     Duracao int,
     Publico_Alvo varchar(50),
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO PALESTRA (Id, Afiliacao, Nome_da_Palestra, Duracao, Publico_Alvo, Atividade_id) VALUES (1, 'CIA_DEV', 'Mercado Mobile', '60', 'Desenvolvedores', 6);
@@ -400,7 +400,7 @@ CREATE TABLE TUTORIAL (
     Publico_Alvo varchar(50),
     Valor_de_Inscricao int,
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (1, 'Como programar uma Pokedex em Angular', 95, 'jovens', 24, 11);
@@ -432,8 +432,8 @@ CREATE TABLE MINISTRA (
     Ministrante_sobrenome varchar(50),
     Tutorial_id int,
     Tutorial_nome varchar(100),
-    FOREIGN KEY(Ministrante_id) REFERENCES MINISTRANTE_TUTORIAL(Id),
-    FOREIGN KEY(Tutorial_id) REFERENCES TUTORIAL(Id) 
+    FOREIGN KEY(Ministrante_id) REFERENCES MINISTRANTE_TUTORIAL(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Tutorial_id) REFERENCES TUTORIAL(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (1, 'Lara', 'Zurek', 1, 'Como programar uma Pokedex em Angular');
@@ -447,7 +447,7 @@ CREATE TABLE REUNIAO (
     Id SERIAL PRIMARY KEY,
     Objetivo varchar(50),
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO REUNIAO (Id, Objetivo, Atividade_id) VALUES (1, 'Discutir sobre programação', 16);
@@ -474,7 +474,7 @@ CREATE TABLE CONCURSO (
     Id SERIAL PRIMARY KEY,
     Tema varchar(50),
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO CONCURSO (Id, Tema, Atividade_id) VALUES (1, 'Concurso de Comer Cones', 21);
@@ -489,7 +489,7 @@ CREATE TABLE PARTICIPANTE_CONCURSO (
     Numero_de_Inscricao int,
     Telefone varchar(50),
     Concurso_id int,
-    FOREIGN KEY(Concurso_id) REFERENCES CONCURSO(Id)
+    FOREIGN KEY(Concurso_id) REFERENCES CONCURSO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO PARTICIPANTE_CONCURSO (Nome, Sobrenome, Numero_de_Inscricao, Telefone, Concurso_id) VALUES ('Freira', 'Alexa', 1, '1182746355', 1);
@@ -503,7 +503,7 @@ CREATE TABLE JUIZ_CONCURSO (
     Sobrenome varchar(50),
     Telefone varchar(50),
     Concurso_id int,
-    FOREIGN KEY(Concurso_id) REFERENCES CONCURSO(Id)
+    FOREIGN KEY(Concurso_id) REFERENCES CONCURSO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO JUIZ_CONCURSO (Nome, Sobrenome, Telefone, Concurso_id) VALUES ('Lila', 'Zurek', '1187654322', 1);
@@ -555,7 +555,7 @@ CREATE TABLE ATIVIDADE_SOCIAL (
     Tipo varchar(50),
     Valor_do_Convite int,
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO ATIVIDADE_SOCIAL (Id, Tipo, Valor_do_Convite, Atividade_id) VALUES (1, 'Confraternizacao', 13, 26);
@@ -569,7 +569,7 @@ CREATE TABLE SESSAO (
     Nome varchar(50),
     Responsavel_pela_Sessao varchar(50),
     Atividade_id int,
-    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id)
+    FOREIGN KEY(Atividade_id) REFERENCES ATIVIDADE(Id) ON DELETE CASCADE
 );
 
 INSERT INTO SESSAO (Id, Nome, Responsavel_Pela_Sessao, Atividade_id) VALUES (1, 'Sessão da Manhã', 'Vilma Lorena', 31);
@@ -609,9 +609,9 @@ CREATE TABLE APRESENTA_ARTIGO (
     Artigo_nome varchar(100),
     Apresentacao_id int,
     Apresentacao_tipo varchar(100),
-    FOREIGN KEY(Sessao_id) REFERENCES SESSAO(Id),
-    FOREIGN KEY(Artigo_id) REFERENCES ARTIGO(Id),
-    FOREIGN KEY(Apresentacao_id) REFERENCES APRESENTACAO(Id)
+    FOREIGN KEY(Sessao_id) REFERENCES SESSAO(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Artigo_id) REFERENCES ARTIGO(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Apresentacao_id) REFERENCES APRESENTACAO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO APRESENTA_ARTIGO (Sessao_id, Sessao_nome, Artigo_id, Artigo_nome, Apresentacao_id, Apresentacao_tipo) VALUES (1, 'Sessão da Manhã', 1, 'Teorias do Marketing Digital', 1, 'Oral');
@@ -624,7 +624,7 @@ CREATE TABLE LOJA (
     Id SERIAL PRIMARY KEY, 
     Nome varchar(50),
     Evento_Id int,
-    FOREIGN KEY(Evento_Id) REFERENCES EVENTO(Id)
+    FOREIGN KEY(Evento_Id) REFERENCES EVENTO(Id) ON DELETE CASCADE
 );
 
 INSERT INTO LOJA (Id, nome, Evento_Id) VALUES (1, 'Vendinha do Cone', 1);
@@ -664,7 +664,7 @@ CREATE TABLE VENDEDOR (
     CPF varchar(50),
     Telefone varchar(50),
     Loja_id int,
-    FOREIGN KEY(Loja_id) REFERENCES LOJA(Id)
+    FOREIGN KEY(Loja_id) REFERENCES LOJA(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (1, 'Luci', 'Moni', '04937857463', '11994837466', 1);
@@ -681,8 +681,8 @@ CREATE TABLE VENDE (
     Produto_Nome varchar(50),
     Qnt_Vendidos int,
     Data_da_Venda varchar(50),
-    FOREIGN KEY(Vendedor_Id) REFERENCES VENDEDOR(Id),
-    FOREIGN KEY(Produto_Id) REFERENCES PRODUTO(Id)
+    FOREIGN KEY(Vendedor_Id) REFERENCES VENDEDOR(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Produto_Id) REFERENCES PRODUTO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO VENDE (Vendedor_Id, Vendedor_Nome, Vendedor_Sobrenome, Produto_Id, Produto_Nome, Qnt_Vendidos, Data_da_Venda) VALUES (1, 'Luci', 'Moni', 1, 'Cone de Sensação', 10, '15/04/2021');
@@ -696,7 +696,7 @@ CREATE TABLE SISTEMA_FINANCEIRO (
     Impostos_Retirados int,
     Dia DATE,
     Loja_id int,
-    FOREIGN KEY(Loja_id) REFERENCES LOJA(Id)
+    FOREIGN KEY(Loja_id) REFERENCES LOJA(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO SISTEMA_FINANCEIRO (Saldo_Total, Impostos_Retirados, Dia, Loja_id) VALUES (1000, 350, '11/09/2020', 1);
@@ -711,7 +711,7 @@ CREATE TABLE REDE_SOCIAL (
     Usuario varchar(50),
     Senha varchar(50),
     Evento_id int,
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id)
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO REDE_SOCIAL (Id, Plataforma, Usuario, Senha, Evento_id) VALUES (1, 'Instagram', 'SSIOnline', 'batata', 1);
@@ -750,8 +750,8 @@ CREATE TABLE INSCRICAO (
     Participante_id int,
     Participante_nome varchar(50),
     Participante_sobrenome varchar(50),
-    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id),
-    FOREIGN KEY(Participante_id) REFERENCES PARTICIPANTE_EVENTO(Id)
+    FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Participante_id) REFERENCES PARTICIPANTE_EVENTO(Id) ON DELETE RESTRICT
 );
 
 INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo, Evento_id, Evento_nome, Participante_id, Participante_nome, Participante_sobrenome) VALUES ('Verao', 240, 'Premium', 'Cartao', 'Normal', 1, 'Semana de SI', 1, 'Lara', 'Zurek');

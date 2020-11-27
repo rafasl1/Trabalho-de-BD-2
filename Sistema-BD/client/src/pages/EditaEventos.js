@@ -1,20 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-/* import  { Redirect } from 'react-router-dom' */
+import  { useParams } from 'react-router-dom'
 import '../pages/styles/Form.css'
 
 function EditaEventos() {
 
+    const params = useParams();
+    let id;
+
+    const [ident, setIdent] = useState("");
     const [nome, setNome] = useState("");
     const [edicao, setEdicao] = useState("");
     const [tema, setTema] = useState("");
     const [publicoAlvo, setPublicoAlvo] = useState("");
 
-    const [listaEventos, setListaEventos] = useState([])
     /* const [listaPatrocinadores, setListaPatrocinadores] = useState([]) */
 
-    const getDadosEvento = async(id) => {
-        console.log(this.props.location.state.id)
+    const getDadosEvento = async() => {
+        id = params.id
+        const response = await axios.get("http://localhost:3001/eventoEspecifico/" + id)
+        setIdent(id)
+        setNome(response.data.rows[0].nome)
+        setEdicao(response.data.rows[0].edicao)
+        setTema(response.data.rows[0].tema)
+        setPublicoAlvo(response.data.rows[0].publico_alvo)
     }
 
     /* const getPatrocinadores = async() => {
@@ -22,7 +31,19 @@ function EditaEventos() {
     } */
 
     const atualizaEvento = async() => {
-        
+        console.log(ident)
+        let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
+        if (confirmDelete) {
+            
+            axios.put("http://localhost:3001/updateEventos", {
+                id: ident,
+                nome: nome,
+                edicao: edicao,
+                tema: tema,
+                publicoAlvo: publicoAlvo
+            })
+            
+        }
     }
 
     useEffect(getDadosEvento, [])
@@ -39,7 +60,7 @@ function EditaEventos() {
                                 onChange = {(event) => {
                                     setNome(event.target.value);
                                 }} 
-                                
+                                value={nome}
                         />
                         </label>
                     </div>
@@ -50,6 +71,7 @@ function EditaEventos() {
                                 onChange = {(event) => {
                                     setEdicao(event.target.value);
                                 }} 
+                                value={edicao}
                         />
                         </label>
                     </div>
@@ -60,6 +82,7 @@ function EditaEventos() {
                                 onChange = {(event) => {
                                     setTema(event.target.value);
                                 }} 
+                                value={tema}
                         />
                         </label>
                     </div>
@@ -70,6 +93,7 @@ function EditaEventos() {
                                 onChange = {(event) => {
                                     setPublicoAlvo(event.target.value);
                                 }} 
+                                value={publicoAlvo}
                         />
                         </label>
                     </div>

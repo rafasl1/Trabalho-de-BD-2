@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/layouts/Header';
 import Eventos from './pages/Eventos';
@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router basename={window.location.pathname || ''}>
         <div className="App">
           <div className="container">
             <Header />
@@ -21,12 +21,12 @@ class App extends Component {
             <Route path="/patrocinadores" component={Patrocinadores} />
             <Route path="/formEvento" component={FormularioEvento} />
             <Route path="/formPatrocinadores" component={FormularioPatrocinadores} />
-            <Route path="/editEvento" component={EditaEventos} />
+            <Route path="/editEvento/:id" component={EditaEventos} />
           </div>
 
         </div>
       </Router>
-      
+
     );
   }
 }

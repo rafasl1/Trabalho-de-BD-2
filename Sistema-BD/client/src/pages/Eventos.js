@@ -22,29 +22,19 @@ function Eventos() {
     }
     useEffect(getEventos, [])
 
-    const editEventos = (id) => {
-        console.log('Id quando edita: ' + id)
-    }
-
     const delEventos = (id) => {
 
-        let confirmDelete = window.confirm('Delete item forever?')
+        let confirmDelete = window.confirm('Tem certeza que deseja deletar esse item?')
         if (confirmDelete) {
             axios.delete("http://localhost:3001/removeEventos/" + id)
             setListaEventos(listaEventos.filter(evento => evento.id !== id))
         }
     }
 
-    /* function getPatrocinio(id) {
-        console.log('Id quando procura patrocinadores: ' + id)
-    } */
-
     const getPatrocinio = async(id) => {
         console.log('xuxu beleza')
         const response = await axios.get("http://localhost:3001/Patrocinio/" + id)
         setListaPatrocinadores(response.data.rows)
-
-        /* openModal() */
     }
 
     async function openModal (id) {
@@ -84,10 +74,11 @@ function Eventos() {
                                 <td>{element.tema}</td>
                                 <td>{element.publico_alvo}</td>
                                 <td><button className="botaoSecundario" onClick={() => { openModal(element.id) }}>Ver patrocinadores</button></td>
-                                <td><Link to={{
+                                {<td><Link to={"/editEvento/" + element.id}><button className="botaoSecundario">Editar</button></Link></td>}
+                                {/* <td><button className="botaoSecundario" ><Link to={{
                                         pathname: '/editEvento',
                                         state: [{id: openModal(element.id)}]
-                                    }}><button className="botaoSecundario" >Editar</button></Link></td>
+                                    }}>Editar</Link></button></td> */}
                                 <td><button className="botaoSecundario" onClick={() => { delEventos(element.id) }}>Apagar</button></td>
                             </tr>
                         )
