@@ -5,7 +5,7 @@ const { getEventos, addEventos, removeEventos, updateEventos } = require('./cont
 const { getPatrocinadores } = require('./controllers/patrocinadoresControllers')
 const { getPatrocinio } = require('./controllers/patrocinioControllers')
 
-router.get('/', (request, response) => response.json({ message: "Bem vindo à API do trabalho" }))
+router.get('/', (request, response) => response.json({ message: "Bem vinda(o) à API do trabalho" }))
 
 router.get('/Eventos', getEventos);
 router.post('/adicionaEventos', addEventos);
