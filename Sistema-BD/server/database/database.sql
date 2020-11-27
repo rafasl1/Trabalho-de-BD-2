@@ -332,6 +332,8 @@ INSERT INTO PROMOVE_ATIVIDADE (Entidade_id, Entidade_nome, Atividade_id) VALUES 
 INSERT INTO PROMOVE_ATIVIDADE (Entidade_id, Entidade_nome, Atividade_id) VALUES (3, 'Itau', 33);
 INSERT INTO PROMOVE_ATIVIDADE (Entidade_id, Entidade_nome, Atividade_id) VALUES (4, 'Fusion', 34);
 INSERT INTO PROMOVE_ATIVIDADE (Entidade_id, Entidade_nome, Atividade_id) VALUES (5, 'Amazon', 35);
+INSERT INTO PROMOVE_ATIVIDADE (Entidade_id, Entidade_nome, Atividade_id) VALUES (3, 'Itau', 36);
+
 
 CREATE TABLE GERENCIAMENTO_FINANCEIRO (
     Ganhos int,
@@ -408,7 +410,7 @@ INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Ativi
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (3, 'Instalando JDK no seu computador', 35, 'programadores', 10, 13);
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (4, 'Como tocar Unsaid Emily no ukelele', 95, 'jovens e adultos', 32, 14);
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (5, 'Como queimar chocolate no microondas', 15, 'jovens', 3, 15);
-INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (6, 'Dicas Para o mercado de trabalho', 15, 'estudantes', 3, 36);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (6, 'Dicas para o mercado de trabalho', 15, 'estudantes', 3, 36);
 
 CREATE TABLE MINISTRANTE_TUTORIAL (
     Id SERIAL PRIMARY KEY,
@@ -441,7 +443,7 @@ INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, T
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (3, 'Vilma', 'Lorena', 3, 'Instalando JDK no seu computador');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (4, 'Daria', 'Imar', 4, 'Como tocar Unsaid Emily no ukelele');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (5, 'Gabriela', 'Michele', 5, 'Como queimar chocolate no microondas');]
-INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (6, 'Gabriela', 'Michele', 6, 'Dicas Para o mercado de trabalho');
+INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (6, 'Gabriela', 'Michele', 6, 'Dicas para o mercado de trabalho');
 
 CREATE TABLE REUNIAO (
     Id SERIAL PRIMARY KEY,
