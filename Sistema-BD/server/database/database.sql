@@ -49,7 +49,7 @@ CREATE TABLE PARTICIPANTE_EVENTO (
     FOREIGN KEY(Evento_id) REFERENCES EVENTO(Id)
 );
 
-INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento_id) VALUES (1, 'Lara', 'Zureck', 'larazureck@gmail.com', 1);
+INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento_id) VALUES (1, 'Lara', 'Zurek', 'larazurek@gmail.com', 1);
 INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento_id) VALUES (2, 'Golab', 'Guimerlhe', 'golabgolab@gmail.com', 1);
 INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento_id) VALUES (3, 'Vilma', 'Lorena', 'vilmalorena@gmail.com', 1);
 INSERT INTO PARTICIPANTE_EVENTO (Id, Nome, Sobrenome, Email, Evento_id) VALUES (4, 'Daria', 'Imar', 'dariaimar@gmail.com', 1);
@@ -88,7 +88,7 @@ INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (5, 'Ministrante', 
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (6, 'Funcionário', 3);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (7, 'Ministrante', 4);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (8, 'Ministrante', 5);
-INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (9, 'Participante', 5);
+INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (9, 'Público', 5);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (10, 'Juiz', 5);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (11, 'Público', 6);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (12, 'Público', 7);
@@ -287,6 +287,7 @@ INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, 
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento_id) VALUES (33, '28/04/2021', 'La longe', 'geral', 1);
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento_id) VALUES (34, '29/04/2021', 'La longe', 'geral', 1);
 INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento_id) VALUES (35, '30/04/2021', 'La longe', 'geral', 1);
+INSERT INTO ATIVIDADE (Id, Data_Atividade, Local_Atividade, Publico_Especifico, Evento_id) VALUES (36, '06/01/2021', 'La longe', 'geral', 2);
 
 CREATE TABLE PROMOVE_ATIVIDADE (
     Entidade_id int,
@@ -407,6 +408,7 @@ INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Ativi
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (3, 'Instalando JDK no seu computador', 35, 'programadores', 10, 13);
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (4, 'Como tocar Unsaid Emily no ukelele', 95, 'jovens e adultos', 32, 14);
 INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (5, 'Como queimar chocolate no microondas', 15, 'jovens', 3, 15);
+INSERT INTO TUTORIAL (Id, Tema, Duracao, Publico_Alvo, Valor_de_Inscricao, Atividade_id) VALUES (6, 'Dicas Para o mercado de trabalho', 15, 'estudantes', 3, 36);
 
 CREATE TABLE MINISTRANTE_TUTORIAL (
     Id SERIAL PRIMARY KEY,
@@ -422,6 +424,7 @@ INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone, Tutorial_id) VA
 INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone, Tutorial_id) VALUES (3, 'Vilma', 'Lorena', '11698295979', 3);
 INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone, Tutorial_id) VALUES (4, 'Daria', 'Imar', '11994224897', 4);
 INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone, Tutorial_id) VALUES (5, 'Gabriela', 'Michele', '11958222359', 5);
+INSERT INTO MINISTRANTE_TUTORIAL (Id, Nome, Sobrenome, Telefone, Tutorial_id) VALUES (6, 'Gabriela', 'Michele', '11958222359', 6);
 
 CREATE TABLE MINISTRA ( 
     Ministrante_id int,
@@ -433,11 +436,12 @@ CREATE TABLE MINISTRA (
     FOREIGN KEY(Tutorial_id) REFERENCES TUTORIAL(Id) 
 );
 
-INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (1, 'Lara', 'Zureck', 1, 'Como programar uma Pokedex em Angular');
+INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (1, 'Lara', 'Zurek', 1, 'Como programar uma Pokedex em Angular');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (2, 'Golab', 'Guimerlhe', 2, 'Como ficar milionario em uma semana');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (3, 'Vilma', 'Lorena', 3, 'Instalando JDK no seu computador');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (4, 'Daria', 'Imar', 4, 'Como tocar Unsaid Emily no ukelele');
-INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (5, 'Gabriela', 'Michele', 5, 'Como queimar chocolate no microondas');
+INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (5, 'Gabriela', 'Michele', 5, 'Como queimar chocolate no microondas');]
+INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (6, 'Gabriela', 'Michele', 6, 'Dicas Para o mercado de trabalho');
 
 CREATE TABLE REUNIAO (
     Id SERIAL PRIMARY KEY,
@@ -581,7 +585,7 @@ CREATE TABLE ARTIGO (
     Tipo varchar(50)
 );
 
-INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (1, 'Teorias do Marketing Digital', 'Lara Zureck', 'Científico');
+INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (1, 'Teorias do Marketing Digital', 'Lara Zurek', 'Científico');
 INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (2, 'Atuação de Autômatos na Ciência de Dados', 'Giana Armario', 'TCC');
 INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (3, 'Algoritmos de Organização aplicados ao Meio Empresarial', 'Alana Coelhas', 'Iniciação Científica');
 INSERT INTO ARTIGO (Id, Nome, Autor, Tipo) VALUES (4, 'Inteligência Artificial: Próximos Passos', 'Ricael Mila', 'Doutorado');
@@ -750,7 +754,7 @@ CREATE TABLE INSCRICAO (
     FOREIGN KEY(Participante_id) REFERENCES PARTICIPANTE_EVENTO(Id)
 );
 
-INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo, Evento_id, Evento_nome, Participante_id, Participante_nome, Participante_sobrenome) VALUES ('Verao', 240, 'Premium', 'Cartao', 'Normal', 1, 'Semana de SI', 1, 'Lara', 'Zureck');
+INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo, Evento_id, Evento_nome, Participante_id, Participante_nome, Participante_sobrenome) VALUES ('Verao', 240, 'Premium', 'Cartao', 'Normal', 1, 'Semana de SI', 1, 'Lara', 'Zurek');
 INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo, Evento_id, Evento_nome, Participante_id, Participante_nome, Participante_sobrenome) VALUES ('Inverno', 340, 'Standard', 'Boleto', 'Membro de sindicato', 1, 'Semana de SI', 2, 'Golab', 'Guimerlhe');
 INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo, Evento_id, Evento_nome, Participante_id, Participante_nome, Participante_sobrenome) VALUES ('Verao', 560, 'Premium', 'Dinheiro', 'Em lote', 1, 'Semana de SI', 3, 'Vilma', 'Lorena');
 INSERT INTO INSCRICAO (Epoca, Taxa, Classe_do_Publico, Forma_de_Pagamento, Tipo, Evento_id, Evento_nome, Participante_id, Participante_nome, Participante_sobrenome) VALUES ('Verao', 390, 'Premium', 'Cheque', 'Normal', 1, 'Semana de SI', 4, 'Daria', 'Imar');
