@@ -1,0 +1,1 @@
+web: cd Sistema-BD && cd server && npm start

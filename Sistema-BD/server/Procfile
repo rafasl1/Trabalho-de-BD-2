@@ -1,1 +1,0 @@
-web: cd Sistema-BD/server && yarn start

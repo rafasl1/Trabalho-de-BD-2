@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: false })); //recebe dados por fomularios
 //Rotas
 app.use(require('./routes'));
 
-app.listen(3001, () => {
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => {
     console.log("Rodando na porta 3001");
 })
