@@ -23,7 +23,7 @@ function FormularioEvento() {
     const getLastId = async() => {
         const response = await axios.get("http://localhost:3001/eventoLastId")
         setIdNovo(response.data)
-        adicionaPatrocinadores()
+        /* adicionaPatrocinadores() */
     }
 
     const selectPatrocinadores = (event) => {
@@ -50,7 +50,7 @@ function FormularioEvento() {
             edicao: edicao,
             tema: tema,
             publicoAlvo: publicoAlvo
-        }).then((response) =>{
+        }).then((response) => {
             getLastId()
         })
     }
@@ -60,6 +60,14 @@ function FormularioEvento() {
         console.log(idNovo)
         console.log(nome)
         console.log(patrocinadoresSelecionados)
+
+        await axios.post("http://localhost:3001/adicionaPatrocinio", {
+            id_evento: idNovo,
+            nome_evento: nome, 
+            dados_entidade: patrocinadoresSelecionados
+        }).then(
+            //Mandar de volta para página de eventos
+        )
     }
 
     useEffect(() => {
