@@ -22,10 +22,6 @@ function Eventos() {
     }
     useEffect(getEventos, [])
 
-    const editEventos = (id) => {
-        console.log('Id quando edita: ' + id)
-    }
-
     const delEventos = (id) => {
 
         let confirmDelete = window.confirm('Tem certeza que deseja deletar esse item?')
@@ -35,16 +31,10 @@ function Eventos() {
         }
     }
 
-    /* function getPatrocinio(id) {
-        console.log('Id quando procura patrocinadores: ' + id)
-    } */
-
     const getPatrocinio = async(id) => {
         console.log('xuxu beleza')
         const response = await axios.get("http://localhost:3001/Patrocinio/" + id)
         setListaPatrocinadores(response.data.rows)
-
-        /* openModal() */
     }
 
     async function openModal (id) {

@@ -11,7 +11,7 @@ INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (4, 'otima'
 INSERT INTO LOCAL_DO_EVENTO (Id, Qualidade_da_Infraestrutura) VALUES (5, 'regular');
 
 CREATE TABLE EVENTO  (
-    Id SERIAL PRIMARY KEY,
+    Id int PRIMARY KEY,
     Nome varchar(50),
     Edicao int,
     Tema varchar(50),
@@ -88,7 +88,7 @@ INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (5, 'Ministrante', 
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (6, 'Funcionário', 3);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (7, 'Ministrante', 4);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (8, 'Ministrante', 5);
-INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (9, 'Participante', 5);
+INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (9, 'Público', 5);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (10, 'Juiz', 5);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (11, 'Público', 6);
 INSERT INTO PAPEL (Id, Papel, Participante_evento_id) VALUES (12, 'Público', 7);
@@ -125,7 +125,7 @@ INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (4, 'Com
 INSERT INTO CONTAS_A_PAGAR (Id, Tipo_da_Conta, Valor, Evento_id) VALUES (5, 'Contratos', 100, 5);
 
 CREATE TABLE ENTIDADE (
-    Id SERIAL PRIMARY KEY,
+    Id int PRIMARY KEY,
     Nome varchar(50),
     Endereco varchar(50),
     Telefone varchar(50),

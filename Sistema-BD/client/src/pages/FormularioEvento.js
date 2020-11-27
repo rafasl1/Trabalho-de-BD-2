@@ -10,12 +10,37 @@ function FormularioEvento() {
     const [tema, setTema] = useState("");
     const [publicoAlvo, setPublicoAlvo] = useState("");
 
-    const [listaPatrocinadores, setListaPatrocinadores] = useState([])
+    const [listaPatrocinadores, setListaPatrocinadores] = useState([]);
+
+    const [patrocinadoresSelecionados, setPatrocinadoresSelecionados] = useState([])
+    const [idNovo, setIdNovo] = useState(0);
 
     const getPatrocinadores = async() => {
-        console.log('xuxu beleza')
         const response = await axios.get("http://localhost:3001/Patrocinadores")
         setListaPatrocinadores(response.data.rows)
+    }
+
+    const getLastId = async() => {
+        const response = await axios.get("http://localhost:3001/eventoLastId")
+        setIdNovo(response.data)
+        adicionaPatrocinadores()
+    }
+
+    const selectPatrocinadores = (event) => {
+        let valores = event.target.name.split(',')
+        let id = valores[0]
+        let nome = valores[1]
+        
+        const x = {
+            id: id,
+            nome: nome
+        }
+
+        if(event.target.checked) {
+            setPatrocinadoresSelecionados([...patrocinadoresSelecionados, x])
+        } else {
+            setPatrocinadoresSelecionados(patrocinadoresSelecionados.filter(entidade => entidade.id !== id))
+        }
     }
 
     const adicionaEvento = async() => {
@@ -25,12 +50,23 @@ function FormularioEvento() {
             edicao: edicao,
             tema: tema,
             publicoAlvo: publicoAlvo
+        }).then((response) =>{
+            getLastId()
         })
-        
-        /* console.log("sucesso");
-        return <Redirect to='/'  /> */
-        
     }
+
+    const adicionaPatrocinadores = async() => {
+        console.log('devagar e sempre')
+        console.log(idNovo)
+        console.log(nome)
+        console.log(patrocinadoresSelecionados)
+    }
+
+    useEffect(() => {
+        if(idNovo !== 0) {
+            adicionaPatrocinadores()
+        }
+      }, [idNovo]);
 
     useEffect(getPatrocinadores, [])
 
@@ -38,7 +74,7 @@ function FormularioEvento() {
         <div>
             <h1>Formulario de evento</h1>
             
-                <form onSubmit={adicionaEvento}>
+                <form >
                 <div className="formsContainer">
                     <div className="itemForms">
                         <label>Nome:
@@ -86,7 +122,7 @@ function FormularioEvento() {
                         {listaPatrocinadores.map(element => { 
                         return (
                             <div className="checkbox-element">
-                                <input type="checkbox" id={element.nome} name={element.nome}/>{/* {element.nome} */}
+                                <input type="checkbox" id={element.nome} name={[element.id, element.nome]} onChange={selectPatrocinadores}/>{/* {element.nome} */}
                                 <label for={element.nome}>{element.nome}</label>
                             </div>
                             )
@@ -95,7 +131,7 @@ function FormularioEvento() {
                     </div>
 
                     <div className="formsContainer">
-                        <button type='submit'>Enviar</button>
+                        <button type='button' onClick={adicionaEvento}>Enviar</button>
                     </div>
                 </form>
             

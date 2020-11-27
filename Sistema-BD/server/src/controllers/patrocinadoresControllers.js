@@ -15,7 +15,7 @@ const getPatrocinadores = async (req, res) => {
             console.log(err)
         } else {
             /* console.log("Show") */
-            console.log(result.rows)
+            /* console.log(result.rows) */
             res.send(result)
         }
     });
