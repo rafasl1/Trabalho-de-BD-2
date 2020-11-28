@@ -17,14 +17,15 @@ CREATE TABLE EVENTO  (
     Tema varchar(50),
     Publico_Alvo varchar(50),
     Local_Id int,
+    CNPJ varchar(50),
     FOREIGN KEY(Local_Id) REFERENCES LOCAL_DO_EVENTO(Id) ON DELETE RESTRICT
 );
 
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação', 1);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (2, 'Roadsec', 34, 'Segurança na computação', 'Profissionais de tecnologia', 2);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (3, 'SP Maker Week', 6, 'Arduino', 'Público geral', 3);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (4, 'Brasil Games Show', 21, 'Jogos', 'Jogadores de jogos digitais', 4);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis', 5);
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação', 1, '61.456.335/0000-31');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (2, 'Roadsec', 34, 'Segurança na computação', 'Profissionais de tecnologia', 2, '51.456.325/0000-77');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (3, 'SP Maker Week', 6, 'Arduino', 'Público geral', 3, '61.456.335/0000-31');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (4, 'Brasil Games Show', 21, 'Jogos', 'Jogadores de jogos digitais', 4, '34.427.335/0000-39');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis', 5, '32.456.665/0000-21');
 
 CREATE TABLE EVENTO_ONLINE (
     Id SERIAL PRIMARY KEY,
@@ -661,19 +662,24 @@ INSERT INTO PRODUTO (Id, Nome, Preco, Qnt_em_estoque, Loja_id) VALUES (14, 'Sorv
 
 CREATE TABLE VENDEDOR (
     Id SERIAL PRIMARY KEY,
+    Supervisor_id int,
     Nome varchar(50),
     Sobrenome varchar(50),
     CPF varchar(50),
     Telefone varchar(50),
     Loja_id int,
-    FOREIGN KEY(Loja_id) REFERENCES LOJA(Id) ON DELETE RESTRICT
+    FOREIGN KEY(Loja_id) REFERENCES LOJA(Id) ON DELETE RESTRICT,
+    FOREIGN KEY(Supervisor_id) REFERENCES VENDEDOR(Id) ON DELETE NO ACTION
 );
 
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (1, 'Luci', 'Moni', '04937857463', '11994837466', 1);
-INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (2, 'Harrida', 'Stilosa', '04837263849', '11049382746', 2);
-INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (3, 'Zaine', 'Malika', '08736251467', '11093829866', 3);
-INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (4, 'Liana', 'Panini', '039594837188', '11039485766', 4);
-INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (5, 'Niala', 'Horana', '01937465890', '11039384755', 5);
+INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (2, 1, 'Pedro', 'Jesus', '04937857463', '11994837466', 1);
+INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (3, 1, 'Michael', 'Camilo', '04937857463', '11994837466', 1);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (4, 'Harrida', 'Stilosa', '04837263849', '11049382746', 2);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (5, 'Zaine', 'Malika', '08736251467', '11093829866', 3);
+INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (6, 5, 'Thamiris', 'Vasquis', '08736251467', '11093829866', 3);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (7, 'Liana', 'Panini', '039594837188', '11039485766', 4);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (8, 'Niala', 'Horana', '01937465890', '11039384755', 5);
 
 CREATE TABLE VENDE (
     Vendedor_Id int,
