@@ -13,6 +13,9 @@ function FormularioEvento() {
     const [listaPatrocinadores, setListaPatrocinadores] = useState([]);
 
     const [patrocinadoresSelecionados, setPatrocinadoresSelecionados] = useState([])
+    const [quantPatrocinadoresSelecionados, setQuantPatrocinadoresSelecionados] = useState(0)
+    const [taxasPatrocinadoresSelecionados, setTaxasPatrocinadoresSelecionados] = useState([])
+    const [categoriasPatrocinadoresSelecionados, setCategoriasPatrocinadoresSelecionados] = useState([])
     const [idNovo, setIdNovo] = useState(0);
 
     const getPatrocinadores = async() => {
@@ -23,7 +26,6 @@ function FormularioEvento() {
     const getLastId = async() => {
         const response = await axios.get("http://localhost:3001/eventoLastId")
         setIdNovo(response.data)
-        /* adicionaPatrocinadores() */
     }
 
     const selectPatrocinadores = (event) => {
@@ -40,6 +42,8 @@ function FormularioEvento() {
             setPatrocinadoresSelecionados([...patrocinadoresSelecionados, x])
         } else {
             setPatrocinadoresSelecionados(patrocinadoresSelecionados.filter(entidade => entidade.id !== id))
+            setTaxasPatrocinadoresSelecionados(taxasPatrocinadoresSelecionados.filter(taxa => taxa.id !== id))
+            setCategoriasPatrocinadoresSelecionados(categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== id))
         }
     }
 
@@ -56,25 +60,41 @@ function FormularioEvento() {
     }
 
     const adicionaPatrocinadores = async() => {
-        console.log('devagar e sempre')
-        console.log(idNovo)
-        console.log(nome)
-        console.log(patrocinadoresSelecionados)
+        console.log('entrou pra adicionar no relacionamento')
 
         await axios.post("http://localhost:3001/adicionaPatrocinio", {
             id_evento: idNovo,
             nome_evento: nome, 
-            dados_entidade: patrocinadoresSelecionados
+            dados_entidade: patrocinadoresSelecionados,
+            taxa_patrocinios: taxasPatrocinadoresSelecionados,
+            categoria_patrocinios: categoriasPatrocinadoresSelecionados
         }).then(
             //Mandar de volta para página de eventos
         )
     }
 
     useEffect(() => {
-        if(idNovo !== 0) {
+        console.log(idNovo)
+        if(idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
       }, [idNovo]);
+
+    useEffect(() => {
+        setQuantPatrocinadoresSelecionados(patrocinadoresSelecionados.length)
+    }, [patrocinadoresSelecionados]);
+
+    useEffect(() => {
+        if(idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
+            adicionaPatrocinadores()
+        }
+    }, [categoriasPatrocinadoresSelecionados]);
+
+    useEffect(() => {
+        if(idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
+            adicionaPatrocinadores()
+        }
+    }, [taxasPatrocinadoresSelecionados]);
 
     useEffect(getPatrocinadores, [])
 
@@ -137,6 +157,40 @@ function FormularioEvento() {
                         })}
                     
                     </div>
+
+                    <div >
+                        <label>Forneça os seguintes dados sobre os patrocinadores desse evento:</label>
+                        {patrocinadoresSelecionados.map(element => { 
+                        return (
+                            <div className="checkbox-element">
+                                <h4>{element.nome}</h4>
+                                <label>Taxa do patrocinio:
+                                    <input id={element.id}
+                                        type="text"
+                                        onChange = {async(event) => {
+                                            setTaxasPatrocinadoresSelecionados([...taxasPatrocinadoresSelecionados.filter(taxa => taxa.id !== event.target.id), {
+                                                id: event.target.id,
+                                                value: event.target.value
+                                            }])
+                                    }} 
+                                />  
+                                </label>
+                                <label>Categoria do patrocinio:
+                                    <input id={element.id}
+                                        type="text"
+                                        onChange = {(event) => {
+                                            setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
+                                                id: event.target.id,
+                                                value: event.target.value
+                                            }])
+                                    }} 
+                                />  
+                                </label>
+                            </div>
+                            )
+                        })}
+                    
+                    </div> 
 
                     <div className="formsContainer">
                         <button type='button' onClick={adicionaEvento}>Enviar</button>
