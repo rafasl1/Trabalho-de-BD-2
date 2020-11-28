@@ -99,23 +99,12 @@ function EditaEventos() {
                     </div>
                     </div>
 
-                    {/* <div className="checkbox-container">
-                    <label>Patrocinadores:</label>
-                        {listaPatrocinadores.map(element => { 
-                        return (
-                            <div className="checkbox-element">
-                                <input type="checkbox" id={element.nome} name={element.nome}/>
-                                <label for={element.nome}>{element.nome}</label>
-                            </div>
-                            )
-                        })}
-                    
-                    </div> */}
-
                     <div className="formsContainer">
                         <button type='submit'>Enviar</button>
                     </div>
                 </form>
+
+                <h3>OBS: Caso deseje, editar os patrocinadores desse evento, faça isso através do botão "Ver patrocinadores" na página principal"</h3>
         </div>
     )
 }
