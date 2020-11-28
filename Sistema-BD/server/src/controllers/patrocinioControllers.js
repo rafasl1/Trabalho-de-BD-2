@@ -26,20 +26,28 @@ const getPatrocinio = async (req, res) => {
 }
 
 const addPatrocinio = async (req, res) => {
+
     let id_evento = req.body.id_evento; 
     let nome_evento = req.body.nome_evento;
     let dados_entidade = req.body.dados_entidade;
-
-    /* console.log(id_evento)
-    console.log(nome_evento)
-    console.log(dados_entidade)
-    console.log('agora vamos percorrer o array') */
+    let taxa_patrocinios = req.body.taxa_patrocinios;
+    let categoria_patrocinios = req.body.categoria_patrocinios;
+    let taxa;
+    let categoria;
 
     dados_entidade.forEach(async element => { 
-        /* console.log(element);
-        console.log(element.id); 
-        console.log(element.nome);  */ 
-        const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome) VALUES ('" + id_evento + "', '" + nome_evento + "', '" + element.id + "', '" + element.nome + "')";
+
+        taxa_patrocinios.forEach(item => {
+            console.log('No array da taxa:' + item)
+            if(item.id === element.id) taxa = item.value
+        })
+
+        categoria_patrocinios.forEach(item => {
+            console.log('No array do patrocinio:' + item)
+            if(item.id === element.id) categoria = item.value
+        })
+
+        const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + id_evento + "', '" + nome_evento + "', '" + element.id + "', '" + element.nome + "', '" + taxa + "', '" + categoria + "')";
         const response = await pool.query(query, async(err, result) => {
         if(err) {
             console.log(err)
