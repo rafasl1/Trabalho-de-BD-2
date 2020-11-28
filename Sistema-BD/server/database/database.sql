@@ -672,10 +672,13 @@ CREATE TABLE VENDEDOR (
 );
 
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (1, 'Luci', 'Moni', '04937857463', '11994837466', 1);
-INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (2, 1, 'Harrida', 'Stilosa', '04837263849', '11049382746', 2);
-INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (3, 'Zaine', 'Malika', '08736251467', '11093829866', 3);
-INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (4, 'Liana', 'Panini', '039594837188', '11039485766', 4);
-INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (5, 4, 'Niala', 'Horana', '01937465890', '11039384755', 5);
+INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (2, 1, 'Pedro', 'Jesus', '04937857463', '11994837466', 1);
+INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (3, 1, 'Michael', 'Camilo', '04937857463', '11994837466', 1);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (4, 'Harrida', 'Stilosa', '04837263849', '11049382746', 2);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (5, 'Zaine', 'Malika', '08736251467', '11093829866', 3);
+INSERT INTO VENDEDOR (Id, Supervisor_id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (6, 5, 'Thamiris', 'Vasquis', '08736251467', '11093829866', 3);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (7, 'Liana', 'Panini', '039594837188', '11039485766', 4);
+INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (8, 'Niala', 'Horana', '01937465890', '11039384755', 5);
 
 CREATE TABLE VENDE (
     Vendedor_Id int,
