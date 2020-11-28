@@ -57,6 +57,13 @@ const removeEventos = async (req, res) => {
             console.log(err)
         } 
     });
+
+    const query2 = "DELETE FROM patrocina WHERE evento_id = '" + id + "'";
+    const response2 = await pool.query(query2, (err, result) => {
+        if(err) {
+            console.log(err)
+        } 
+    });
 }
 
 const getEventoEspecifico = async (req, res) => {
