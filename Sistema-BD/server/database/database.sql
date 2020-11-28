@@ -669,6 +669,7 @@ CREATE TABLE VENDEDOR (
     Telefone varchar(50),
     Loja_id int,
     FOREIGN KEY(Loja_id) REFERENCES LOJA(Id) ON DELETE RESTRICT
+    FOREIGN KEY(Supervisor_id) REFERENCES VENDEDOR(Id) ON DELETE NO ACTION
 );
 
 INSERT INTO VENDEDOR (Id, Nome, Sobrenome, CPF, Telefone, Loja_id) VALUES (1, 'Luci', 'Moni', '04937857463', '11994837466', 1);
