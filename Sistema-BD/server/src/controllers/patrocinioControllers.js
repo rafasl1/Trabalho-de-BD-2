@@ -11,13 +11,12 @@ const pool = new Pool({
 const getPatrocinio = async (req, res) => {
     let id = req.params.id;
 
-    const query = "SELECT entidade_nome, taxa, categoria FROM patrocina WHERE evento_id = '" + id + "'";
+    const query = "SELECT evento_id, entidade_id, entidade_nome, taxa, categoria FROM patrocina WHERE evento_id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
         if(err) {
             console.log(err)
         } else {
             /* console.log("Show") */
-            console.log(result.rows)
             res.send(result)
         }
     });
@@ -38,12 +37,10 @@ const addPatrocinio = async (req, res) => {
     dados_entidade.forEach(async element => { 
 
         taxa_patrocinios.forEach(item => {
-            console.log('No array da taxa:' + item)
             if(item.id === element.id) taxa = item.value
         })
 
         categoria_patrocinios.forEach(item => {
-            console.log('No array do patrocinio:' + item)
             if(item.id === element.id) categoria = item.value
         })
 
@@ -51,15 +48,25 @@ const addPatrocinio = async (req, res) => {
         const response = await pool.query(query, async(err, result) => {
         if(err) {
             console.log(err)
-        } else {
-            console.log('Fooooi' + element.id); 
-        }
+        } 
     });  
       });  
+}
 
+const removePatrocinio = async (req, res) => {
+    let evento_id = req.params.evento;
+    let entidade_id = req.params.entidade;
+
+    const query = "DELETE FROM patrocina WHERE evento_id = '" + evento_id + "' AND entidade_id = '" + entidade_id + "'";
+    const response = await pool.query(query, (err, result) => {
+        if(err) {
+            console.log(err)
+        } 
+    });
 }
 
 module.exports = {
     getPatrocinio,
-    addPatrocinio
+    addPatrocinio,
+    removePatrocinio
 }

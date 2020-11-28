@@ -31,6 +31,14 @@ function Eventos() {
         }
     }
 
+    const delPatrocinio = (id) => {
+        let evento = id[0]
+        let entidade = id[1]
+
+        axios.delete("http://localhost:3001/removePatrocinio/" + evento + "/" + entidade)
+        setListaPatrocinadores(listaPatrocinadores.filter(element => element.entidade_id !== entidade))
+    }
+
     const getPatrocinio = async(id) => {
         console.log('xuxu beleza')
         const response = await axios.get("http://localhost:3001/Patrocinio/" + id)
@@ -110,10 +118,13 @@ function Eventos() {
                                 <td>{element.entidade_nome}</td>
                                 <td>{element.taxa}</td>
                                 <td>{element.categoria}</td>
+                                <td><button className="botaoSecundario">Editar patrocínio</button></td>
+                                <td><button className="botaoSecundario" onClick={() => { delPatrocinio([element.evento_id, element.entidade_id]) }}>Apagar</button></td>
                             </tr>
                         )
                     })}
                 </table>
+                <button className="botaoSecundario">Adicionar patrocínio</button>
             </div>
                 </Modal>
             </div>

@@ -3,7 +3,7 @@ const router = Router(); // objeto que permite definir as rotas
 
 const { getEventos, addEventos, removeEventos, updateEventos, getEventoEspecifico, getLastEventoId } = require('./controllers/eventoControllers')
 const { getPatrocinadores } = require('./controllers/patrocinadoresControllers')
-const { getPatrocinio, addPatrocinio } = require('./controllers/patrocinioControllers')
+const { getPatrocinio, addPatrocinio, removePatrocinio } = require('./controllers/patrocinioControllers')
 
 router.get('/', (request, response) => response.json({ message: "Bem vinda(o) à API do trabalho" }))
 
@@ -21,5 +21,6 @@ router.put('/updatePatrocinadores:id', updatePatrocinadores); */
 
 router.get('/Patrocinio/:id', getPatrocinio);
 router.post('/adicionaPatrocinio', addPatrocinio);
+router.delete('/removePatrocinio/:evento/:entidade', removePatrocinio);
 
 module.exports = router;
