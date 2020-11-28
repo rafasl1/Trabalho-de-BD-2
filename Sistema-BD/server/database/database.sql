@@ -17,14 +17,15 @@ CREATE TABLE EVENTO  (
     Tema varchar(50),
     Publico_Alvo varchar(50),
     Local_Id int,
+    CNPJ varchar(50),
     FOREIGN KEY(Local_Id) REFERENCES LOCAL_DO_EVENTO(Id) ON DELETE RESTRICT
 );
 
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação', 1);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (2, 'Roadsec', 34, 'Segurança na computação', 'Profissionais de tecnologia', 2);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (3, 'SP Maker Week', 6, 'Arduino', 'Público geral', 3);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (4, 'Brasil Games Show', 21, 'Jogos', 'Jogadores de jogos digitais', 4);
-INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis', 5);
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (1, 'Semana de SI', 12, 'Como ficar rico', 'Estudantes de Sistemas de Informação', 1, '61.456.335/0000-31');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (2, 'Roadsec', 34, 'Segurança na computação', 'Profissionais de tecnologia', 2, '51.456.325/0000-77');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (3, 'SP Maker Week', 6, 'Arduino', 'Público geral', 3, '61.456.335/0000-31');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (4, 'Brasil Games Show', 21, 'Jogos', 'Jogadores de jogos digitais', 4, '34.427.335/0000-39');
+INSERT INTO EVENTO (Id, Nome, Edicao, Tema, Publico_Alvo, Local_Id, CNPJ) VALUES (5, 'Comic Con', 16, 'Quadrinhos', 'Fãs de super heróis', 5, '32.456.665/0000-21');
 
 CREATE TABLE EVENTO_ONLINE (
     Id SERIAL PRIMARY KEY,
