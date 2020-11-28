@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import BotaoForm from '../components/BotaoForm';
 import '../pages/styles/Geral.css';
@@ -15,12 +15,25 @@ function Eventos() {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [listaEventos, setListaEventos] = useState([])
     const [listaPatrocinadores, setListaPatrocinadores] = useState([])
+    const [idPatrocinadores, setIdPatrocinadores] = useState([])
+    const [todosOsPatrocinadores, setTodosOsPatrocinadores] = useState([])
+
+    const [nomeEvento, setnomeEvento] = useState("");
+    const [idEvento, setidEvento] = useState("");
+    const [novoPatrocinador, setNovoPatrocinador] = useState("");
+    const [novoPatrocTaxa, setNovoPatrocTaxa] = useState("");
+    const [novoPatrocCategoria, setNovoPatrocCategoria] = useState("");
 
     const getEventos = async () => {
         const response = await axios.get("http://localhost:3001/Eventos")
         setListaEventos(response.data.rows)
     }
+    const getPatrocinadores = async (id) => {
+        const response = await axios.get("http://localhost:3001/Patrocinadores")
+        setTodosOsPatrocinadores(response.data.rows)
+    }
     useEffect(getEventos, [])
+    useEffect(getPatrocinadores, [])
 
     const delEventos = (id) => {
 
@@ -37,22 +50,70 @@ function Eventos() {
 
         axios.delete("http://localhost:3001/removePatrocinio/" + evento + "/" + entidade)
         setListaPatrocinadores(listaPatrocinadores.filter(element => element.entidade_id !== entidade))
+        /* setIdPatrocinadores(idPatrocinadores.filter(element => element.id !== entidade)) */
     }
 
-    const getPatrocinio = async(id) => {
-        console.log('xuxu beleza')
+    const getPatrocinio = async (id) => {
         const response = await axios.get("http://localhost:3001/Patrocinio/" + id)
         setListaPatrocinadores(response.data.rows)
+        let i = 0
+        let ids = []
+        while(i<response.data.rows.length) {
+            /* console.log(response.data.rows[i].entidade_id) */
+            ids.push(response.data.rows[i].entidade_id)
+            i++
+        }
+        console.log(ids)
+        setIdPatrocinadores(ids)
     }
 
-    async function openModal (id) {
-        await getPatrocinio(id)
+    const addNovoPatrocinador = async () => {
+        console.log(novoPatrocinador)
+        const teste = novoPatrocinador[0].split(",");
+        console.log(teste)
+
+        const patrocinador = [{
+            id: teste[0],
+            nome: teste[1]
+        }]
+        console.log(patrocinador)
+        console.log(patrocinador.id)
+        
+        
+        const taxa = [{
+            id: patrocinador[0].id,
+            value: novoPatrocTaxa
+        }]
+        const categoria = [{
+            id: patrocinador[0].id,
+            value: novoPatrocCategoria
+        }]
+
+        await axios.post("http://localhost:3001/adicionaPatrocinio", {
+            id_evento: idEvento,
+            nome_evento: nomeEvento, 
+            dados_entidade: patrocinador,
+            taxa_patrocinios: taxa,
+            categoria_patrocinios: categoria
+        }).then(
+            //Mandar de volta para página de eventos
+        )
+    }
+
+    async function openModal(id, nome) {
+        setidEvento(id);
+        setnomeEvento(nome);
+        await getPatrocinio(id);
         setIsOpen(true);
     }
 
     function closeModal() {
         setIsOpen(false);
     }
+
+    useEffect(() => {
+        console.log(novoPatrocinador)
+    }, [novoPatrocinador]);
 
     return (
         <div>
@@ -81,7 +142,7 @@ function Eventos() {
                                 <td>{element.edicao}</td>
                                 <td>{element.tema}</td>
                                 <td>{element.publico_alvo}</td>
-                                <td><button className="botaoSecundario" onClick={() => { openModal(element.id) }}>Ver patrocinadores</button></td>
+                                <td><button className="botaoSecundario" onClick={() => { openModal(element.id, element.nome) }}>Ver patrocinadores</button></td>
                                 {<td><Link to={"/editEvento/" + element.id}><button className="botaoSecundario">Editar</button></Link></td>}
                                 {/* <td><button className="botaoSecundario" ><Link to={{
                                         pathname: '/editEvento',
@@ -101,31 +162,73 @@ function Eventos() {
                     contentLabel="Example Modal"
                 >
                     <div className="modal-button-container">
-                    <button className="modal-button" onClick={closeModal}>Fechar</button>
+                        <button className="modal-button" onClick={closeModal}>Fechar</button>
                     </div>
                     <h1>Patrocinadores do evento</h1>
                     <div className="table-container">
-                <table>
-                    <tr>
-                        <th>Entidade</th>
-                        <th>Taxa</th>
-                        <th>Categoria</th>
-                    </tr>
-
-                    {listaPatrocinadores.map(element => {
-                        return (
+                        <table>
                             <tr>
-                                <td>{element.entidade_nome}</td>
-                                <td>{element.taxa}</td>
-                                <td>{element.categoria}</td>
-                                <td><button className="botaoSecundario">Editar patrocínio</button></td>
-                                <td><button className="botaoSecundario" onClick={() => { delPatrocinio([element.evento_id, element.entidade_id]) }}>Apagar</button></td>
+                                <th>Entidade</th>
+                                <th>Taxa</th>
+                                <th>Categoria</th>
                             </tr>
-                        )
-                    })}
-                </table>
-                <button className="botaoSecundario">Adicionar patrocínio</button>
-            </div>
+
+                            {listaPatrocinadores.map(element => {
+                                return (
+                                    <tr>
+                                        <td>{element.entidade_nome}</td>
+                                        <td>{element.taxa}</td>
+                                        <td>{element.categoria}</td>
+                                        <td><button className="botaoSecundario">Editar patrocínio</button></td>
+                                        <td><button className="botaoSecundario" onClick={() => { delPatrocinio([element.evento_id, element.entidade_id]) }}>Apagar</button></td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
+                        
+                    </div>
+
+                    <div>
+                        <h1>Adicionar novo patrocinador para esse evento</h1>
+                        <form >
+                            <div className="formsContainer">
+
+                            <div onChange = {(event) => {setNovoPatrocinador([event.target.value]);}}>
+                                {todosOsPatrocinadores.map(element => {
+                                    if(!idPatrocinadores.includes(element.id)) {
+                                        return (
+                                            <div>
+                                                <input type="radio" name="entidade" value={element.id + "," + element.nome}/>{element.nome}
+                                            </div>
+                                        )
+                                    }
+                                })}
+                            </div>
+
+                                <div className="itemForms">
+                                    <label>Taxa:
+                                        <input type="text"
+                                                onChange = {(event) => {setNovoPatrocTaxa(event.target.value);}} 
+                                        />
+                                    </label>
+                                </div>
+
+                                <div className="itemForms">
+                                    <label>Categoria:
+                                        <input type="text"
+                                            onChange = {(event) => {setNovoPatrocCategoria(event.target.value);}}
+                                        />
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div className="formsContainer">
+                                <button type='button' onClick={() => { addNovoPatrocinador() }}>Adicionar patrocínio</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </Modal>
             </div>
 

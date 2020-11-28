@@ -11,7 +11,7 @@ const pool = new Pool({
 const getPatrocinio = async (req, res) => {
     let id = req.params.id;
 
-    const query = "SELECT evento_id, entidade_id, entidade_nome, taxa, categoria FROM patrocina WHERE evento_id = '" + id + "'";
+    const query = "SELECT * FROM patrocina WHERE evento_id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
         if(err) {
             console.log(err)
@@ -34,6 +34,12 @@ const addPatrocinio = async (req, res) => {
     let taxa;
     let categoria;
 
+    console.log(id_evento)
+    console.log(nome_evento)
+    console.log(dados_entidade)
+    console.log(taxa_patrocinios)
+    console.log(categoria_patrocinios)
+
     dados_entidade.forEach(async element => { 
 
         taxa_patrocinios.forEach(item => {
@@ -43,6 +49,9 @@ const addPatrocinio = async (req, res) => {
         categoria_patrocinios.forEach(item => {
             if(item.id === element.id) categoria = item.value
         })
+
+        console.log(taxa)
+        console.log(categoria)
 
         const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + id_evento + "', '" + nome_evento + "', '" + element.id + "', '" + element.nome + "', '" + taxa + "', '" + categoria + "')";
         const response = await pool.query(query, async(err, result) => {
