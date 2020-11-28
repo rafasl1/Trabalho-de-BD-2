@@ -24,6 +24,13 @@ function Eventos() {
     const [novoPatrocTaxa, setNovoPatrocTaxa] = useState("");
     const [novoPatrocCategoria, setNovoPatrocCategoria] = useState("");
 
+    const [patrocEditadoId, setPatrocEditadoId] = useState("");
+    const [patrocEditadoNome, setPatrocEditadoNome] = useState("");
+    const [patrocEditadoTaxa, setPatrocEditadoTaxa] = useState("");
+    const [patrocEditadoCategoria, setPatrocEditadoCategoria] = useState("");
+
+    const [hiddenDiv, setHiddenDiv] = useState("none");
+
     const getEventos = async () => {
         const response = await axios.get("http://localhost:3001/Eventos")
         setListaEventos(response.data.rows)
@@ -100,6 +107,25 @@ function Eventos() {
         )
     }
 
+    const abreDivEditar = (dados) => {
+        setidEvento(dados[0])
+        setPatrocEditadoId(dados[1])
+        setPatrocEditadoNome(dados[2])
+        setPatrocEditadoTaxa(dados[3])
+        setPatrocEditadoCategoria(dados[4])
+        
+        setHiddenDiv("block")
+    }
+
+    const editarPatrocinio = async() => {
+        axios.put("http://localhost:3001/updatePatrocinio", {
+            id_evento: idEvento,
+            id_patrocinador: patrocEditadoId,
+            taxa: patrocEditadoTaxa,
+            categoria: patrocEditadoCategoria
+        })
+    }
+
     async function openModal(id, nome) {
         setidEvento(id);
         setnomeEvento(nome);
@@ -109,6 +135,7 @@ function Eventos() {
 
     function closeModal() {
         setIsOpen(false);
+        setHiddenDiv("none")
     }
 
     useEffect(() => {
@@ -179,13 +206,44 @@ function Eventos() {
                                         <td>{element.entidade_nome}</td>
                                         <td>{element.taxa}</td>
                                         <td>{element.categoria}</td>
-                                        <td><button className="botaoSecundario">Editar patrocínio</button></td>
+                                        <td><button className="botaoSecundario" onClick={() => { abreDivEditar([element.evento_id, element.entidade_id, element.entidade_nome, element.taxa, element.categoria]) }}>Editar patrocínio</button></td>
                                         <td><button className="botaoSecundario" onClick={() => { delPatrocinio([element.evento_id, element.entidade_id]) }}>Apagar</button></td>
                                     </tr>
                                 )
                             })}
                         </table>
                         
+                    </div>
+
+                    <div style={{display: hiddenDiv }}>
+                        <h1>Editar patrocinador {patrocEditadoNome}</h1>
+                        <form >
+                            <div className="formsContainer">
+
+                                <div className="itemForms">
+                                    <label>Taxa:
+                                        <input type="text"
+                                                onChange = {(event) => {setPatrocEditadoTaxa(event.target.value);}} 
+                                                value={patrocEditadoTaxa}
+                                        />
+                                    </label>
+                                </div>
+
+                                <div className="itemForms">
+                                    <label>Categoria:
+                                        <input type="text"
+                                            onChange = {(event) => {setPatrocEditadoCategoria(event.target.value);}}
+                                            value={patrocEditadoCategoria}
+                                        />
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div className="formsContainer">
+                                <button type='button' onClick={() => { editarPatrocinio() }}>Editar patrocínio</button>
+                            </div>
+                        </form>
                     </div>
 
                     <div>

@@ -74,8 +74,23 @@ const removePatrocinio = async (req, res) => {
     });
 }
 
+const updatePatrocinio = async (req, res) => {
+    let id_evento = req.body.id_evento;
+    let id_patrocinador = req.body.id_patrocinador;
+    let taxa = req.body.taxa;
+    let categoria = req.body.categoria;
+
+    const query = "UPDATE patrocina SET taxa = '" + taxa + "', categoria = '" + categoria + "' WHERE evento_id = '" + id_evento + "' AND entidade_id = '" + id_patrocinador + "'";
+    const response = await pool.query(query, (err, result) => {
+        if(err) {
+            console.log(err)
+        } 
+    });
+}
+
 module.exports = {
     getPatrocinio,
     addPatrocinio,
-    removePatrocinio
+    removePatrocinio,
+    updatePatrocinio
 }
