@@ -4,10 +4,14 @@ import '../pages/styles/Geral.css';
 
 function Patrocinadores() {
     return (
-        <div className="container-tabelas">
+        <div>
             <div className="topo">
-                <BotaoForm rota="/formPatrocinadores"/>
                 <h1>Patrocinadores</h1>
+                <BotaoForm rota="/formPatrocinadores"/>
+            </div>
+
+            <div className="table-container">
+
             </div>
         </div>
     )

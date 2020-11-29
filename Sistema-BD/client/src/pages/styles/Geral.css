@@ -11,10 +11,18 @@
     top: 20px;
 }
 
+.botao-principal-container {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+}
+
 .botaoPrincipal {
-    position: relative;
-    /* align-items: flex-end; */
-    left: 20rem;
+    /* position: relative; */
+    align-items: flex-end;
+    margin-left: 50%;
+    margin-top: -40px;
+    margin-bottom: -5px;
     cursor: pointer;
     /* z-index: 1; */
 }
