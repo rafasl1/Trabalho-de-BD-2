@@ -231,10 +231,15 @@ function Eventos() {
 
                                 <div className="itemForms">
                                     <label>Categoria:
-                                        <input type="text"
+                                        {/* <input type="text"
                                             onChange = {(event) => {setPatrocEditadoCategoria(event.target.value);}}
                                             value={patrocEditadoCategoria}
-                                        />
+                                        /> */}
+                                        <div onChange = {(event) => {setPatrocEditadoCategoria(event.target.value);}} >
+                                            <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"}/>Ouro
+                                            <input type="radio" name="entidade" value="Prata" checked={patrocEditadoCategoria === "Prata"}/>Prata
+                                            <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"}/>Bronze
+                                        </div>
                                     </label>
                                 </div>
 

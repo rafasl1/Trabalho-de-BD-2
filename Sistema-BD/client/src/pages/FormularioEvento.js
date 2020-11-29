@@ -175,8 +175,9 @@ function FormularioEvento() {
                                     }} 
                                 />  
                                 </label>
+
                                 <label>Categoria do patrocinio:
-                                    <input id={element.id}
+                                    {/* <input id={element.id}
                                         type="text"
                                         onChange = {(event) => {
                                             setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
@@ -184,7 +185,17 @@ function FormularioEvento() {
                                                 value: event.target.value
                                             }])
                                     }} 
-                                />  
+                                />  */} 
+                                    <div onChange = {(event) => {
+                                            setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
+                                                id: event.target.id,
+                                                value: event.target.value
+                                            }])
+                                    }} >
+                                        <input id={element.id} type="radio" name={"entidade" + element.id} value="Ouro"/>Ouro
+                                        <input id={element.id} type="radio" name={"entidade" + element.id} value="Prata"/>Prata
+                                        <input id={element.id} type="radio" name={"entidade" + element.id} value="Bronze"/>Bronze
+                                    </div>
                                 </label>
                             </div>
                             )

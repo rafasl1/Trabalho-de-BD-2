@@ -51,15 +51,15 @@ const getLastEventoId = async (req, res) => {
 const removeEventos = async (req, res) => {
     let id = req.params.id;
 
-    const query = "DELETE FROM EVENTO WHERE Id = '" + id + "'" ;
-    const response = await pool.query(query, (err, result) => {
+    const query2 = "DELETE FROM patrocina WHERE evento_id = '" + id + "'";
+    const response2 = await pool.query(query2, (err, result) => {
         if(err) {
             console.log(err)
         } 
     });
 
-    const query2 = "DELETE FROM patrocina WHERE evento_id = '" + id + "'";
-    const response2 = await pool.query(query2, (err, result) => {
+    const query = "DELETE FROM EVENTO WHERE Id = '" + id + "'" ;
+    const response = await pool.query(query, (err, result) => {
         if(err) {
             console.log(err)
         } 

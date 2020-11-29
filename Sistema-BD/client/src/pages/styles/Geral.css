@@ -18,7 +18,7 @@
 }
 
 .botaoPrincipal {
-    /* position: relative; */
+    position: relative;
     align-items: flex-end;
     margin-left: 50%;
     margin-top: -40px;
