@@ -41,7 +41,10 @@ function EditaEventos() {
                 edicao: edicao,
                 tema: tema,
                 publicoAlvo: publicoAlvo
-            })
+            }).then(
+                //Mandar de volta para página de eventos
+                window.location = "/"
+            )
             
         }
     }

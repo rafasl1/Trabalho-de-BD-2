@@ -58,6 +58,7 @@ function Eventos() {
         axios.delete("http://localhost:3001/removePatrocinio/" + evento + "/" + entidade)
         setListaPatrocinadores(listaPatrocinadores.filter(element => element.entidade_id !== entidade))
         /* setIdPatrocinadores(idPatrocinadores.filter(element => element.id !== entidade)) */
+        
     }
 
     const getPatrocinio = async (id) => {
@@ -118,12 +119,25 @@ function Eventos() {
     }
 
     const editarPatrocinio = async() => {
+        console.log(listaPatrocinadores)
+        setHiddenDiv("none")
         axios.put("http://localhost:3001/updatePatrocinio", {
             id_evento: idEvento,
             id_patrocinador: patrocEditadoId,
             taxa: patrocEditadoTaxa,
             categoria: patrocEditadoCategoria
-        })
+        }).then(
+            //Mandar de volta para página de eventos
+            //window.location = "/"
+            setListaPatrocinadores([...listaPatrocinadores.filter(element => element.entidade_id !== patrocEditadoId), {
+                taxa: patrocEditadoTaxa, 
+                categoria: patrocEditadoCategoria, 
+                evento_id: idEvento, 
+                evento_nome: "", 
+                entidade_id: patrocEditadoId,
+                entidade_nome: patrocEditadoNome
+            }])
+        )
     }
 
     async function openModal(id, nome) {
