@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import BotaoForm from '../components/BotaoForm';
 import '../pages/styles/Geral.css';
 import '../pages/styles/Tabela.css';
+import '../pages/styles/Form.css'
 
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 //Modal.setAppElement('#yourAppElement')
@@ -250,9 +251,21 @@ function Eventos() {
                                             value={patrocEditadoCategoria}
                                         /> */}
                                         <div onChange = {(event) => {setPatrocEditadoCategoria(event.target.value);}} >
-                                            <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"}/>Ouro
+                                            {/* <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"}/>Ouro
                                             <input type="radio" name="entidade" value="Prata" checked={patrocEditadoCategoria === "Prata"}/>Prata
-                                            <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"}/>Bronze
+                                            <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"}/>Bronze */}
+                                            <div className="checkbox-element">
+                                                <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"}/>
+                                                <label >Ouro</label>
+                                            </div>
+                                            <div className="checkbox-element">
+                                                <input type="radio" name="entidade" value="Prata" checked={patrocEditadoCategoria === "Prata"}/>
+                                                <label >Prata</label>
+                                            </div>
+                                            <div className="checkbox-element">
+                                                <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"}/>
+                                                <label >Bronze</label>
+                                            </div>
                                         </div>
                                     </label>
                                 </div>

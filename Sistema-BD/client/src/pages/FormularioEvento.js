@@ -192,9 +192,18 @@ function FormularioEvento() {
                                                 value: event.target.value
                                             }])
                                     }} >
-                                        <input id={element.id} type="radio" name={"entidade" + element.id} value="Ouro"/>Ouro
-                                        <input id={element.id} type="radio" name={"entidade" + element.id} value="Prata"/>Prata
-                                        <input id={element.id} type="radio" name={"entidade" + element.id} value="Bronze"/>Bronze
+                                        <div className="checkbox-element">
+                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Ouro"/>
+                                            <label >Ouro</label>
+                                        </div>
+                                        <div className="checkbox-element">
+                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Prata"/>
+                                            <label >´Prata</label>
+                                        </div>
+                                        <div className="checkbox-element">
+                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Bronze"/>
+                                            <label >Bronze</label>
+                                        </div>
                                     </div>
                                 </label>
                             </div>
