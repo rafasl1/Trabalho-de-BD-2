@@ -2,9 +2,9 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
     host: 'motty.db.elephantsql.com',
-    user: 'postgres',
+    user: 'vnyspson',
     password: 'dScNDBzo2EsRd4zXvx4NosDeqwt3IMwI',
-    database: 'Gerenciador_de_eventos'
+    database: 'vnyspson'
 })
 
 const getPatrocinio = async (req, res) => {
