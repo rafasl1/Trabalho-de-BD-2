@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../pages/styles/Form.css'
 
@@ -17,13 +17,13 @@ function FormularioEvento() {
     const [categoriasPatrocinadoresSelecionados, setCategoriasPatrocinadoresSelecionados] = useState([])
     const [idNovo, setIdNovo] = useState(0);
 
-    const getPatrocinadores = async() => {
-        const response = await axios.get("http://localhost:3001/Patrocinadores")
+    const getPatrocinadores = async () => {
+        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
         setListaPatrocinadores(response.data.rows)
     }
 
-    const getLastId = async() => {
-        const response = await axios.get("http://localhost:3001/eventoLastId")
+    const getLastId = async () => {
+        const response = await axios.get("https://bdbackend.herokuapp.com/eventoLastId")
         setIdNovo(response.data)
     }
 
@@ -31,13 +31,13 @@ function FormularioEvento() {
         let valores = event.target.name.split(',')
         let id = valores[0]
         let nome = valores[1]
-        
+
         const x = {
             id: id,
             nome: nome
         }
 
-        if(event.target.checked) {
+        if (event.target.checked) {
             setPatrocinadoresSelecionados([...patrocinadoresSelecionados, x])
         } else {
             setPatrocinadoresSelecionados(patrocinadoresSelecionados.filter(entidade => entidade.id !== id))
@@ -46,10 +46,10 @@ function FormularioEvento() {
         }
     }
 
-    const adicionaEvento = async() => {
+    const adicionaEvento = async () => {
 
-        await axios.post("http://localhost:3001/adicionaEventos", {
-            nome: nome, 
+        await axios.post("https://bdbackend.herokuapp.com/adicionaEventos", {
+            nome: nome,
             edicao: edicao,
             tema: tema,
             publicoAlvo: publicoAlvo
@@ -58,12 +58,12 @@ function FormularioEvento() {
         })
     }
 
-    const adicionaPatrocinadores = async() => {
+    const adicionaPatrocinadores = async () => {
         console.log('entrou pra adicionar no relacionamento')
 
-        await axios.post("http://localhost:3001/adicionaPatrocinio", {
+        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
             id_evento: idNovo,
-            nome_evento: nome, 
+            nome_evento: nome,
             dados_entidade: patrocinadoresSelecionados,
             taxa_patrocinios: taxasPatrocinadoresSelecionados,
             categoria_patrocinios: categoriasPatrocinadoresSelecionados
@@ -75,23 +75,23 @@ function FormularioEvento() {
 
     useEffect(() => {
         console.log(idNovo)
-        if(idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
+        if (idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
-      }, [idNovo]);
+    }, [idNovo]);
 
     useEffect(() => {
         setQuantPatrocinadoresSelecionados(patrocinadoresSelecionados.length)
     }, [patrocinadoresSelecionados]);
 
     useEffect(() => {
-        if(idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
+        if (idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
     }, [categoriasPatrocinadoresSelecionados]);
 
     useEffect(() => {
-        if(idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
+        if (idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
     }, [taxasPatrocinadoresSelecionados]);
@@ -101,79 +101,79 @@ function FormularioEvento() {
     return (
         <div>
             <h1>Formulario de evento</h1>
-            
-                <form >
+
+            <form >
                 <div className="formsContainer">
                     <div className="itemForms">
                         <label>Nome:
                         <input type="text"
-                                onChange = {(event) => {
+                                onChange={(event) => {
                                     setNome(event.target.value);
-                                }} 
-                        />
+                                }}
+                            />
                         </label>
                     </div>
 
                     <div className="itemForms">
                         <label>Edição:
                         <input type="text"
-                                onChange = {(event) => {
+                                onChange={(event) => {
                                     setEdicao(event.target.value);
-                                }} 
-                        />
+                                }}
+                            />
                         </label>
                     </div>
 
                     <div className="itemForms">
                         <label>Tema:
                         <input type="text"
-                                onChange = {(event) => {
+                                onChange={(event) => {
                                     setTema(event.target.value);
-                                }} 
-                        />
+                                }}
+                            />
                         </label>
                     </div>
 
                     <div className="itemForms">
                         <label>Público alvo:
                         <input type="text"
-                                onChange = {(event) => {
+                                onChange={(event) => {
                                     setPublicoAlvo(event.target.value);
-                                }} 
-                        />
+                                }}
+                            />
                         </label>
                     </div>
-                    </div>
+                </div>
 
-                    <div className="checkbox-container">
+                <div className="checkbox-container">
                     <label>Patrocinadores:</label>
-                        {listaPatrocinadores.map(element => { 
+                    {listaPatrocinadores.map(element => {
                         return (
                             <div className="checkbox-element">
-                                <input type="checkbox" id={element.nome} name={[element.id, element.nome]} onChange={selectPatrocinadores}/>{/* {element.nome} */}
+                                <input type="checkbox" id={element.nome} name={[element.id, element.nome]} onChange={selectPatrocinadores} />{/* {element.nome} */}
                                 <label for={element.nome}>{element.nome}</label>
                             </div>
-                            )
-                        })}
-                    
-                    </div>
+                        )
+                    })}
 
-                    <div >
-                        <label>Forneça os seguintes dados sobre os patrocinadores desse evento:</label>
-                        {patrocinadoresSelecionados.map(element => { 
+                </div>
+
+                <div >
+                    <label>Forneça os seguintes dados sobre os patrocinadores desse evento:</label>
+                    {patrocinadoresSelecionados.map(element => {
                         return (
                             <div className="checkbox-element">
                                 <h4>{element.nome}</h4>
                                 <label>Taxa do patrocinio:
                                     <input id={element.id}
                                         type="text"
-                                        onChange = {async(event) => {
+                                        onChange={async (event) => {
                                             setTaxasPatrocinadoresSelecionados([...taxasPatrocinadoresSelecionados.filter(taxa => taxa.id !== event.target.id), {
                                                 id: event.target.id,
                                                 value: event.target.value
                                             }])
-                                    }} 
-                                />  
+                                        }}
+                                    />
                                 </label>
 
                                 <label>Categoria do patrocinio:
@@ -185,39 +185,39 @@ function FormularioEvento() {
                                                 value: event.target.value
                                             }])
                                     }} 
-                                />  */} 
-                                    <div onChange = {(event) => {
-                                            setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
-                                                id: event.target.id,
-                                                value: event.target.value
-                                            }])
+                                />  */}
+                                    <div onChange={(event) => {
+                                        setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
+                                            id: event.target.id,
+                                            value: event.target.value
+                                        }])
                                     }} >
                                         <div className="checkbox-element">
-                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Ouro"/>
+                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Ouro" />
                                             <label >Ouro</label>
                                         </div>
                                         <div className="checkbox-element">
-                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Prata"/>
+                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Prata" />
                                             <label >´Prata</label>
                                         </div>
                                         <div className="checkbox-element">
-                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Bronze"/>
+                                            <input id={element.id} type="radio" name={"entidade" + element.id} value="Bronze" />
                                             <label >Bronze</label>
                                         </div>
                                     </div>
                                 </label>
                             </div>
-                            )
-                        })}
-                    
-                    </div> 
+                        )
+                    })}
 
-                    <div className="formsContainer">
-                        <button type='button' onClick={adicionaEvento}>Enviar</button>
-                    </div>
-                </form>
-            
-            
+                </div>
+
+                <div className="formsContainer">
+                    <button type='button' onClick={adicionaEvento}>Enviar</button>
+                </div>
+            </form>
+
+
         </div>
     )
 }

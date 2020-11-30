@@ -33,11 +33,11 @@ function Eventos() {
     const [hiddenDiv, setHiddenDiv] = useState("none");
 
     const getEventos = async () => {
-        const response = await axios.get("http://localhost:3001/Eventos")
+        const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
         setListaEventos(response.data.rows)
     }
     const getPatrocinadores = async (id) => {
-        const response = await axios.get("http://localhost:3001/Patrocinadores")
+        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
         setTodosOsPatrocinadores(response.data.rows)
     }
     useEffect(getEventos, [])
@@ -47,7 +47,7 @@ function Eventos() {
 
         let confirmDelete = window.confirm('Tem certeza que deseja deletar esse item?')
         if (confirmDelete) {
-            axios.delete("http://localhost:3001/removeEventos/" + id)
+            axios.delete("https://bdbackend.herokuapp.com/removeEventos/" + id)
             setListaEventos(listaEventos.filter(evento => evento.id !== id))
         }
     }
@@ -56,18 +56,18 @@ function Eventos() {
         let evento = id[0]
         let entidade = id[1]
 
-        axios.delete("http://localhost:3001/removePatrocinio/" + evento + "/" + entidade)
+        axios.delete("https://bdbackend.herokuapp.com/removePatrocinio/" + evento + "/" + entidade)
         setListaPatrocinadores(listaPatrocinadores.filter(element => element.entidade_id !== entidade))
         /* setIdPatrocinadores(idPatrocinadores.filter(element => element.id !== entidade)) */
-        
+
     }
 
     const getPatrocinio = async (id) => {
-        const response = await axios.get("http://localhost:3001/Patrocinio/" + id)
+        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinio/" + id)
         setListaPatrocinadores(response.data.rows)
         let i = 0
         let ids = []
-        while(i<response.data.rows.length) {
+        while (i < response.data.rows.length) {
             /* console.log(response.data.rows[i].entidade_id) */
             ids.push(response.data.rows[i].entidade_id)
             i++
@@ -87,8 +87,8 @@ function Eventos() {
         }]
         console.log(patrocinador)
         console.log(patrocinador.id)
-        
-        
+
+
         const taxa = [{
             id: patrocinador[0].id,
             value: novoPatrocTaxa
@@ -98,9 +98,9 @@ function Eventos() {
             value: novoPatrocCategoria
         }]
 
-        await axios.post("http://localhost:3001/adicionaPatrocinio", {
+        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
             id_evento: idEvento,
-            nome_evento: nomeEvento, 
+            nome_evento: nomeEvento,
             dados_entidade: patrocinador,
             taxa_patrocinios: taxa,
             categoria_patrocinios: categoria
@@ -115,14 +115,14 @@ function Eventos() {
         setPatrocEditadoNome(dados[2])
         setPatrocEditadoTaxa(dados[3])
         setPatrocEditadoCategoria(dados[4])
-        
+
         setHiddenDiv("block")
     }
 
-    const editarPatrocinio = async() => {
+    const editarPatrocinio = async () => {
         console.log(listaPatrocinadores)
         setHiddenDiv("none")
-        axios.put("http://localhost:3001/updatePatrocinio", {
+        axios.put("https://bdbackend.herokuapp.com/updatePatrocinio", {
             id_evento: idEvento,
             id_patrocinador: patrocEditadoId,
             taxa: patrocEditadoTaxa,
@@ -131,10 +131,10 @@ function Eventos() {
             //Mandar de volta para página de eventos
             //window.location = "/"
             setListaPatrocinadores([...listaPatrocinadores.filter(element => element.entidade_id !== patrocEditadoId), {
-                taxa: patrocEditadoTaxa, 
-                categoria: patrocEditadoCategoria, 
-                evento_id: idEvento, 
-                evento_nome: "", 
+                taxa: patrocEditadoTaxa,
+                categoria: patrocEditadoCategoria,
+                evento_id: idEvento,
+                evento_nome: "",
                 entidade_id: patrocEditadoId,
                 entidade_nome: patrocEditadoNome
             }])
@@ -227,10 +227,10 @@ function Eventos() {
                                 )
                             })}
                         </table>
-                        
+
                     </div>
 
-                    <div style={{display: hiddenDiv }}>
+                    <div style={{ display: hiddenDiv }}>
                         <h1>Editar patrocinador {patrocEditadoNome}</h1>
                         <form >
                             <div className="formsContainer">
@@ -238,8 +238,8 @@ function Eventos() {
                                 <div className="itemForms">
                                     <label>Taxa:
                                         <input type="text"
-                                                onChange = {(event) => {setPatrocEditadoTaxa(event.target.value);}} 
-                                                value={patrocEditadoTaxa}
+                                            onChange={(event) => { setPatrocEditadoTaxa(event.target.value); }}
+                                            value={patrocEditadoTaxa}
                                         />
                                     </label>
                                 </div>
@@ -250,20 +250,20 @@ function Eventos() {
                                             onChange = {(event) => {setPatrocEditadoCategoria(event.target.value);}}
                                             value={patrocEditadoCategoria}
                                         /> */}
-                                        <div onChange = {(event) => {setPatrocEditadoCategoria(event.target.value);}} >
+                                        <div onChange={(event) => { setPatrocEditadoCategoria(event.target.value); }} >
                                             {/* <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"}/>Ouro
                                             <input type="radio" name="entidade" value="Prata" checked={patrocEditadoCategoria === "Prata"}/>Prata
                                             <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"}/>Bronze */}
                                             <div className="checkbox-element">
-                                                <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"}/>
+                                                <input type="radio" name="entidade" value="Ouro" checked={patrocEditadoCategoria === "Ouro"} />
                                                 <label >Ouro</label>
                                             </div>
                                             <div className="checkbox-element">
-                                                <input type="radio" name="entidade" value="Prata" checked={patrocEditadoCategoria === "Prata"}/>
+                                                <input type="radio" name="entidade" value="Prata" checked={patrocEditadoCategoria === "Prata"} />
                                                 <label >Prata</label>
                                             </div>
                                             <div className="checkbox-element">
-                                                <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"}/>
+                                                <input type="radio" name="entidade" value="Bronze" checked={patrocEditadoCategoria === "Bronze"} />
                                                 <label >Bronze</label>
                                             </div>
                                         </div>
@@ -283,22 +283,22 @@ function Eventos() {
                         <form >
                             <div className="formsContainer">
 
-                            <div onChange = {(event) => {setNovoPatrocinador([event.target.value]);}}>
-                                {todosOsPatrocinadores.map(element => {
-                                    if(!idPatrocinadores.includes(element.id)) {
-                                        return (
-                                            <div>
-                                                <input type="radio" name="entidade" value={element.id + "," + element.nome}/>{element.nome}
-                                            </div>
-                                        )
-                                    }
-                                })}
-                            </div>
+                                <div onChange={(event) => { setNovoPatrocinador([event.target.value]); }}>
+                                    {todosOsPatrocinadores.map(element => {
+                                        if (!idPatrocinadores.includes(element.id)) {
+                                            return (
+                                                <div>
+                                                    <input type="radio" name="entidade" value={element.id + "," + element.nome} />{element.nome}
+                                                </div>
+                                            )
+                                        }
+                                    })}
+                                </div>
 
                                 <div className="itemForms">
                                     <label>Taxa:
                                         <input type="text"
-                                                onChange = {(event) => {setNovoPatrocTaxa(event.target.value);}} 
+                                            onChange={(event) => { setNovoPatrocTaxa(event.target.value); }}
                                         />
                                     </label>
                                 </div>
@@ -306,7 +306,7 @@ function Eventos() {
                                 <div className="itemForms">
                                     <label>Categoria:
                                         <input type="text"
-                                            onChange = {(event) => {setNovoPatrocCategoria(event.target.value);}}
+                                            onChange={(event) => { setNovoPatrocCategoria(event.target.value); }}
                                         />
                                     </label>
                                 </div>
