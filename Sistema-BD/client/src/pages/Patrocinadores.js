@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
 import BotaoForm from '../components/BotaoForm';
 import '../pages/styles/Geral.css';
 
 function Patrocinadores() {
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [listaPatrocinadores, setListaPatroclistaPatrocinadores] = useState([])
+    const [listaPatrocinadores, setListaPatrocinadores] = useState([])
     const [listaEventos, setListaEventos] = useState([])
     const [idEventos, setIdEventos] = useState([])
     const [todosOsEventos, setTodosOsEventos] = useState([])
