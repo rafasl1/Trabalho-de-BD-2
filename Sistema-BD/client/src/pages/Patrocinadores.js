@@ -29,11 +29,11 @@ function Patrocinadores() {
     const [hiddenDiv, setHiddenDiv] = useState("none");
 
     const getPatrocinadores = async (id) => {
-        const response = await axios.get("http://localhost:3001/Patrocinadores")
+        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
         setListaPatrocinadores(response.data.rows)
     }
     const getEventos = async () => {
-        const response = await axios.get("http://localhost:3001/Eventos")
+        const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
         setTodosOsEventos(response.data.rows)
     }
 
@@ -44,7 +44,7 @@ function Patrocinadores() {
 
         let confirmDelete = window.confirm('Tem certeza que deseja deletar esse item?')
         if (confirmDelete) {
-            axios.delete("http://localhost:3001/removePatrocinador/" + id)
+            axios.delete("https://bdbackend.herokuapp.com/removePatrocinador/" + id)
             setListaPatrocinadores(listaPatrocinadores.filter(entidade => entidade.id !== id))
         }
     }
@@ -60,7 +60,9 @@ function Patrocinadores() {
     }
 
     const getPatrocinio = async (id) => {
-        const response = await axios.get("http://localhost:3001/PatrocinioPelaEntidade/" + id)
+        /* const response = await axios.get("http://localhost:3001/PatrocinioPelaEntidade/" + id)
+        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinio/" + id) */
+        const response = await axios.get("https://bdbackend.herokuapp.com/PatrocinioPelaEntidade/" + id)
         setListaEventos(response.data.rows)
         console.log(response.data.rows)
         let i = 0
@@ -92,7 +94,7 @@ function Patrocinadores() {
             value: novoPatrocCategoria
         }]
 
-        await axios.post("http://localhost:3001/adicionaPatrocinioPelaEntidade", {
+        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinioPelaEntidade", {
             id_entidade: idPatrocinador,
             nome_entidade: nomePatrocinador,
             dados_evento: evento,
@@ -117,9 +119,7 @@ function Patrocinadores() {
 
     const editarPatrocinio = async () => {
         setHiddenDiv("none")
-        console.log(listaEventos)
-        console.log(listaEventos.filter(element => element.evento_id !== eventoPatrocinadoEditadoId))
-        axios.put("http://localhost:3001/updatePatrocinio", {
+        axios.put("https://bdbackend.herokuapp.com/updatePatrocinio", {
             id_evento: eventoPatrocinadoEditadoId,
             id_patrocinador: idPatrocinador,
             taxa: patrocEditadoTaxa,

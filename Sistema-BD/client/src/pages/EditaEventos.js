@@ -18,7 +18,7 @@ function EditaEventos() {
 
     const getDadosEvento = async () => {
         id = params.id
-        const response = await axios.get("http://localhost:3001/eventoEspecifico/" + id)
+        const response = await axios.get("https://bdbackend.herokuapp.com/eventoEspecifico/" + id)
         setIdent(id)
         setNome(response.data.rows[0].nome)
         setEdicao(response.data.rows[0].edicao)
@@ -35,7 +35,7 @@ function EditaEventos() {
         let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
         if (confirmDelete) {
 
-            axios.put("http://localhost:3001/updateEventos", {
+            axios.put("https://bdbackend.herokuapp.com/updateEventos", {
                 id: ident,
                 nome: nome,
                 edicao: edicao,
