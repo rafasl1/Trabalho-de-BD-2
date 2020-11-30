@@ -33,12 +33,6 @@ const addPatrocinio = async (req, res) => {
     let taxa;
     let categoria;
 
-    console.log(id_evento)
-    console.log(nome_evento)
-    console.log(dados_entidade)
-    console.log(taxa_patrocinios)
-    console.log(categoria_patrocinios)
-
     dados_entidade.forEach(async element => {
 
         taxa_patrocinios.forEach(item => {
@@ -53,6 +47,35 @@ const addPatrocinio = async (req, res) => {
         console.log(categoria)
 
         const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + id_evento + "', '" + nome_evento + "', '" + element.id + "', '" + element.nome + "', '" + taxa + "', '" + categoria + "')";
+        const response = await pool.query(query, async (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+        });
+    });
+}
+
+const addPatrocinioPelaEntidade = async (req, res) => {
+
+    let id_entidade = req.body.id_entidade;
+    let nome_entidade = req.body.nome_entidade;
+    let dados_evento = req.body.dados_evento;
+    let taxa_patrocinios = req.body.taxa_patrocinios;
+    let categoria_patrocinios = req.body.categoria_patrocinios;
+    let taxa;
+    let categoria;
+
+    dados_evento.forEach(async element => {
+
+        taxa_patrocinios.forEach(item => {
+            if (item.id === element.id) taxa = item.value
+        })
+
+        categoria_patrocinios.forEach(item => {
+            if (item.id === element.id) categoria = item.value
+        })
+
+        const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + element.id + "', '" + element.nome + "', '" + id_entidade + "', '" + nome_entidade + "', '" + taxa + "', '" + categoria + "')";
         const response = await pool.query(query, async (err, result) => {
             if (err) {
                 console.log(err)
@@ -90,6 +113,7 @@ const updatePatrocinio = async (req, res) => {
 module.exports = {
     getPatrocinio,
     addPatrocinio,
+    addPatrocinioPelaEntidade,
     removePatrocinio,
     updatePatrocinio
 }

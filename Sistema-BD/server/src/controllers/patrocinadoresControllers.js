@@ -13,15 +13,89 @@ const getPatrocinadores = async (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            /* console.log("Show") */
-            /* console.log(result.rows) */
             res.send(result)
         }
     });
-    /* console.log(res.json(response)) */
-    /* res.status(200).json(response); */
+}
+
+const addPatrocinador = async (req, res) => {
+    let nome = req.body.nome;
+    let endereco = req.body.endereco;
+    let telefone = req.body.telefone;
+    let email = req.body.email;
+
+    const query = "INSERT INTO entidade (Nome, endereco, telefone, email) VALUES ('" + nome + "', '" + endereco + "', '" + telefone + "', '" + email + "')";
+    const response = await pool.query(query, async (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    });
+}
+
+const getLastPatrocinadorId = async (req, res) => {
+    const query = "SELECT currval(pg_get_serial_sequence('entidade','id'));";
+    const response = await pool.query(query, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result.rows[0].currval)
+        }
+    });
+}
+
+const removePatrocinador = async (req, res) => {
+    let id = req.params.id;
+
+    const query2 = "DELETE FROM patrocina WHERE entidade_id = '" + id + "'";
+    const response2 = await pool.query(query2, (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+    });
+
+    const query = "DELETE FROM entidade WHERE Id = '" + id + "'";
+    const response = await pool.query(query, (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+    });
+}
+
+const getPatrocinadorEspecifico = async (req, res) => {
+    let id = req.params.id;
+
+    const query = "SELECT * FROM entidade WHERE id = '" + id + "'";
+    const response = await pool.query(query, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    });
+}
+
+const updatePatrocinador = async (req, res) => {
+    let id = req.body.id;
+    let nome = req.body.nome;
+    let endereco = req.body.endereco;
+    let telefone = req.body.telefone;
+    let email = req.body.email;
+
+    const query = "UPDATE entidade SET Nome = '" + nome + "', endereco = '" + endereco + "', telefone = '" + telefone + "', email = '" + email + "' WHERE id = '" + id + "'";
+    const response = await pool.query(query, (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+    });
 }
 
 module.exports = {
-    getPatrocinadores
+    getPatrocinadores,
+    addPatrocinador,
+    removePatrocinador,
+    updatePatrocinador,
+    getPatrocinadorEspecifico,
+    getLastPatrocinadorId
 }
