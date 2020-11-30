@@ -18,7 +18,7 @@ function EditaPatrocinador() {
 
     const getDadosPatrocinador = async () => {
         id = params.id
-        const response = await axios.get("http://localhost:3001/patrocinadorEspecifico/" + id)
+        const response = await axios.get("https://bdbackend.herokuapp.com/patrocinadorEspecifico/" + id)
         setIdent(id)
         setNome(response.data.rows[0].nome)
         setEndereco(response.data.rows[0].endereco)
@@ -30,7 +30,7 @@ function EditaPatrocinador() {
         let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
         if (confirmDelete) {
 
-            axios.put("http://localhost:3001/updatePatrocinador", {
+            axios.put("https://bdbackend.herokuapp.com/updatePatrocinador", {
                 id: ident,
                 nome: nome,
                 endereco: endereco,

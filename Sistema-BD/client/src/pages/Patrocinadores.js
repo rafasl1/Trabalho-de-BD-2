@@ -53,7 +53,7 @@ function Patrocinadores() {
         let evento = id[0]
         let entidade = id[1]
 
-        axios.delete("http://localhost:3001/removePatrocinio/" + evento + "/" + entidade)
+        axios.delete("https://bdbackend.herokuapp.com/removePatrocinio/" + evento + "/" + entidade)
         setListaEventos(listaEventos.filter(element => element.evento_id !== evento))
         /* setIdPatrocinadores(idPatrocinadores.filter(element => element.id !== entidade)) */
 

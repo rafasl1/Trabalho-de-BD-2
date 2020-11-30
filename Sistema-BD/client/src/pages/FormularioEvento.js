@@ -18,20 +18,12 @@ function FormularioEvento() {
     const [idNovo, setIdNovo] = useState(0);
 
     const getPatrocinadores = async () => {
-<<<<<<< HEAD
-        const response = await axios.get("http://localhost:3001/Patrocinadores")
-=======
         const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
->>>>>>> 6a456da256755bd9976ab3215d5bc3348bc4aa67
         setListaPatrocinadores(response.data.rows)
     }
 
     const getLastId = async () => {
-<<<<<<< HEAD
-        const response = await axios.get("http://localhost:3001/eventoLastId")
-=======
         const response = await axios.get("https://bdbackend.herokuapp.com/eventoLastId")
->>>>>>> 6a456da256755bd9976ab3215d5bc3348bc4aa67
         setIdNovo(response.data)
     }
 
@@ -56,11 +48,7 @@ function FormularioEvento() {
 
     const adicionaEvento = async () => {
 
-<<<<<<< HEAD
-        await axios.post("http://localhost:3001/adicionaEventos", {
-=======
         await axios.post("https://bdbackend.herokuapp.com/adicionaEventos", {
->>>>>>> 6a456da256755bd9976ab3215d5bc3348bc4aa67
             nome: nome,
             edicao: edicao,
             tema: tema,
@@ -167,15 +155,9 @@ function FormularioEvento() {
                             </div>
                         )
                     })}
-<<<<<<< HEAD
 
                 </div>
 
-=======
-
-                </div>
-
->>>>>>> 6a456da256755bd9976ab3215d5bc3348bc4aa67
                 <div >
                     <label>Forneça os seguintes dados sobre os patrocinadores desse evento:</label>
                     {patrocinadoresSelecionados.map(element => {
@@ -195,18 +177,6 @@ function FormularioEvento() {
                                 </label>
 
                                 <label>Categoria do patrocinio:
-<<<<<<< HEAD
-=======
-                                    {/* <input id={element.id}
-                                        type="text"
-                                        onChange = {(event) => {
-                                            setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
-                                                id: event.target.id,
-                                                value: event.target.value
-                                            }])
-                                    }} 
-                                />  */}
->>>>>>> 6a456da256755bd9976ab3215d5bc3348bc4aa67
                                     <div onChange={(event) => {
                                         setCategoriasPatrocinadoresSelecionados([...categoriasPatrocinadoresSelecionados.filter(categoria => categoria.id !== event.target.id), {
                                             id: event.target.id,

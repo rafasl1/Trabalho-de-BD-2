@@ -18,12 +18,12 @@ function FormularioPatrocinadores() {
     const [idNovo, setIdNovo] = useState(0);
 
     const getEventos = async () => {
-        const response = await axios.get("http://localhost:3001/Eventos")
+        const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
         setListaEventos(response.data.rows)
     }
 
     const getLastId = async () => {
-        const response = await axios.get("http://localhost:3001/patrocinadorLastId")
+        const response = await axios.get("https://bdbackend.herokuapp.com/patrocinadorLastId")
         setIdNovo(response.data)
     }
 
@@ -48,7 +48,7 @@ function FormularioPatrocinadores() {
 
     const adicionaPatrocinador = async () => {
 
-        await axios.post("http://localhost:3001/adicionaPatrocinador", {
+        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinador", {
             nome: nome,
             endereco: endereco,
             telefone: telefone,
@@ -60,7 +60,7 @@ function FormularioPatrocinadores() {
     }
 
     const adicionaPatrocinio = async () => {
-        await axios.post("http://localhost:3001/adicionaPatrocinioPelaEntidade", {
+        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinioPelaEntidade", {
             id_entidade: idNovo,
             nome_entidade: nome,
             dados_evento: eventosSelecionados,
