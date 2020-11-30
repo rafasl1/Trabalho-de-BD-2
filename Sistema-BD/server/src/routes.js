@@ -3,7 +3,7 @@ const router = Router(); // objeto que permite definir as rotas
 
 const { getEventos, addEventos, removeEventos, updateEventos, getEventoEspecifico, getLastEventoId } = require('./controllers/eventoControllers')
 const { getPatrocinadores, addPatrocinador, removePatrocinador, updatePatrocinador, getPatrocinadorEspecifico, getLastPatrocinadorId } = require('./controllers/patrocinadoresControllers')
-const { getPatrocinio, addPatrocinio, addPatrocinioPelaEntidade, removePatrocinio, updatePatrocinio } = require('./controllers/patrocinioControllers')
+const { getPatrocinio, getPatrocinioPelaEntidade, addPatrocinio, addPatrocinioPelaEntidade, removePatrocinio, updatePatrocinio } = require('./controllers/patrocinioControllers')
 
 router.get('/', (request, response) => response.json({ message: "Bem vinda(o) à API do trabalho" }))
 
@@ -22,6 +22,7 @@ router.put('/updatePatrocinador', updatePatrocinador);
 router.get('/patrocinadorEspecifico/:id', getPatrocinadorEspecifico);
 
 router.get('/Patrocinio/:id', getPatrocinio);
+router.get('/PatrocinioPelaEntidade/:id', getPatrocinioPelaEntidade);
 router.post('/adicionaPatrocinio', addPatrocinio);
 router.post('/adicionaPatrocinioPelaEntidade', addPatrocinioPelaEntidade);
 router.delete('/removePatrocinio/:evento/:entidade', removePatrocinio);

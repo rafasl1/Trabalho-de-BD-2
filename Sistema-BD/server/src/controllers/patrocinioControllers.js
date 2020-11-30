@@ -15,12 +15,22 @@ const getPatrocinio = async (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            /* console.log("Show") */
             res.send(result)
         }
     });
-    /* console.log(res.json(response)) */
-    /* res.status(200).json(response); */
+}
+
+const getPatrocinioPelaEntidade = async (req, res) => {
+    let id = req.params.id;
+
+    const query = "SELECT * FROM patrocina WHERE entidade_id = '" + id + "'";
+    const response = await pool.query(query, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    });
 }
 
 const addPatrocinio = async (req, res) => {
@@ -112,6 +122,7 @@ const updatePatrocinio = async (req, res) => {
 
 module.exports = {
     getPatrocinio,
+    getPatrocinioPelaEntidade,
     addPatrocinio,
     addPatrocinioPelaEntidade,
     removePatrocinio,
