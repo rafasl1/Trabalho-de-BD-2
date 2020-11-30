@@ -3,44 +3,39 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom'
 import '../pages/styles/Form.css'
 
-function EditaEventos() {
+function EditaPatrocinador() {
 
     const params = useParams();
     let id;
 
     const [ident, setIdent] = useState("");
     const [nome, setNome] = useState("");
-    const [edicao, setEdicao] = useState("");
-    const [tema, setTema] = useState("");
-    const [publicoAlvo, setPublicoAlvo] = useState("");
+    const [endereco, setEndereco] = useState("");
+    const [telefone, setTelefone] = useState("");
+    const [email, setEmail] = useState("");
 
     /* const [listaPatrocinadores, setListaPatrocinadores] = useState([]) */
 
-    const getDadosEvento = async () => {
+    const getDadosPatrocinador = async () => {
         id = params.id
-        const response = await axios.get("http://localhost:3001/eventoEspecifico/" + id)
+        const response = await axios.get("http://localhost:3001/patrocinadorEspecifico/" + id)
         setIdent(id)
         setNome(response.data.rows[0].nome)
-        setEdicao(response.data.rows[0].edicao)
-        setTema(response.data.rows[0].tema)
-        setPublicoAlvo(response.data.rows[0].publico_alvo)
+        setEndereco(response.data.rows[0].endereco)
+        setTelefone(response.data.rows[0].telefone)
+        setEmail(response.data.rows[0].email)
     }
 
-    /* const getPatrocinadores = async() => {
-        
-    } */
-
-    const atualizaEvento = async () => {
-        console.log(ident)
+    const atualizaPatrocinador = async () => {
         let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
         if (confirmDelete) {
 
-            axios.put("http://localhost:3001/updateEventos", {
+            axios.put("http://localhost:3001/updatePatrocinador", {
                 id: ident,
                 nome: nome,
-                edicao: edicao,
-                tema: tema,
-                publicoAlvo: publicoAlvo
+                endereco: endereco,
+                telefone: telefone,
+                email: email
             }).then(
                 //Mandar de volta para página de eventos
                 window.location = "/"
@@ -49,13 +44,13 @@ function EditaEventos() {
         }
     }
 
-    useEffect(getDadosEvento, [])
+    useEffect(getDadosPatrocinador, [])
 
     return (
         <div>
-            <h1>Editar evento {nome}</h1>
+            <h1>Editar patrocinador {nome}</h1>
 
-            <form onSubmit={atualizaEvento}>
+            <form onSubmit={atualizaPatrocinador}>
                 <div className="formsContainer">
                     <div className="itemForms">
                         <label>Nome:
@@ -69,34 +64,34 @@ function EditaEventos() {
                     </div>
 
                     <div className="itemForms">
-                        <label>Edição:
+                        <label>Endereço:
                         <input type="text"
                                 onChange={(event) => {
-                                    setEdicao(event.target.value);
+                                    setEndereco(event.target.value);
                                 }}
-                                value={edicao}
+                                value={endereco}
                             />
                         </label>
                     </div>
 
                     <div className="itemForms">
-                        <label>Tema:
+                        <label>Telefone:
                         <input type="text"
                                 onChange={(event) => {
-                                    setTema(event.target.value);
+                                    setTelefone(event.target.value);
                                 }}
-                                value={tema}
+                                value={telefone}
                             />
                         </label>
                     </div>
 
                     <div className="itemForms">
-                        <label>Público alvo:
+                        <label>Email:
                         <input type="text"
                                 onChange={(event) => {
-                                    setPublicoAlvo(event.target.value);
+                                    setEmail(event.target.value);
                                 }}
-                                value={publicoAlvo}
+                                value={email}
                             />
                         </label>
                     </div>
@@ -106,10 +101,8 @@ function EditaEventos() {
                     <button type='submit'>Enviar</button>
                 </div>
             </form>
-
-            <h3>OBS: Caso deseje, editar os patrocinadores desse evento, faça isso através do botão "Ver patrocinadores" na página principal"</h3>
         </div>
     )
 }
 
-export default EditaEventos;
+export default EditaPatrocinador;
