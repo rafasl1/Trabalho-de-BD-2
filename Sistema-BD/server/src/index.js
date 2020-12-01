@@ -15,7 +15,6 @@ app.use((req, res, next) => {
 app.use(express.json()); //permite receber dados do cliente em fortato json
 //Rotas
 app.use(require('./routes'));
-app.use(express.urlencoded({ extended: false }));
 
 const port = process.env.PORT || 3001;
 
