@@ -4,12 +4,12 @@ const cors = require('cors');
 const { urlencoded } = require('express');
 
 //Middlewars
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
-    app.use(cors());
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+//     app.use(cors());
+//     next();
+// });
 
 
 app.use(express.json()); //permite receber dados do cliente em fortato json
