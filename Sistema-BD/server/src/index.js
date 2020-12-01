@@ -5,7 +5,14 @@ const cors = require('cors');
 app.use(cors());
 
 //Middlewars
-app.use(cors());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", ['GET', 'PUT', 'POST', 'DELETE']);
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    app.use(cors());
+    next();
+});
 app.use(express.json()); //permite receber dados do cliente em fortato json
 app.use(express.urlencoded({ extended: false })); //recebe dados por fomularios
 
