@@ -106,7 +106,7 @@ function Eventos() {
             value: novoPatrocCategoria
         }]
 
-        await axios.get("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
+        axios.get("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
             id_evento: idEvento,
             nome_evento: nomeEvento,
             dados_entidade: patrocinador,
