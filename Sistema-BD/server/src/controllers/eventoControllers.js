@@ -1,17 +1,16 @@
-const {Pool} = require('pg');
+const { Pool } = require('pg');
 
 const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: 'a1b2c3d4',
-    database: 'Gerenciador_de_eventos',
-    port: '5432'
+    host: 'motty.db.elephantsql.com',
+    user: 'vnyspson',
+    password: 'dScNDBzo2EsRd4zXvx4NosDeqwt3IMwI',
+    database: 'vnyspson'
 })
 
 const getEventos = async (req, res) => {
     const query = "SELECT * FROM evento";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.send(result)
@@ -27,20 +26,20 @@ const addEventos = async (req, res) => {
     let idInserido;
 
     const query = "INSERT INTO EVENTO (Nome, Edicao, Tema, Publico_Alvo) VALUES ('" + nome + "', '" + edicao + "', '" + tema + "', '" + publicoAlvo + "')";
-    const response = await pool.query(query, async(err, result) => {
-        if(err) {
+    const response = await pool.query(query, async (err, result) => {
+        if (err) {
             console.log(err)
         } else {
             res.send(result)
         }
-    }); 
+    });
 
 }
 
 const getLastEventoId = async (req, res) => {
     const query = "SELECT currval(pg_get_serial_sequence('evento','id'));";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.send(result.rows[0].currval)
@@ -53,16 +52,16 @@ const removeEventos = async (req, res) => {
 
     const query2 = "DELETE FROM patrocina WHERE evento_id = '" + id + "'";
     const response2 = await pool.query(query2, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
-        } 
+        }
     });
 
-    const query = "DELETE FROM EVENTO WHERE Id = '" + id + "'" ;
+    const query = "DELETE FROM EVENTO WHERE Id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
-        } 
+        }
     });
 }
 
@@ -71,7 +70,7 @@ const getEventoEspecifico = async (req, res) => {
 
     const query = "SELECT * FROM evento WHERE id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.send(result)
@@ -88,9 +87,9 @@ const updateEventos = async (req, res) => {
 
     const query = "UPDATE EVENTO SET Nome = '" + nome + "', Edicao = '" + edicao + "', Tema = '" + tema + "', Publico_Alvo = '" + publicoAlvo + "' WHERE id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
-        } 
+        }
     });
 }
 

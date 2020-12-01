@@ -1,11 +1,10 @@
-const {Pool} = require('pg');
+const { Pool } = require('pg');
 
 const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: 'a1b2c3d4',
-    database: 'Gerenciador_de_eventos',
-    port: '5432'
+    host: 'motty.db.elephantsql.com',
+    user: 'vnyspson',
+    password: 'dScNDBzo2EsRd4zXvx4NosDeqwt3IMwI',
+    database: 'vnyspson'
 })
 
 const getPatrocinio = async (req, res) => {
@@ -13,7 +12,7 @@ const getPatrocinio = async (req, res) => {
 
     const query = "SELECT * FROM patrocina WHERE evento_id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.send(result)
@@ -26,7 +25,7 @@ const getPatrocinioPelaEntidade = async (req, res) => {
 
     const query = "SELECT * FROM patrocina WHERE entidade_id = '" + id + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.send(result)
@@ -36,7 +35,7 @@ const getPatrocinioPelaEntidade = async (req, res) => {
 
 const addPatrocinio = async (req, res) => {
 
-    let id_evento = req.body.id_evento; 
+    let id_evento = req.body.id_evento;
     let nome_evento = req.body.nome_evento;
     let dados_entidade = req.body.dados_entidade;
     let taxa_patrocinios = req.body.taxa_patrocinios;
@@ -44,31 +43,31 @@ const addPatrocinio = async (req, res) => {
     let taxa;
     let categoria;
 
-    dados_entidade.forEach(async element => { 
+    dados_entidade.forEach(async element => {
 
         taxa_patrocinios.forEach(item => {
-            if(item.id === element.id) taxa = item.value
+            if (item.id === element.id) taxa = item.value
         })
 
         categoria_patrocinios.forEach(item => {
-            if(item.id === element.id) categoria = item.value
+            if (item.id === element.id) categoria = item.value
         })
 
         console.log(taxa)
         console.log(categoria)
 
         const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + id_evento + "', '" + nome_evento + "', '" + element.id + "', '" + element.nome + "', '" + taxa + "', '" + categoria + "')";
-        const response = await pool.query(query, async(err, result) => {
-        if(err) {
-            console.log(err)
-        } 
-    });  
-      });  
+        const response = await pool.query(query, async (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+        });
+    });
 }
 
 const addPatrocinioPelaEntidade = async (req, res) => {
 
-    let id_entidade = req.body.id_entidade; 
+    let id_entidade = req.body.id_entidade;
     let nome_entidade = req.body.nome_entidade;
     let dados_evento = req.body.dados_evento;
     let taxa_patrocinios = req.body.taxa_patrocinios;
@@ -76,23 +75,23 @@ const addPatrocinioPelaEntidade = async (req, res) => {
     let taxa;
     let categoria;
 
-    dados_evento.forEach(async element => { 
+    dados_evento.forEach(async element => {
 
         taxa_patrocinios.forEach(item => {
-            if(item.id === element.id) taxa = item.value
+            if (item.id === element.id) taxa = item.value
         })
 
         categoria_patrocinios.forEach(item => {
-            if(item.id === element.id) categoria = item.value
+            if (item.id === element.id) categoria = item.value
         })
 
-        const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + element.id+ "', '" + element.nome + "', '" + id_entidade  + "', '" + nome_entidade + "', '" + taxa + "', '" + categoria + "')";
-        const response = await pool.query(query, async(err, result) => {
-        if(err) {
-            console.log(err)
-        } 
-    });  
-      });  
+        const query = "INSERT INTO patrocina (evento_id, evento_nome, entidade_id, entidade_nome, taxa, categoria) VALUES ('" + element.id + "', '" + element.nome + "', '" + id_entidade + "', '" + nome_entidade + "', '" + taxa + "', '" + categoria + "')";
+        const response = await pool.query(query, async (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+        });
+    });
 }
 
 const removePatrocinio = async (req, res) => {
@@ -101,9 +100,9 @@ const removePatrocinio = async (req, res) => {
 
     const query = "DELETE FROM patrocina WHERE evento_id = '" + evento_id + "' AND entidade_id = '" + entidade_id + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
-        } 
+        }
     });
 }
 
@@ -115,9 +114,9 @@ const updatePatrocinio = async (req, res) => {
 
     const query = "UPDATE patrocina SET taxa = '" + taxa + "', categoria = '" + categoria + "' WHERE evento_id = '" + id_evento + "' AND entidade_id = '" + id_patrocinador + "'";
     const response = await pool.query(query, (err, result) => {
-        if(err) {
+        if (err) {
             console.log(err)
-        } 
+        }
     });
 }
 
