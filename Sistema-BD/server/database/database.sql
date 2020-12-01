@@ -443,7 +443,7 @@ INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, T
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (2, 'Golab', 'Guimerlhe', 2, 'Como ficar milionario em uma semana');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (3, 'Vilma', 'Lorena', 3, 'Instalando JDK no seu computador');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (4, 'Daria', 'Imar', 4, 'Como tocar Unsaid Emily no ukelele');
-INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (5, 'Gabriela', 'Michele', 5, 'Como queimar chocolate no microondas');]
+INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (5, 'Gabriela', 'Michele', 5, 'Como queimar chocolate no microondas');
 INSERT INTO MINISTRA (Ministrante_id, Ministrante_nome, Ministrante_sobrenome, Tutorial_id, Tutorial_nome) VALUES (6, 'Gabriela', 'Michele', 6, 'Dicas para o mercado de trabalho');
 
 CREATE TABLE REUNIAO (
