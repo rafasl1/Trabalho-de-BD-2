@@ -4,13 +4,14 @@ const cors = require('cors');
 const { urlencoded } = require('express');
 
 //Middlewars
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    app.use(cors());
+    next();
+});
 
-var corsConfig = {
-    origin: '*',
-    methods: 'GET,PUT,POST,DELETE',
-    optionsSuccessStatus: 200
-}
-app.use(cors(corsConfig))
 app.use(express.json()); //permite receber dados do cliente em fortato json
 //Rotas
 app.use(require('./routes'));
