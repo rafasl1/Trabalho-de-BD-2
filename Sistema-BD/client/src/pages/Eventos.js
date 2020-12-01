@@ -32,16 +32,24 @@ function Eventos() {
 
     const [hiddenDiv, setHiddenDiv] = useState("none");
 
-    const getEventos = async () => {
-        const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
-        setListaEventos(response.data.rows)
-    }
-    const getPatrocinadores = async (id) => {
-        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
-        setTodosOsPatrocinadores(response.data.rows)
-    }
-    useEffect(getEventos, [])
-    useEffect(getPatrocinadores, [])
+
+    useEffect(() => {
+        const getEventos = async () => {
+            const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
+            setListaEventos(response.data.rows)
+        }
+
+        getEventos();
+    }, [])
+
+    useEffect(() => {
+        const getPatrocinadores = async (id) => {
+            const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
+            setTodosOsPatrocinadores(response.data.rows)
+        }
+
+        getPatrocinadores();
+    }, [])
 
     const delEventos = (id) => {
 
@@ -286,7 +294,7 @@ function Eventos() {
                                 <div className="itemForms">
                                     <label>Entidade patrocinadora:
                                     <div onChange={(event) => { setNovoPatrocinador([event.target.value]); }}>
-                                            {todosOsPatrocinadores.map(element => {
+                                            {todosOsPatrocinadores.map(element => { // eslint-disable-line
                                                 if (!idPatrocinadores.includes(element.id)) {
                                                     return (
                                                         <div className="checkbox-element">

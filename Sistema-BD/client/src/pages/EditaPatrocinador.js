@@ -16,15 +16,6 @@ function EditaPatrocinador() {
 
     /* const [listaPatrocinadores, setListaPatrocinadores] = useState([]) */
 
-    const getDadosPatrocinador = async () => {
-        id = params.id
-        const response = await axios.get("https://bdbackend.herokuapp.com/patrocinadorEspecifico/" + id)
-        setIdent(id)
-        setNome(response.data.rows[0].nome)
-        setEndereco(response.data.rows[0].endereco)
-        setTelefone(response.data.rows[0].telefone)
-        setEmail(response.data.rows[0].email)
-    }
 
     const atualizaPatrocinador = async () => {
         let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
@@ -44,7 +35,19 @@ function EditaPatrocinador() {
         }
     }
 
-    useEffect(getDadosPatrocinador, [])
+    useEffect(() => {
+        const getDadosPatrocinador = async () => {
+            id = params.id // eslint-disable-line
+            const response = await axios.get("https://bdbackend.herokuapp.com/patrocinadorEspecifico/" + id)
+            setIdent(id)
+            setNome(response.data.rows[0].nome)
+            setEndereco(response.data.rows[0].endereco)
+            setTelefone(response.data.rows[0].telefone)
+            setEmail(response.data.rows[0].email)
+        }
+
+        getDadosPatrocinador();
+    }, [])
 
     return (
         <div>

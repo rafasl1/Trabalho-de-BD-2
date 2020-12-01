@@ -17,10 +17,6 @@ function FormularioPatrocinadores() {
     const [categoriasEventosSelecionados, setCategoriasEventosSelecionados] = useState([])
     const [idNovo, setIdNovo] = useState(0);
 
-    const getEventos = async () => {
-        const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
-        setListaEventos(response.data.rows)
-    }
 
     const getLastId = async () => {
         const response = await axios.get("https://bdbackend.herokuapp.com/patrocinadorLastId")
@@ -77,7 +73,7 @@ function FormularioPatrocinadores() {
         if (idNovo !== 0 && categoriasEventosSelecionados.length === quantEventosSelecionados && taxasEventosSelecionados.length === quantEventosSelecionados) {
             adicionaPatrocinio()
         }
-    }, [idNovo]);
+    }, [idNovo]); // eslint-disable-line
 
     useEffect(() => {
         setQuantEventosSelecionados(eventosSelecionados.length)
@@ -87,15 +83,22 @@ function FormularioPatrocinadores() {
         if (idNovo !== 0 && categoriasEventosSelecionados.length === quantEventosSelecionados && taxasEventosSelecionados.length === quantEventosSelecionados) {
             adicionaPatrocinio()
         }
-    }, [categoriasEventosSelecionados]);
+    }, [categoriasEventosSelecionados]); // eslint-disable-line
 
     useEffect(() => {
         if (idNovo !== 0 && categoriasEventosSelecionados.length === quantEventosSelecionados && taxasEventosSelecionados.length === quantEventosSelecionados) {
             adicionaPatrocinio()
         }
-    }, [taxasEventosSelecionados]);
+    }, [taxasEventosSelecionados]); // eslint-disable-line
 
-    useEffect(getEventos, [])
+    useEffect(() => {
+        const getEventos = async () => {
+            const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
+            setListaEventos(response.data.rows)
+        }
+
+        getEventos();
+    }, [])
 
     return (
         <div>

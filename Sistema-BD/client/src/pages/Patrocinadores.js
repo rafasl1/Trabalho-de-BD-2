@@ -28,17 +28,23 @@ function Patrocinadores() {
 
     const [hiddenDiv, setHiddenDiv] = useState("none");
 
-    const getPatrocinadores = async (id) => {
-        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
-        setListaPatrocinadores(response.data.rows)
-    }
-    const getEventos = async () => {
-        const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
-        setTodosOsEventos(response.data.rows)
-    }
 
-    useEffect(getEventos, [])
-    useEffect(getPatrocinadores, [])
+    useEffect(() => {
+        const getEventos = async () => {
+            const response = await axios.get("https://bdbackend.herokuapp.com/Eventos")
+            setTodosOsEventos(response.data.rows)
+        }
+
+        getEventos();
+    }, [])
+
+    useEffect(() => {
+        const getPatrocinadores = async (id) => {
+            const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
+            setListaPatrocinadores(response.data.rows)
+        }
+        getPatrocinadores();
+    }, [])
 
     const delPatrocinador = (id) => {
 
@@ -274,7 +280,7 @@ function Patrocinadores() {
                                 <div className="itemForms">
                                     <label>Categoria do patrocinio:
                                     <div onChange={(event) => { setNovoEventoPatrocinado([event.target.value]); }}>
-                                            {todosOsEventos.map(element => {
+                                            {todosOsEventos.map(element => { // eslint-disable-line
                                                 if (!idEventos.includes(element.id)) {
                                                     return (
                                                         <div className="checkbox-element">

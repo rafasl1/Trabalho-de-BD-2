@@ -17,10 +17,6 @@ function FormularioEvento() {
     const [categoriasPatrocinadoresSelecionados, setCategoriasPatrocinadoresSelecionados] = useState([])
     const [idNovo, setIdNovo] = useState(0);
 
-    const getPatrocinadores = async () => {
-        const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
-        setListaPatrocinadores(response.data.rows)
-    }
 
     const getLastId = async () => {
         const response = await axios.get("https://bdbackend.herokuapp.com/eventoLastId")
@@ -78,7 +74,7 @@ function FormularioEvento() {
         if (idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
-    }, [idNovo]);
+    }, [idNovo]); // eslint-disable-line
 
     useEffect(() => {
         setQuantPatrocinadoresSelecionados(patrocinadoresSelecionados.length)
@@ -88,15 +84,22 @@ function FormularioEvento() {
         if (idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
-    }, [categoriasPatrocinadoresSelecionados]);
+    }, [categoriasPatrocinadoresSelecionados]); // eslint-disable-line
 
     useEffect(() => {
         if (idNovo !== 0 && categoriasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados && taxasPatrocinadoresSelecionados.length === quantPatrocinadoresSelecionados) {
             adicionaPatrocinadores()
         }
-    }, [taxasPatrocinadoresSelecionados]);
+    }, [taxasPatrocinadoresSelecionados]); // eslint-disable-line
 
-    useEffect(getPatrocinadores, [])
+    useEffect(() => {
+        const getPatrocinadores = async () => {
+            const response = await axios.get("https://bdbackend.herokuapp.com/Patrocinadores")
+            setListaPatrocinadores(response.data.rows)
+        }
+
+        getPatrocinadores();
+    }, [])
 
     return (
         <div>

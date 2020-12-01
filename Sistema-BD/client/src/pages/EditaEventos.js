@@ -6,7 +6,7 @@ import '../pages/styles/Form.css'
 function EditaEventos() {
 
     const params = useParams();
-    let id;
+    let id; // eslint-disable-line
 
     const [ident, setIdent] = useState("");
     const [nome, setNome] = useState("");
@@ -16,15 +16,6 @@ function EditaEventos() {
 
     /* const [listaPatrocinadores, setListaPatrocinadores] = useState([]) */
 
-    const getDadosEvento = async () => {
-        id = params.id
-        const response = await axios.get("https://bdbackend.herokuapp.com/eventoEspecifico/" + id)
-        setIdent(id)
-        setNome(response.data.rows[0].nome)
-        setEdicao(response.data.rows[0].edicao)
-        setTema(response.data.rows[0].tema)
-        setPublicoAlvo(response.data.rows[0].publico_alvo)
-    }
 
     /* const getPatrocinadores = async() => {
         
@@ -49,7 +40,19 @@ function EditaEventos() {
         }
     }
 
-    useEffect(getDadosEvento, [])
+    useEffect(() => {
+        const getDadosEvento = async () => {
+            const id = params.id
+            const response = await axios.get("https://bdbackend.herokuapp.com/eventoEspecifico/" + id)
+            setIdent(id)
+            setNome(response.data.rows[0].nome)
+            setEdicao(response.data.rows[0].edicao)
+            setTema(response.data.rows[0].tema)
+            setPublicoAlvo(response.data.rows[0].publico_alvo)
+        }
+
+        getDadosEvento();
+    }, []) // eslint-disable-line
 
     return (
         <div>
