@@ -5,6 +5,7 @@ const cors = require('cors');
 //Middlewars
 app.use(cors());
 app.use(express.json()); //permite receber dados do cliente em fortato json
+app.use(express.urlencoded({ extended: false })); //recebe dados por fomularios
 
 //Rotas
 app.use(require('./routes'));
