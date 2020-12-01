@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const { urlencoded } = require('express');
 
 //Middlewars
 app.use(cors());
 app.use(express.json()); //permite receber dados do cliente em fortato json
-
+app.use(express.urlencoded({ extended: true }));
 //Rotas
 app.use(require('./routes'));
 
