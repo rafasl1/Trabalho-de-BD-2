@@ -26,7 +26,7 @@ function EditaEventos() {
         let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
         if (confirmDelete) {
 
-            axios.put("https://bdbackend.herokuapp.com/updateEventos", {
+            axios.get("https://bdbackend.herokuapp.com/updateEventos", {
                 id: ident,
                 nome: nome,
                 edicao: edicao,

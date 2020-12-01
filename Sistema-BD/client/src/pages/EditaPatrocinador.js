@@ -21,7 +21,7 @@ function EditaPatrocinador() {
         let confirmDelete = window.confirm('Tem certeza que deseja atualizar esse evento?')
         if (confirmDelete) {
 
-            axios.put("https://bdbackend.herokuapp.com/updatePatrocinador", {
+            axios.get("https://bdbackend.herokuapp.com/updatePatrocinador", {
                 id: ident,
                 nome: nome,
                 endereco: endereco,

@@ -44,7 +44,7 @@ function FormularioPatrocinadores() {
 
     const adicionaPatrocinador = async () => {
 
-        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinador", {
+        await axios.get("https://bdbackend.herokuapp.com/adicionaPatrocinador", {
             nome: nome,
             endereco: endereco,
             telefone: telefone,

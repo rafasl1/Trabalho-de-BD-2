@@ -55,7 +55,7 @@ function Eventos() {
 
         let confirmDelete = window.confirm('Tem certeza que deseja deletar esse item?')
         if (confirmDelete) {
-            axios.delete("https://bdbackend.herokuapp.com/removeEventos/" + id)
+            axios.get("https://bdbackend.herokuapp.com/removeEventos/" + id)
             setListaEventos(listaEventos.filter(evento => evento.id !== id))
         }
     }
@@ -64,7 +64,7 @@ function Eventos() {
         let evento = id[0]
         let entidade = id[1]
 
-        axios.delete("https://bdbackend.herokuapp.com/removePatrocinio/" + evento + "/" + entidade)
+        axios.get("https://bdbackend.herokuapp.com/removePatrocinio/" + evento + "/" + entidade)
         setListaPatrocinadores(listaPatrocinadores.filter(element => element.entidade_id !== entidade))
         /* setIdPatrocinadores(idPatrocinadores.filter(element => element.id !== entidade)) */
 
@@ -106,7 +106,7 @@ function Eventos() {
             value: novoPatrocCategoria
         }]
 
-        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
+        await axios.get("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
             id_evento: idEvento,
             nome_evento: nomeEvento,
             dados_entidade: patrocinador,
@@ -130,7 +130,7 @@ function Eventos() {
     const editarPatrocinio = async () => {
         console.log(listaPatrocinadores)
         setHiddenDiv("none")
-        axios.put("https://bdbackend.herokuapp.com/updatePatrocinio", {
+        axios.get("https://bdbackend.herokuapp.com/updatePatrocinio", {
             id_evento: idEvento,
             id_patrocinador: patrocEditadoId,
             taxa: patrocEditadoTaxa,

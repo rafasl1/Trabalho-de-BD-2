@@ -44,7 +44,7 @@ function FormularioEvento() {
 
     const adicionaEvento = async () => {
 
-        await axios.post("https://bdbackend.herokuapp.com/adicionaEventos", {
+        await axios.get("https://bdbackend.herokuapp.com/adicionaEventos", {
             nome: nome,
             edicao: edicao,
             tema: tema,
@@ -57,7 +57,7 @@ function FormularioEvento() {
     const adicionaPatrocinadores = async () => {
         console.log('entrou pra adicionar no relacionamento')
 
-        await axios.post("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
+        await axios.get("https://bdbackend.herokuapp.com/adicionaPatrocinio", {
             id_evento: idNovo,
             nome_evento: nome,
             dados_entidade: patrocinadoresSelecionados,
